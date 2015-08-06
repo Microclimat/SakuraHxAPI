@@ -44,6 +44,51 @@ typedef Config = {
 typedef ConstraintManager = {
     function canAddPictureToArea(target:Area):Bool;
     function canAddTextToArea(target:Area):Bool;
+    function validatePattern():ConstraintGroupValidationResult;
+    function canMoveAreaElements(target:Area):Bool;
+    function canScaleAreaElements(target:Area):Bool;
+    function canRemoveAreaElements(target:Area):Bool;
+    function canRotateAreaElements(target:Area):Bool;
+}
+
+interface ConstraintValidationResult {
+
+/**
+	 * Le resultat
+	 * @property result
+	 * @type Bool
+	 */
+    public var result:Bool;
+
+/**
+	 * La contrainte
+	 * @property constraint
+	 * @type Constraint
+	 */
+    public var constraint:Constraint;
+
+}
+
+/**
+ * Resultat de la validation des contraintes
+ * @class ConstraintGroupValidationResult
+ */
+interface ConstraintGroupValidationResult {
+
+/**
+	 * Le resultat
+	 * @property result
+	 * @type Bool
+	 */
+    public var result:Bool;
+
+/**
+	 * La liste des validations de contraintes
+	 * @property constraints
+	 * @type Array<ConstraintValidationResult>
+	 */
+    public var constraints:Array<ConstraintValidationResult>;
+
 }
 
 class Constraint {
@@ -338,6 +383,43 @@ interface Picture extends IDrawingElement {
     public var source(get, set):Image;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
+/**
+	 * Qualité de l'image apres transformation
+	 * @property pictureQuality
+	 * @type quality
+	 */
+    public var quality:PictureQuality;
+
+}
+
+@:enum abstract PictureQuality(Int) from Int to Int  {
+
+/**
+	 * Bonne qualité
+	 * @property GOOD
+	 * @type Int
+	 * @static
+	 * @default 0
+	 */
+    var GOOD = 0;
+
+/**
+	 * Qualité médiocre
+	 * @property POOR
+	 * @type Int
+	 * @static
+	 * @default 1
+	 */
+    var POOR = 1;
+
+/**
+	 * Mauvaise qualité
+	 * @property BAD
+	 * @type Int
+	 * @static
+	 * @default 2
+	 */
+    var BAD = 2;
 }
 
 @:enum abstract PictureFilter(String) from String to String   {
