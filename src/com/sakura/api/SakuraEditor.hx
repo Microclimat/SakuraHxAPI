@@ -34,6 +34,8 @@ public function getConfig():Config;
 public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
 public function setLogLevel(level:LogLevel):Void;
 public function getConstraintManager():ConstraintManager;
+public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
+public function removeAllEventListeners(type:SakuraEventType):Void;
 
 }
 
