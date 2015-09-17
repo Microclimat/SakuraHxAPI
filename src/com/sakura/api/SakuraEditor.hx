@@ -25,7 +25,7 @@ public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void
 public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
 public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):Text;
 public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
-public function addCustomerDesign():Void;
+public function addCustomerDesign(?previewArea:Rectangle):Void;
 public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):IDrawingArea;
 public function changeCurrentTemplateAreas(areas:Array<IDrawingArea>):PatternInfo;
 public function displayTemplateByIndex(index:Int):PatternInfo;
