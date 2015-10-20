@@ -895,4 +895,65 @@ interface Transform {
     var HFLIP = 'hFlip';
 }
 
+@:enum abstract PluginType(Int) from Int to Int {
+
+    var BASE = 0;
+    var VISUAL = 1;
+
+}
+
+/**
+* Interface de base pour les Plugin à SakuraEditor
+* @author d.mouton
+* @class IPlugin
+* @constructor
+*/
+interface IPlugin {
+
+    var type:PluginType;
+
+/**
+	 * Initialise le module
+	 * @method init
+	 * @param	data {Object} Les données necessaires à l'initialisation
+	 */
+    function init(data:Dynamic):Void;
+
+/**
+	 * Met à jour le module
+	 * @method update
+	 * @param	data {Object}
+	 * @param	targetIndex {Int} l'index du Template
+	 */
+    function update(data:Dynamic,templateIndex:Int=0):Void;
+}
+
+class Host {
+
+    public static function getURL(host:String):String {
+        var result = "";
+        switch (host) {
+            case "preprod" : result = "http://preprod.storage.plume.microclimat.com/apps";
+            case "next" : result = "http://preprod.storage.plume.microclimat.com/next";
+            case "prod" : result = "http://storage.sakuradesigner.microclimat.com/apps";
+            case "dev" : result = "http://localhost:8686/sakuraHx/apps";
+            default : result = "";
+        }
+        return result;
+    }
+}
+
+interface ProductView {
+    public var url:URL;
+    public var backgroundUrl:String;
+    public var foregroundUrl:String;
+    public var foregroundAlpha:Float = 1.0;
+    public var modelUrl:String;
+    public var modelBlendMode:String;
+    public var modelAlpha:Float=0.8;
+    public var id:Float;
+    public var name:String;
+
+}
+
 
