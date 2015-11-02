@@ -14,7 +14,7 @@ public function addEventListener(type:String, listener:SakuraEvent -> Void, ?use
 
 public function removeElement(elementId:Float):Void;
 public function selectElement(elementId:Float):Void;
-public function displayPatternById(patternId:Int, save:Bool = false):Void;
+public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
 public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false):Void;
 public function addImageFromURL(url:String, ?targetAreaId:Float):Picture;
 public function transformElement(elementId:Float,value:Transform):Void;
