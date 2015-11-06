@@ -7,7 +7,7 @@ import js.html.Image;
 
 @:native("SakuraIO")
 extern class SakuraIO {
-    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1):Void;
+    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true):Void;
     public static function fileChangeHandler(evt:Event):Void;
     public static function initExternalAuth(link:AnchorElement, provider:ExternalImageProviderType):Void;
     public static function closeInstagramAuth():Void;
