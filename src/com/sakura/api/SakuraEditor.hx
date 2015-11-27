@@ -38,6 +38,7 @@ public function removeEventListener(type:SakuraEventType, listener:Event<SakuraE
 public function removeAllEventListeners(type:SakuraEventType):Void;
 public function displayCustomerDesignByHash(hash:String):Void;
 public function getAreaById(areaId:Float):Area;
+public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):Picture;
 
 }
 
@@ -53,6 +54,9 @@ typedef ConstraintManager = {
     function canScaleAreaElements(target:Area):Bool;
     function canRemoveAreaElements(target:Area):Bool;
     function canRotateAreaElements(target:Area):Bool;
+    function getAvailableFonts(target:Area, fonts:Array<String>):Array<String>;
+    function getAvailableColors(target:Area, colors:Array<String>):Array<String>;
+    function getAvailableSizes(target:Area):Array<Int>;
 }
 
 interface ConstraintValidationResult {
@@ -954,6 +958,36 @@ interface ProductView {
     public var modelAlpha:Float=0.8;
     public var id:Float;
     public var name:String;
+
+}
+
+@:enum abstract ExternalImageProvider(Int) from Int to Int {
+/**
+	 * @property FOTOLIA
+	 * @type Int
+	 * @static
+	 * @readOnly
+	 * @default "1"
+	 */
+    var FOTOLIA = 1;
+
+/**
+	 * @property GETTY
+	 * @type Int
+	 * @static
+	 * @readOnly
+	 * @default "2"
+	 */
+    var GETTY = 2;
+
+/**
+	 * @property IMAGESCORP
+	 * @type Int
+	 * @static
+	 * @readOnly
+	 * @default "3"
+	 */
+    var GETTY = 3;
 
 }
 
