@@ -37,6 +37,7 @@ public function getConstraintManager():ConstraintManager;
 public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
 public function removeAllEventListeners(type:SakuraEventType):Void;
 public function displayCustomerDesignByHash(hash:String):Void;
+public function getAreaById(areaId:Float):Area;
 
 }
 
