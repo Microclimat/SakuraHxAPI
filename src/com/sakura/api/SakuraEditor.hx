@@ -987,7 +987,7 @@ interface ProductView {
 	 * @readOnly
 	 * @default "3"
 	 */
-    var GETTY = 3;
+    var IMAGESCORP = 3;
 
 }
 
