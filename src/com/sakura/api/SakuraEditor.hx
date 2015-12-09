@@ -57,6 +57,7 @@ typedef ConstraintManager = {
     function getAvailableFonts(target:Area, fonts:Array<String>):Array<String>;
     function getAvailableColors(target:Area, colors:Array<String>):Array<String>;
     function getAvailableSizes(target:Area):Array<Int>;
+    public function canApplyFilters(target:Area):Bool;
 }
 
 interface ConstraintValidationResult {
@@ -804,7 +805,55 @@ interface TemplateInfo {
 	 */
     public var boundingBox:Rectangle;
 
+/**
+	 * L'url vers l'image utilisée en fond
+	 * @property backgroundUrl
+	 * @type String
+	 */
     public var backgroundUrl:String;
+
+/**
+	 * L'url vers l'image utilisée en premier plan
+	 * @property foregroundUrl
+	 * @type String
+	 */
+    public var foregroundUrl:String;
+
+/**
+	 * L'url vers l'image utilisée comme masque
+	 * @property maskUrl
+	 * @type String
+	 */
+    public var maskUrl:String;
+
+
+/**
+	 * L'url vers l'image utilisée comme background imprimable
+	 * @property templateBackgroundUrl
+	 * @type String
+	 */
+    public var templateBackgroundUrl:String;
+
+/**
+	 * L'url vers l'image utilisée comme foreground imprimable
+	 * @property templateForegroundUrl
+	 * @type String
+	 */
+    public var templateForegroundUrl:String;
+
+/**
+	 * L'url vers l'image utilisée comme Preview du background imprimable
+	 * @property templatePreviewBackgroundUrl
+	 * @type String
+	 */
+    public var templatePreviewBackgroundUrl:String;
+
+/**
+	 * L'url vers l'image utilisée comme Preview du foreground imprimable
+	 * @property templatePreviewForegroundUrl
+	 * @type String
+	 */
+    public var templatePreviewForegroundUrl:String;
 
 }
 
