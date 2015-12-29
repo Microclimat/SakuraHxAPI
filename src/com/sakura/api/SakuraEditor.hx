@@ -738,6 +738,17 @@ interface Skin {
     var SCALE ='scale';
 
 /**
+	 * active ou non la suppression
+	 * @property DELETE
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "delete"
+	 */
+    var DELETE ='delete';
+
+
+/**
 	 *  à true, la bordure des zones sont constamment visibles
 	 * @property DISPLAY_AREA_BORDER
 	 * @type String
@@ -756,6 +767,68 @@ interface Skin {
 	 * @default "swapPictures"
 	 */
     var SWAP_PICTURES ='swapPictures';
+
+/**
+	 *  Indique si on utilise l'UI de transformation NEXT
+	 * @property USE_NEXT_TRANSFORM_ICON
+	 * @type Bool
+	 * @static
+	 * @readOnly
+	 * @default "false"
+	 */
+    var USE_NEXT_TRANSFORM_ICON ='useNextTransformIcon';
+
+/**
+	 *  Indique si le text est editable depuis le canvas
+	 * @property TEXT_EDITABLE
+	 * @type Bool
+	 * @static
+	 * @readOnly
+	 * @default "false"
+	 */
+    var TEXT_EDITABLE ='isTextEditable';
+
+/**
+	 *  Indique si le text est contraint à la zone
+	 * @property KEEP_TEXT_INSIDE_AREA
+	 * @type Bool
+	 * @static
+	 * @readOnly
+	 * @default "false"
+	 */
+    var KEEP_TEXT_INSIDE_AREA ='keepTextInsideArea';
+
+/**
+	 *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
+	 * @property MERGE_PREVIEW
+	 * @type Bool
+	 * @static
+	 * @readOnly
+	 * @default "true"
+	 */
+    var MERGE_PREVIEW ='mergePreview';
+
+/**
+	 *  Indique si les foreground sont masqués lors de la section d'un élement
+	 * @property AUTO_HIDE_FOREGROUND
+	 * @type Bool
+	 * @static
+	 * @readOnly
+	 * @default "true"
+	 */
+    var AUTO_HIDE_FOREGROUND ='autoHideForeground';
+
+/**
+	 *  Le texte par defaut utilisé lors de la creation d'un nouveau Texte
+	 * @property DEFAULT_TEXT
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "votre texte ici"
+	 */
+    var DEFAULT_TEXT ='defaultText';
+
+
 }
 
 /**
