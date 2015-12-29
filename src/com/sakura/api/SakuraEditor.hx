@@ -44,6 +44,7 @@ public function addExternalImageFromURL(thumbUrl:String, pictureId:String, provi
 
 typedef Config = {
     var skin:Skin;
+    var defaultText:String;
 }
 
 typedef ConstraintManager = {
@@ -817,17 +818,6 @@ interface Skin {
 	 * @default "true"
 	 */
     var AUTO_HIDE_FOREGROUND ='autoHideForeground';
-
-/**
-	 *  Le texte par defaut utilisé lors de la creation d'un nouveau Texte
-	 * @property DEFAULT_TEXT
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "votre texte ici"
-	 */
-    var DEFAULT_TEXT ='defaultText';
-
 
 }
 
