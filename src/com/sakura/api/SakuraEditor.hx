@@ -1053,7 +1053,9 @@ class Host {
             case "preprod" : result = "http://preprod.storage.plume.microclimat.com/apps";
             case "next" : result = "http://preprod.storage.plume.microclimat.com/next";
             case "prod" : result = "http://storage.sakuradesigner.microclimat.com/apps";
+            case "remote" : result = "http://192.168.119.98:8686/sakuraHx/apps";
             case "dev" : result = "http://localhost:8686/sakuraHx/apps";
+            case "local" : result = "http://localhost:8686/sakuraHx/apps";
             default : result = "";
         }
         return result;
