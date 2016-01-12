@@ -68,8 +68,17 @@ typedef IOError = {
 	 * @type String
 	 * @static
 	 * @readOnly
-	 * @default "FACEBOOK"
+	 * @default "facebook"
 	 */
     var FACEBOOK    = "facebook";
+
+/**
+	 * @property GENERIC
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "generic"
+	 */
+    var GENERIC    = "generic";
 
 }
