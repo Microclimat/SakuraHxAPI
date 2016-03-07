@@ -1050,8 +1050,8 @@ class Host {
     public static function getURL(host:String):String {
         var result = "";
         switch (host) {
-            case "preprod" : result = "http://preprod.storage.plume.microclimat.com/apps";
-            case "next" : result = "http://preprod.storage.plume.microclimat.com/next";
+            case "preprod" : result = "http://preprod-cdn.heidi.tech:8084/apps";
+            case "next" : result = "http://preprod-cdn.heidi.tech:8084/next";
             case "prod" : result = "http://storage.sakuradesigner.microclimat.com/apps";
             case "remote" : result = "http://192.168.119.98:8686/sakuraHx/apps";
             case "dev" : result = "http://localhost:8686/sakuraHx/apps";
