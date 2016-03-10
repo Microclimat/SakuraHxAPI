@@ -1,5 +1,6 @@
 package com.sakura.api;
 
+import haxe.ds.StringMap;
 import org.tamina.log.LogLevel;
 import org.tamina.utils.UID;
 import js.html.Image;
@@ -1048,21 +1049,57 @@ interface IPlugin {
 
 class Host {
 
-    public static var scheme:Scheme = "http";
+    public static var scheme:Scheme = Scheme.HTTP;
 
-    public static function getURL(host:String):String {
-        var result = "";
-        switch (host) {
-            case "preprod" : result = scheme+"://preprod-cdn.heidi.tech:8084/apps";
-            case "next" : result = scheme+"://preprod-cdn.heidi.tech:8084/next";
-            case "prod" : result = scheme+"://storage.sakuradesigner.microclimat.com/apps";
-            case "remote" : result = scheme+"://192.168.119.98:8686/sakuraHx/apps";
-            case "dev" : result = scheme+"://localhost:8686/sakuraHx/apps";
-            case "local" : result = scheme+"://localhost:8686/sakuraHx/apps";
-            default : result = "";
+    private static var _urls:StringMap<UrlPair>;
+
+    public static function getURL(host:HostName):URL {
+        var result = null;
+        var pair = getURLList().get(host);
+        if(pair != null){
+            if(scheme == Scheme.HTTP){
+                result = pair.http;
+            } else {
+                result = pair.https;
+            }
         }
         return result;
     }
+
+    private static function getURLList():StringMap<UrlPair> {
+        if(_urls == null){
+            _urls = new StringMap<UrlPair>();
+            _urls.set(HostName.PROD,new UrlPair('http://storage.sakuradesigner.microclimat.com/apps','https://storage.sakuradesigner.microclimat.com/apps'));
+            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084/apps','https://preprod-cdn.heidi.tech:8093/apps'));
+            _urls.set(HostName.NEXT,new UrlPair('http://preprod-cdn.heidi.tech:8084/next','https://preprod-cdn.heidi.tech:8093/next'));
+            _urls.set(HostName.REMOTE,new UrlPair('http://192.168.119.98:8686/sakuraHx/apps','https://192.168.119.98:8888/sakuraHx/apps'));
+            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','https://localhost:8888/sakuraHx/apps'));
+            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','https://localhost:8888/sakuraHx/apps'));
+        }
+        return _urls;
+    }
+}
+
+class UrlPair {
+    public var http:URL;
+    public var https:URL;
+
+    public function new(http:String,https:String){
+        this.http = new URL(http);
+        this.https = new URL(https);
+    }
+
+}
+
+@:enum abstract HostName(String) from String to String  {
+
+    var PREPROD = 'preprod';
+    var NEXT = 'next';
+    var PROD = 'prod';
+    var REMOTE = 'remote';
+    var DEV = 'dev';
+    var LOCAL = 'local';
+
 }
 
 interface ProductView {
