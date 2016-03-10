@@ -5,6 +5,7 @@ import org.tamina.utils.UID;
 import js.html.Image;
 import org.tamina.net.URL;
 import org.tamina.events.Event;
+import haxe.Scheme;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
@@ -1047,15 +1048,17 @@ interface IPlugin {
 
 class Host {
 
+    public static var scheme:Scheme = "http";
+
     public static function getURL(host:String):String {
         var result = "";
         switch (host) {
-            case "preprod" : result = "http://preprod-cdn.heidi.tech:8084/apps";
-            case "next" : result = "http://preprod-cdn.heidi.tech:8084/next";
-            case "prod" : result = "http://storage.sakuradesigner.microclimat.com/apps";
-            case "remote" : result = "http://192.168.119.98:8686/sakuraHx/apps";
-            case "dev" : result = "http://localhost:8686/sakuraHx/apps";
-            case "local" : result = "http://localhost:8686/sakuraHx/apps";
+            case "preprod" : result = scheme+"://preprod-cdn.heidi.tech:8084/apps";
+            case "next" : result = scheme+"://preprod-cdn.heidi.tech:8084/next";
+            case "prod" : result = scheme+"://storage.sakuradesigner.microclimat.com/apps";
+            case "remote" : result = scheme+"://192.168.119.98:8686/sakuraHx/apps";
+            case "dev" : result = scheme+"://localhost:8686/sakuraHx/apps";
+            case "local" : result = scheme+"://localhost:8686/sakuraHx/apps";
             default : result = "";
         }
         return result;
