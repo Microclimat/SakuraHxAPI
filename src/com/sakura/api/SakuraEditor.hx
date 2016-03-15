@@ -17,7 +17,7 @@ public function addEventListener(type:String, listener:SakuraEvent -> Void, ?use
 public function removeElement(elementId:Float):Void;
 public function selectElement(elementId:Float):Void;
 public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
-public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false):Void;
+public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
 public function addImageFromURL(url:String, ?targetAreaId:Float):Picture;
 public function transformElement(elementId:Float,value:Transform):Void;
 public function addImage(img:Image, ?targetAreaId:Float):Picture;
@@ -1073,8 +1073,8 @@ class Host {
             _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084/apps','https://preprod-cdn.heidi.tech:8093/apps'));
             _urls.set(HostName.NEXT,new UrlPair('http://preprod-cdn.heidi.tech:8084/next','https://preprod-cdn.heidi.tech:8093/next'));
             _urls.set(HostName.REMOTE,new UrlPair('http://192.168.119.98:8686/sakuraHx/apps','https://192.168.119.98:8888/sakuraHx/apps'));
-            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','https://localhost:8888/sakuraHx/apps'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','https://localhost:8888/sakuraHx/apps'));
+            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
         }
         return _urls;
     }
