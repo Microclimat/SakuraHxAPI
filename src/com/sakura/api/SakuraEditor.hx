@@ -1052,10 +1052,24 @@ class Host {
     public static var scheme:Scheme = Scheme.HTTP;
 
     private static var _urls:StringMap<UrlPair>;
+    private static var _apiUrls:StringMap<UrlPair>;
 
     public static function getURL(host:HostName):URL {
         var result = null;
         var pair = getURLList().get(host);
+        if(pair != null){
+            if(scheme == Scheme.HTTP){
+                result = pair.http;
+            } else {
+                result = pair.https;
+            }
+        }
+        return result;
+    }
+
+    public static function getApiURL(host:HostName):URL {
+        var result = null;
+        var pair = getApiURLList().get(host);
         if(pair != null){
             if(scheme == Scheme.HTTP){
                 result = pair.http;
@@ -1077,6 +1091,16 @@ class Host {
             _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
         }
         return _urls;
+    }
+
+    private static function getApiURLList():StringMap<UrlPair> {
+        if(_apiUrls == null){
+            _apiUrls = new StringMap<UrlPair>();
+            _apiUrls.set(HostName.PROD,new UrlPair('http://api.heidi.tech/Api.svc','https://api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.PREPROD,new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc','https://preprod-api.heidi.tech:8092/Api.svc'));
+            _apiUrls.set(HostName.LOCAL,new UrlPair('http://localhost:2058/Api.svc','https://localhost:40300/Api.svc'));
+        }
+        return _apiUrls;
     }
 }
 
