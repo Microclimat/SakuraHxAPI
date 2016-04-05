@@ -395,6 +395,9 @@ interface Picture extends IDrawingElement {
     public var source(get, set):Image;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
+    public var name:String;
+    public var externalId:String;
+    public var externalProviderId:Int;
 /**
 	 * Qualité de l'image apres transformation
 	 * @property pictureQuality
