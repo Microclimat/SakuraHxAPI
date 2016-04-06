@@ -7,7 +7,7 @@
     "haxe"
   ],
   "author": "David Mouton",
-  "version": "2.0.33",
+  "version": "2.0.34",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"

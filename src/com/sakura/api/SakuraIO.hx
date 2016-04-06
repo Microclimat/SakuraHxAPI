@@ -1,5 +1,6 @@
 package com.sakura.api;
 
+import org.tamina.net.URL;
 import js.html.InputElement;
 import js.html.AnchorElement;
 import js.html.Event;
@@ -7,13 +8,14 @@ import js.html.Image;
 
 @:native("SakuraIO")
 extern class SakuraIO {
-    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true):Void;
+    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true, ?startLoadingCallBack : String->Void):Void;
     public static function fileChangeHandler(evt:Event):Void;
     public static function initExternalAuth(link:AnchorElement, provider:ExternalImageProviderType):Void;
     public static function closeInstagramAuth():Void;
     public static function sendLocal(key:String, value:String):Void;
     public static function watchLocal(key:String):Void;
     public static function addEventListener(type:String,listener:org.tamina.events.Event<String>->Void):Void;
+    public static function setSakuraApiURL(apiUrl:URL):Void;
 
 }
 
