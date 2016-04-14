@@ -86,7 +86,7 @@ typedef AddCustomerDesignResult = {
     var previewUrl:URL;
 }
 
-typedef Album = {
+interface Album {
     var id:Int;
     var name:String;
     var clientId:String;
