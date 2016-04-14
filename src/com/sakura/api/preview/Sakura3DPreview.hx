@@ -1,4 +1,4 @@
-package com.sakura.api;
+package com.sakura.api.preview;
 
 @:native("Sakura3DPreview")
 extern class Sakura3DPreview {
