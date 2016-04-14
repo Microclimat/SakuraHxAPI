@@ -6,7 +6,7 @@ package com.sakura.api.model.transform;
 * @class MoveToAreaTransform
 * @constructor
 */
-import com.sakura.data.design.Area;
+import com.sakura.api.model.design.Area;
 class MoveToAreaTransform extends Transform {
 
     /**
