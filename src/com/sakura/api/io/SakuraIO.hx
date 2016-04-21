@@ -35,12 +35,14 @@ interface AlbumProxy {
     public var addAlbumCompleteSignal:Signal1<Int>;
     public var pictureAddedToAlbumSignal:Signal1<ProgressEvent>;
     public var imageRemovedFromAlbumSignal:Signal1<Float>;
+    public var clientAlbumsCompleteSignal:Signal1<Array<Album>>;
     public var errorSignal:Signal1<ServiceError>;
     public var progressSignal:Signal1<ProgressEvent>;
     public function addPictureToAlbum(picture:IPicture, albumId:Int):Void;
-    public function removeImageFromAlbum(imageId:Float, albumId:Int):Void;
+    public function removeImageFromAlbum(imageId:Float, albumId:Int,clientId:String):Void;
     public function addAlbum(albumName:String, clientId:String):Void;
     public function renameAlbum(albumId:Int, name:String):Void;
+    public function getAlbumsByClientId(clientId:String):Void;
 }
 
 interface IOProxy {
