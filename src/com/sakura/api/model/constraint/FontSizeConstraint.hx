@@ -28,7 +28,7 @@ class FontSizeConstraint extends Constraint {
         switch (this.operator){
             case Operator.DIFFERENT:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.size == Std.parseInt(this.value)){
                             result = false;
@@ -37,7 +37,7 @@ class FontSizeConstraint extends Constraint {
                 }
             case Operator.EQUAL:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.size != Std.parseInt(this.value)){
                             result = false;
@@ -46,7 +46,7 @@ class FontSizeConstraint extends Constraint {
                 }
             case Operator.MORE:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.size <= Std.parseInt(this.value)){
                             result = false;
@@ -55,7 +55,7 @@ class FontSizeConstraint extends Constraint {
                 }
             case Operator.LESS:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.size >= Std.parseInt(this.value)){
                             result = false;

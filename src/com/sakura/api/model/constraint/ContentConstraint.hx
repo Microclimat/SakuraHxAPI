@@ -11,7 +11,7 @@ class ContentConstraint extends Constraint {
     private function getImageNumber(target:IRestrictable):Int{
         var result:Int = 0;
         for(i in 0...target.content.length){
-            if(Std.is(target.content[i],Picture)){
+            if(Picture.is(target.content[i])){
                 result++;
             }
         }
@@ -21,7 +21,7 @@ class ContentConstraint extends Constraint {
     private function getTextNumber(target:IRestrictable):Int{
         var result:Int = 0;
         for(i in 0...target.content.length){
-            if(Std.is(target.content[i],Text)){
+            if(Text.is(target.content[i])){
                 result++;
             }
         }

@@ -165,6 +165,14 @@ import org.tamina.utils.UID;
         }
         return null;
     }
+
+	public static function is(target:Dynamic):Bool{
+		var result = false;
+		if(target.contrast != null){
+			result = true;
+		}
+		return result;
+	}
 	
 	public function clone( copy:Bool = false ):Picture {
 		var cloneID = UID.getUID();

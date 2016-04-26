@@ -29,7 +29,7 @@ class CharNumberConstraint extends Constraint   {
         switch (this.operator){
             case Operator.LESS:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if ( Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.label.length >= Std.parseInt(this.value)){
                             result = false;

@@ -1,5 +1,6 @@
 package com.sakura.api.model.design;
 
+import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
 import com.sakura.api.model.info.AreaInfo;
@@ -67,7 +68,7 @@ class Area implements IArea {
     public function getNumPicture():Int {
         var result:Int = 0;
         for (i in 0...content.length) {
-            if (Std.is(content[i], Picture)) {
+            if (Picture.is(content[i])) {
                 result++;
             }
         }
@@ -81,7 +82,7 @@ class Area implements IArea {
                 var newElement:IDrawingElement = element.clone(true);
                 newElement.x = ( newElement.x / newElement.parent.width ) * this.width;
                 newElement.y = ( newElement.y / newElement.parent.height ) * this.height;
-                if (Std.is(newElement, Picture)) {
+                if (Picture.is(newElement)) {
                     var p:Picture = cast newElement;
                     var scaleRatio:Float = this.width / newElement.parent.width;
                     p.xScale *= scaleRatio;

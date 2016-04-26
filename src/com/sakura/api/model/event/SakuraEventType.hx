@@ -122,6 +122,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
     var BUSY_COMPLETE = "busyComplete";
 
 	/**
+	 * @property AREA_SELECTED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "areaSelected"
+	 */
+    var AREA_SELECTED = "areaSelected";
+
+    /**
 	 * @property ELEMENT_SELECTED
 	 * @type String
 	 * @static

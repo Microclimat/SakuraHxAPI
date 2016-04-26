@@ -149,6 +149,14 @@ import org.tamina.utils.UID;
         return result;
     }
 
+    public static function is(target:Dynamic):Bool{
+        var result = false;
+        if(target.label != null){
+            result = true;
+        }
+        return result;
+    }
+
     private function get_scaledWidth():Float { return width; }
 
     private function get_scaledHeight():Float { return height; }

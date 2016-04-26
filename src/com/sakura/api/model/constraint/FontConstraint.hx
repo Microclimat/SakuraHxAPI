@@ -29,7 +29,7 @@ class FontConstraint extends Constraint {
         switch (this.operator){
             case Operator.DIFFERENT:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.font == this.value){
                             result = false;
@@ -38,7 +38,7 @@ class FontConstraint extends Constraint {
                 }
             case Operator.EQUAL:
                 for (i in 0...target.content.length) {
-                    if (Std.is(target.content[i], Text)) {
+                    if (Text.is(target.content[i])) {
                         var text:Text = cast target.content[i];
                         if(text.font != this.value){
                             result = false;
