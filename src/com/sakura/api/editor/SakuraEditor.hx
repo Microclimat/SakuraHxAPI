@@ -49,6 +49,7 @@ public function removeAllEventListeners(type:SakuraEventType):Void;
 public function displayCustomerDesignByHash(hash:String):Void;
 public function getAreaById(areaId:Float):IArea;
 public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):IPicture;
+public function addArea(area:IArea, ?targetTemplateId:Float):Void;
 
 }
 
