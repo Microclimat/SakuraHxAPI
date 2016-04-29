@@ -91,8 +91,16 @@ class AreaInfo implements IAreaInfo{
 	 */
     public var boundingBox:Rectangle;
 
+    /**
+	 * Le nombre d'element
+	 * @property numElements
+	 * @type Int
+	 */
+    public var numElements:Int;
+
     public function new( ) {
         constraints = new Array<IConstraint>();
+        numElements = 0;
     }
 }
 
@@ -156,5 +164,12 @@ interface IAreaInfo {
 	 * @type Rectangle
 	 */
     public var boundingBox:Rectangle;
+
+    /**
+	 * Le nombre d'element
+	 * @property numElements
+	 * @type Int
+	 */
+    public var numElements:Int;
 
 }
