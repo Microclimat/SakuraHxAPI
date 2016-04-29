@@ -17,6 +17,7 @@ interface IArea extends IRestrictable{
     public var y:Float;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
+    public var movale:Bool;
 
     function toInfo():IAreaInfo;
     function validateConstraints():IConstraintGroupValidationResult;
