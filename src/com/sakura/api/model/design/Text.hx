@@ -163,7 +163,7 @@ import org.tamina.utils.UID;
 
 }
 
-interface IText extends IDrawingElement {
+interface IText extends IDrawingElement extends ITransformable {
     public var align:String;
     public var bold:Bool;
     public var color:Float;

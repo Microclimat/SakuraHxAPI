@@ -33,7 +33,7 @@ package com.sakura.api.model.design;
 * @class IDrawingElement
 * @constructor
 */
-interface IDrawingElement 
+interface IDrawingElement extends ITransformable
 {
 	/**
 	 * L'id de l'element

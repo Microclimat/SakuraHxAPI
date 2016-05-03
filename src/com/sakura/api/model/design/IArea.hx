@@ -5,7 +5,7 @@ package com.sakura.api.model.design;
  */
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
-interface IArea extends IRestrictable{
+interface IArea extends IRestrictable extends ITransformable{
 
     public var height:Float;
     public var id:Float;

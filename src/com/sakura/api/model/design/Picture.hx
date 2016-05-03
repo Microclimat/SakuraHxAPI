@@ -81,6 +81,7 @@ import org.tamina.utils.UID;
 	 * @type String
 	 */
 	public var url(get, set):URL;
+	public var previewUrl:URL;
 	public var vFlip:Bool = false;
 	public var width:Float = 1;
 	public var x:Float = 0;
@@ -188,6 +189,7 @@ import org.tamina.utils.UID;
 		result.contrast = this.contrast;
 		result.filter = this.filter;
 		result.hFlip = this.hFlip;
+		result.previewUrl = this.previewUrl;
 		result.height = this.height;
 		result.name = this.name;
 		result.parent = this.parent;
@@ -222,6 +224,7 @@ interface IPicture extends IDrawingElement {
     public var height:Float;
     public var rotate:Float;
     public var url(get, set):URL;
+	public var previewUrl:URL;
     public var vFlip:Bool;
     public var xScale:Float;
     public var yScale:Float;
