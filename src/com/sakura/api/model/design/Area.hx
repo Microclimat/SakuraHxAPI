@@ -117,6 +117,7 @@ class Area implements IArea {
         result.width = width;
         result.x = x;
         result.y = y;
+        result.numElements = content.length;
         for(i in 0...constraints.length){
             result.constraints.push( constraints[i].clone() );
         }
