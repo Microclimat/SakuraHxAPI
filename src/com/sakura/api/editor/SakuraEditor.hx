@@ -26,6 +26,7 @@ public function removeElement(elementId:Float):Void;
 public function selectElement(elementId:Float):Void;
 public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
 public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
+public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
 public function addImageFromURL(url:String, ?targetAreaId:Float):IPicture;
 public function transformElement(elementId:Float,value:ITransform):Void;
 public function addImage(img:Image, ?targetAreaId:Float):IPicture;

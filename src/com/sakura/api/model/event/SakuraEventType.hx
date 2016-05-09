@@ -104,6 +104,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
     var DESIGN_UPDATED = "designUpdatedHandler";
 
 	/**
+	 * @property DISPLAY_UPDATED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "displayUpdatedHandler"
+	 */
+    var DISPLAY_UPDATED = "displayUpdatedHandler";
+
+	/**
 	 * @property BUSY
 	 * @type String
 	 * @static
