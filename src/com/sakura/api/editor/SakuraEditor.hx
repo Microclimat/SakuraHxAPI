@@ -1,5 +1,7 @@
 package com.sakura.api.editor;
 
+import com.sakura.api.model.design.Template;
+import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.design.Area;
 import com.sakura.api.model.transform.Transform.ITransform;
 import com.sakura.api.model.design.Text.IText;
@@ -18,39 +20,40 @@ import org.tamina.events.Event;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
-static function getInstance():SakuraEditor;
+    static function getInstance():SakuraEditor;
 
-public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
+    public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
 
-public function removeElement(elementId:Float):Void;
-public function selectElement(elementId:Float):Void;
-public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
-public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
-public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
-public function addImageFromURL(url:String, ?targetAreaId:Float):IPicture;
-public function transformElement(elementId:Float,value:ITransform):Void;
-public function addImage(img:Image, ?targetAreaId:Float):IPicture;
-public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
-public function rotateElementBy(elementId:Float, angle:Float):Void;
-public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
-public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
-public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):IText;
-public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
-public function addCustomerDesign(?previewArea:Rectangle, size:Int=512):Void;
-public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):IDrawingArea;
-public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
-public function displayTemplateByIndex(index:Int):IPatternInfo;
-public function registerPlugin(plugin:Dynamic):Void;
-public function getConfig():Config;
-public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
-public function setLogLevel(level:LogLevel):Void;
-public function getConstraintManager():ConstraintManager;
-public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
-public function removeAllEventListeners(type:SakuraEventType):Void;
-public function displayCustomerDesignByHash(hash:String):Void;
-public function getAreaById(areaId:Float):IArea;
-public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):IPicture;
-public function addArea(area:IArea, ?targetTemplateId:Float):Void;
+    public function removeElement(elementId:Float):Void;
+    public function selectElement(elementId:Float):Void;
+    public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
+    public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
+    public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
+    public function addImageFromURL(url:String, ?targetAreaId:Float):IPicture;
+    public function transformElement(elementId:Float, value:ITransform):Void;
+    public function addImage(img:Image, ?targetAreaId:Float):IPicture;
+    public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
+    public function rotateElementBy(elementId:Float, angle:Float):Void;
+    public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):IText;
+    public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
+    public function addCustomerDesign(?previewArea:Rectangle, size:Int = 512):Void;
+    public function getHoveredArea(canContainsImages:Bool = true, canContainsText:Bool = true):IDrawingArea;
+    public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
+    public function displayTemplateByIndex(index:Int):IPatternInfo;
+    public function registerPlugin(plugin:Dynamic):Void;
+    public function getConfig():Config;
+    public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
+    public function setLogLevel(level:LogLevel):Void;
+    public function getConstraintManager():ConstraintManager;
+    public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
+    public function removeAllEventListeners(type:SakuraEventType):Void;
+    public function displayCustomerDesignByHash(hash:String):Void;
+    public function getAreaById(areaId:Float):IArea;
+    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):IPicture;
+    public function addArea(area:IArea, ?targetTemplateId:Float):Void;
+    public function addTemplate(template:Template, ?index:Int):Void;
 
 }
 
@@ -74,12 +77,11 @@ typedef ConstraintManager = {
 }
 
 
-
 interface Skin {
     public function getProperty(target:SkinProperty):PropertyValue;
-    public function setProperty(target:SkinProperty,value:PropertyValue):Void;
+    public function setProperty(target:SkinProperty, value:PropertyValue):Void;
     public function getSize(target:Size):Int;
-    public function setSize(target:Size,value:Int):Void;
+    public function setSize(target:Size, value:Int):Void;
 }
 
 @:enum abstract Size(String) from String to String {
@@ -113,7 +115,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "displayBackground"
 	 */
-    var DISPLAY_BACKGROUND ='displayBackground';
+    var DISPLAY_BACKGROUND = 'displayBackground';
 
 /**
 	 * @property PATTERN_DISPLAY_MODE
@@ -122,7 +124,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "patternDisplayMode"
 	 */
-    var PATTERN_DISPLAY_MODE ='patternDisplayMode';
+    var PATTERN_DISPLAY_MODE = 'patternDisplayMode';
 
 /**
 	 *
@@ -132,7 +134,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "displayTemplateThumbs"
 	 */
-    var DISPLAY_TEMPLATE_THUMBS ='displayTemplateThumbs';
+    var DISPLAY_TEMPLATE_THUMBS = 'displayTemplateThumbs';
 
 /**
 	 * Lors de l'import d'une image si keepPictureQuality est à true, l'image apparaîtra au maximum de sa résolution. Ainsi, une image de 250x250 dans une zone de 500x500 apparaitra sans remplir la zone.
@@ -142,7 +144,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "keepPictureQuality"
 	 */
-    var KEEP_PICTURE_QUALITY ='keepPictureQuality';
+    var KEEP_PICTURE_QUALITY = 'keepPictureQuality';
 
 /**
 	 * active ou non le scale non homothétique
@@ -152,7 +154,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "keepAspectRatio"
 	 */
-    var KEEP_ASPECT_RATIO ='keepAspectRatio';
+    var KEEP_ASPECT_RATIO = 'keepAspectRatio';
 
 /**
 	 * active ou non le déplacement
@@ -162,7 +164,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "move"
 	 */
-    var MOVE ='move';
+    var MOVE = 'move';
 
 /**
 	 * active ou non la rotation
@@ -172,7 +174,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "rotate"
 	 */
-    var ROTATE ='rotate';
+    var ROTATE = 'rotate';
 
 /**
 	 * active ou non l’étirement
@@ -182,7 +184,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "scale"
 	 */
-    var SCALE ='scale';
+    var SCALE = 'scale';
 
 /**
 	 * active ou non la suppression
@@ -192,7 +194,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "delete"
 	 */
-    var DELETE ='delete';
+    var DELETE = 'delete';
 
 
 /**
@@ -203,7 +205,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "displayAreaBorder"
 	 */
-    var DISPLAY_AREA_BORDER ='displayAreaBorder';
+    var DISPLAY_AREA_BORDER = 'displayAreaBorder';
 
 /**
 	 *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
@@ -213,7 +215,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "swapPictures"
 	 */
-    var SWAP_PICTURES ='swapPictures';
+    var SWAP_PICTURES = 'swapPictures';
 
 /**
 	 *  Indique si on utilise l'UI de transformation NEXT
@@ -223,7 +225,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "false"
 	 */
-    var USE_NEXT_TRANSFORM_ICON ='useNextTransformIcon';
+    var USE_NEXT_TRANSFORM_ICON = 'useNextTransformIcon';
 
 /**
 	 *  Indique si le text est editable depuis le canvas
@@ -233,7 +235,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "false"
 	 */
-    var TEXT_EDITABLE ='isTextEditable';
+    var TEXT_EDITABLE = 'isTextEditable';
 
 /**
 	 *  Indique si le text est contraint à la zone
@@ -243,7 +245,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "false"
 	 */
-    var KEEP_TEXT_INSIDE_AREA ='keepTextInsideArea';
+    var KEEP_TEXT_INSIDE_AREA = 'keepTextInsideArea';
 
 /**
 	 *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
@@ -253,7 +255,7 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "true"
 	 */
-    var MERGE_PREVIEW ='mergePreview';
+    var MERGE_PREVIEW = 'mergePreview';
 
 /**
 	 *  Indique si les foreground sont masqués lors de la section d'un élement
@@ -263,18 +265,18 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 	 * @readOnly
 	 * @default "true"
 	 */
-    var AUTO_HIDE_FOREGROUND ='autoHideForeground';
+    var AUTO_HIDE_FOREGROUND = 'autoHideForeground';
 
 }
 
-@:enum abstract PropertyValue(String) from String to String   {
-    var AUTO='auto';
-    var FALSE='false';
-    var OFF='off';
-    var ON='on';
-    var STATIC='static';
-    var TRUE='true';
-    var UNKNOWN='null';
+@:enum abstract PropertyValue(String) from String to String {
+    var AUTO = 'auto';
+    var FALSE = 'false';
+    var OFF = 'off';
+    var ON = 'on';
+    var STATIC = 'static';
+    var TRUE = 'true';
+    var UNKNOWN = 'null';
 }
 
 
