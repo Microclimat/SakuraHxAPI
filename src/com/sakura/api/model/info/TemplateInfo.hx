@@ -63,6 +63,20 @@ class TemplateInfo implements ITemplateInfo{
     public var width:Float;
 
     /**
+	 * Position en X
+	 * @property x
+	 * @type Float
+	 */
+    public var x:Float;
+
+/**
+	 * Position en y
+	 * @property y
+	 * @type Float
+	 */
+    public var y:Float;
+
+    /**
 	 * La liste des Zones
 	 * @property areas
 	 * @type Array<AreaInfo>
@@ -163,6 +177,20 @@ interface ITemplateInfo {
 	 * @type Int
 	 */
     public var width:Float;
+
+    /**
+	 * Position en X
+	 * @property x
+	 * @type Float
+	 */
+    public var x:Float;
+
+/**
+	 * Position en y
+	 * @property y
+	 * @type Float
+	 */
+    public var y:Float;
 
 /**
 	 * La liste des Zones
