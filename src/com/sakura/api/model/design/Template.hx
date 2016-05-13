@@ -66,6 +66,8 @@ class Template {
         result.name = name;
         result.height = height;
         result.width = width;
+        result.x = x;
+        result.y = y;
         result.backgroundUrl = this.patternBackgroundPicture.url.path;
         if(this.patternForegroundPicture != null){
             result.foregroundUrl = this.patternForegroundPicture.url.path;
