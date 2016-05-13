@@ -139,6 +139,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
 	 */
     var AREA_SELECTED = "areaSelected";
 
+	/**
+	 * @property AREA_DESELECTED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "areaDeselected"
+	 */
+    var AREA_DESELECTED = "areaDeselected";
+
     /**
 	 * @property ELEMENT_SELECTED
 	 * @type String
