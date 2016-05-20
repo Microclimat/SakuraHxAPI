@@ -1,5 +1,7 @@
 package com.sakura.api;
 
+import js.html.CanvasElement;
+import haxe.MimeType;
 import org.tamina.net.URL;
 import js.html.InputElement;
 import js.html.AnchorElement;
@@ -16,12 +18,20 @@ extern class SakuraIO {
     public static function watchLocal(key:String):Void;
     public static function addEventListener(type:String,listener:org.tamina.events.Event<String>->Void):Void;
     public static function setSakuraApiURL(apiUrl:URL):Void;
+    public static function handleBlobFileSelect(input:InputElement, callBack:FileLoadResponse -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true):Void;
 
 }
 
 typedef IOError = {
     var code:IOErrorCode;
     var message:String;
+}
+
+typedef FileLoadResponse = {
+    public var mimeType:MimeType;
+    public var error:IOError;
+    public var canvas:CanvasElement;
+    public var src:String;
 }
 
 @:enum abstract IOErrorCode(Int) from Int to Int{

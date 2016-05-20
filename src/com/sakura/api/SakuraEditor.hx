@@ -1087,6 +1087,7 @@ class Host {
         if(_urls == null){
             _urls = new StringMap<UrlPair>();
             _urls.set(HostName.PROD,new UrlPair('http://storage.sakuradesigner.microclimat.com/apps','https://storage.sakuradesigner.microclimat.com/apps'));
+            _urls.set(HostName.PROD_NEXT,new UrlPair('http://storage.sakuradesigner.microclimat.com/next','https://storage.sakuradesigner.microclimat.com/next'));
             _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084/apps','https://preprod-cdn.heidi.tech:8093/apps'));
             _urls.set(HostName.NEXT,new UrlPair('http://preprod-cdn.heidi.tech:8084/next','https://preprod-cdn.heidi.tech:8093/next'));
             _urls.set(HostName.REMOTE,new UrlPair('http://192.168.119.98:8686/sakuraHx/apps','https://192.168.119.98:8888/sakuraHx/apps'));
@@ -1132,6 +1133,7 @@ class UrlPair {
 
     var PREPROD = 'preprod';
     var NEXT = 'next';
+    var PROD_NEXT = 'prod-next';
     var PROD = 'prod';
     var REMOTE = 'remote';
     var DEV = 'dev';
