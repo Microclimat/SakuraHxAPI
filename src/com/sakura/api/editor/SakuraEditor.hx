@@ -87,16 +87,17 @@ interface Skin {
 
 @:enum abstract Size(String) from String to String {
 
-/**
-	 * indique le nombre maximum d'image que peut contenir les zones.
-0 -> illimité
-Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supprime la précédente. Si swapPictures est à true, on ne supprime rien.
-	 * @property MAX_PICTURE_BY_AREA
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "maxPictureByArea"
-	 */
+    /**
+     * indique le nombre maximum d'image que peut contenir les zones.
+     * 0 -> illimité
+     * Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supprime la précédente. * Si swapPictures est à true, on ne supprime rien.
+     * 
+     * @property MAX_PICTURE_BY_AREA
+     * @type String
+     * @static
+     * @readOnly
+     * @default "maxPictureByArea"
+     */
     var MAX_PICTURE_BY_AREA = 'maxPictureByArea';
 }
 
@@ -108,164 +109,164 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 */
 @:enum abstract SkinProperty(String) from String to String {
 
-/**
-	 * si on affiche le fond ou si il est transparent
-	 * @property DISPLAY_BACKGROUND
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "displayBackground"
-	 */
+    /**
+     * si on affiche le fond ou si il est transparent
+     * @property DISPLAY_BACKGROUND
+     * @type String
+     * @static
+     * @readOnly
+     * @default "displayBackground"
+     */
     var DISPLAY_BACKGROUND = 'displayBackground';
 
-/**
-	 * @property PATTERN_DISPLAY_MODE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "patternDisplayMode"
-	 */
+    /**
+     * @property PATTERN_DISPLAY_MODE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "patternDisplayMode"
+     */
     var PATTERN_DISPLAY_MODE = 'patternDisplayMode';
 
-/**
-	 *
-	 * @property DISPLAY_TEMPLATE_THUMBS
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "displayTemplateThumbs"
-	 */
+    /**
+     *
+     * @property DISPLAY_TEMPLATE_THUMBS
+     * @type String
+     * @static
+     * @readOnly
+     * @default "displayTemplateThumbs"
+     */
     var DISPLAY_TEMPLATE_THUMBS = 'displayTemplateThumbs';
 
-/**
-	 * Lors de l'import d'une image si keepPictureQuality est à true, l'image apparaîtra au maximum de sa résolution. Ainsi, une image de 250x250 dans une zone de 500x500 apparaitra sans remplir la zone.
-	 * @property KEEP_PICTURE_QUALITY
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "keepPictureQuality"
-	 */
+    /**
+     * Lors de l'import d'une image si keepPictureQuality est à true, l'image apparaîtra au maximum de sa résolution. Ainsi, une image de 250x250 dans une zone de 500x500 apparaitra sans remplir la zone.
+     * @property KEEP_PICTURE_QUALITY
+     * @type String
+     * @static
+     * @readOnly
+     * @default "keepPictureQuality"
+     */
     var KEEP_PICTURE_QUALITY = 'keepPictureQuality';
 
-/**
-	 * active ou non le scale non homothétique
-	 * @property KEEP_ASPECT_RATIO
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "keepAspectRatio"
-	 */
+    /**
+     * active ou non le scale non homothétique
+     * @property KEEP_ASPECT_RATIO
+     * @type String
+     * @static
+     * @readOnly
+     * @default "keepAspectRatio"
+     */
     var KEEP_ASPECT_RATIO = 'keepAspectRatio';
 
-/**
-	 * active ou non le déplacement
-	 * @property MOVE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "move"
-	 */
+    /**
+     * active ou non le déplacement
+     * @property MOVE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "move"
+     */
     var MOVE = 'move';
 
-/**
-	 * active ou non la rotation
-	 * @property ROTATE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "rotate"
-	 */
+    /**
+     * active ou non la rotation
+     * @property ROTATE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "rotate"
+     */
     var ROTATE = 'rotate';
 
-/**
-	 * active ou non l’étirement
-	 * @property SCALE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "scale"
-	 */
+    /**
+     * active ou non l’étirement
+     * @property SCALE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "scale"
+     */
     var SCALE = 'scale';
 
-/**
-	 * active ou non la suppression
-	 * @property DELETE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "delete"
-	 */
+    /**
+     * active ou non la suppression
+     * @property DELETE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "delete"
+     */
     var DELETE = 'delete';
 
 
-/**
-	 *  à true, la bordure des zones sont constamment visibles
-	 * @property DISPLAY_AREA_BORDER
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "displayAreaBorder"
-	 */
+    /**
+     *  à true, la bordure des zones sont constamment visibles
+     * @property DISPLAY_AREA_BORDER
+     * @type String
+     * @static
+     * @readOnly
+     * @default "displayAreaBorder"
+     */
     var DISPLAY_AREA_BORDER = 'displayAreaBorder';
 
-/**
-	 *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
-	 * @property SWAP_PICTURES
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "swapPictures"
-	 */
+    /**
+     *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
+     * @property SWAP_PICTURES
+     * @type String
+     * @static
+     * @readOnly
+     * @default "swapPictures"
+     */
     var SWAP_PICTURES = 'swapPictures';
 
-/**
-	 *  Indique si on utilise l'UI de transformation NEXT
-	 * @property USE_NEXT_TRANSFORM_ICON
-	 * @type Bool
-	 * @static
-	 * @readOnly
-	 * @default "false"
-	 */
+    /**
+     *  Indique si on utilise l'UI de transformation NEXT
+     * @property USE_NEXT_TRANSFORM_ICON
+     * @type Bool
+     * @static
+     * @readOnly
+     * @default "false"
+     */
     var USE_NEXT_TRANSFORM_ICON = 'useNextTransformIcon';
 
-/**
-	 *  Indique si le text est editable depuis le canvas
-	 * @property TEXT_EDITABLE
-	 * @type Bool
-	 * @static
-	 * @readOnly
-	 * @default "false"
-	 */
+    /**
+     *  Indique si le text est editable depuis le canvas
+     * @property TEXT_EDITABLE
+     * @type Bool
+     * @static
+     * @readOnly
+     * @default "false"
+     */
     var TEXT_EDITABLE = 'isTextEditable';
 
-/**
-	 *  Indique si le text est contraint à la zone
-	 * @property KEEP_TEXT_INSIDE_AREA
-	 * @type Bool
-	 * @static
-	 * @readOnly
-	 * @default "false"
-	 */
+    /**
+     *  Indique si le text est contraint à la zone
+     * @property KEEP_TEXT_INSIDE_AREA
+     * @type Bool
+     * @static
+     * @readOnly
+     * @default "false"
+     */
     var KEEP_TEXT_INSIDE_AREA = 'keepTextInsideArea';
 
-/**
-	 *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
-	 * @property MERGE_PREVIEW
-	 * @type Bool
-	 * @static
-	 * @readOnly
-	 * @default "true"
-	 */
+    /**
+     *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
+     * @property MERGE_PREVIEW
+     * @type Bool
+     * @static
+     * @readOnly
+     * @default "true"
+     */
     var MERGE_PREVIEW = 'mergePreview';
 
-/**
-	 *  Indique si les foreground sont masqués lors de la section d'un élement
-	 * @property AUTO_HIDE_FOREGROUND
-	 * @type Bool
-	 * @static
-	 * @readOnly
-	 * @default "true"
-	 */
+    /**
+     *  Indique si les foreground sont masqués lors de la section d'un élement
+     * @property AUTO_HIDE_FOREGROUND
+     * @type Bool
+     * @static
+     * @readOnly
+     * @default "true"
+     */
     var AUTO_HIDE_FOREGROUND = 'autoHideForeground';
 
 }
@@ -279,13 +280,3 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
     var TRUE = 'true';
     var UNKNOWN = 'null';
 }
-
-
-
-
-
-
-
-
-
-
