@@ -1,5 +1,6 @@
 package com.sakura.api;
 
+import js.html.Blob;
 import js.html.CanvasElement;
 import haxe.MimeType;
 import org.tamina.net.URL;
@@ -32,6 +33,7 @@ typedef FileLoadResponse = {
     public var error:IOError;
     public var canvas:CanvasElement;
     public var src:String;
+    public var file:Blob;
 }
 
 @:enum abstract IOErrorCode(Int) from Int to Int{
