@@ -1,5 +1,8 @@
 package com.sakura.api;
 
+import js.html.Blob;
+import haxe.MimeType;
+import js.html.CanvasElement;
 import haxe.ds.StringMap;
 import org.tamina.log.LogLevel;
 import org.tamina.utils.UID;
@@ -10,37 +13,38 @@ import haxe.Scheme;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
-static function getInstance():SakuraEditor;
+    static function getInstance():SakuraEditor;
 
-public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
+    public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
 
-public function removeElement(elementId:Float):Void;
-public function selectElement(elementId:Float):Void;
-public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
-public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
-public function addImageFromURL(url:String, ?targetAreaId:Float):Picture;
-public function transformElement(elementId:Float,value:Transform):Void;
-public function addImage(img:Image, ?targetAreaId:Float):Picture;
-public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
-public function rotateElementBy(elementId:Float, angle:Float):Void;
-public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
-public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
-public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):Text;
-public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
-public function addCustomerDesign(?previewArea:Rectangle, size:Int=512):Void;
-public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):IDrawingArea;
-public function changeCurrentTemplateAreas(areas:Array<IDrawingArea>):PatternInfo;
-public function displayTemplateByIndex(index:Int):PatternInfo;
-public function registerPlugin(plugin:Dynamic):Void;
-public function getConfig():Config;
-public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
-public function setLogLevel(level:LogLevel):Void;
-public function getConstraintManager():ConstraintManager;
-public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
-public function removeAllEventListeners(type:SakuraEventType):Void;
-public function displayCustomerDesignByHash(hash:String):Void;
-public function getAreaById(areaId:Float):Area;
-public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):Picture;
+    public function removeElement(elementId:Float):Void;
+    public function selectElement(elementId:Float):Void;
+    public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
+    public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
+    public function addImageFromURL(url:String, ?targetAreaId:Float):Picture;
+    public function addCanvas(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float):Picture;
+    public function transformElement(elementId:Float, value:Transform):Void;
+    public function addImage(img:Image, ?targetAreaId:Float):Picture;
+    public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
+    public function rotateElementBy(elementId:Float, angle:Float):Void;
+    public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):Text;
+    public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
+    public function addCustomerDesign(?previewArea:Rectangle, size:Int = 512):Void;
+    public function getHoveredArea(canContainsImages:Bool = true, canContainsText:Bool = true):IDrawingArea;
+    public function changeCurrentTemplateAreas(areas:Array<IDrawingArea>):PatternInfo;
+    public function displayTemplateByIndex(index:Int):PatternInfo;
+    public function registerPlugin(plugin:Dynamic):Void;
+    public function getConfig():Config;
+    public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
+    public function setLogLevel(level:LogLevel):Void;
+    public function getConstraintManager():ConstraintManager;
+    public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
+    public function removeAllEventListeners(type:SakuraEventType):Void;
+    public function displayCustomerDesignByHash(hash:String):Void;
+    public function getAreaById(areaId:Float):Area;
+    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):Picture;
 
 }
 
@@ -120,11 +124,9 @@ class Constraint {
         this.id = UID.getUID();
     }
 
-    public function clone( copy:Bool = false ):Constraint
-    {
+    public function clone(copy:Bool = false):Constraint {
         var cloneID:Float = UID.getUID();
-        if ( copy )
-        {
+        if (copy) {
             cloneID = this.id;
         }
         var result:Constraint = new Constraint( groupName, name, operator, value );
@@ -134,7 +136,7 @@ class Constraint {
 
 }
 
-class Area implements IDrawingArea{
+class Area implements IDrawingArea {
     public function new():Void {
         this.constraints = new Array<Constraint>();
     }
@@ -243,8 +245,7 @@ interface AreaInfo {
  * @author David Mouton
  */
 
-interface IDrawingArea extends IDrawingElement
-{
+interface IDrawingArea extends IDrawingElement {
 
     var name:String;
     var content:Array<IDrawingElement>;
@@ -257,8 +258,7 @@ interface IDrawingArea extends IDrawingElement
 * @class IDrawingElement
 * @constructor
 */
-interface IDrawingElement
-{
+interface IDrawingElement {
 /**
 	 * L'id de l'element
 	 * @property id
@@ -306,10 +306,10 @@ interface IDrawingElement
 
     var scaledHeight(get, null):Float;
 
-    function clone( copy:Bool = false ):IDrawingElement;
+    function clone(copy:Bool = false):IDrawingElement;
 }
 
-@:enum abstract Operator(String) from String to String   {
+@:enum abstract Operator(String) from String to String {
 
     var INCLUDE = 'in';
     var EQUAL = '=';
@@ -327,8 +327,7 @@ interface IDrawingElement
 * @class PatternInfo
 * @constructor
 */
-interface PatternInfo
-{
+interface PatternInfo {
 /**
 	 * L'id du Patron
 	 * @property id
@@ -407,7 +406,7 @@ interface Picture extends IDrawingElement {
 
 }
 
-@:enum abstract PictureQuality(Int) from Int to Int  {
+@:enum abstract PictureQuality(Int) from Int to Int {
 
 /**
 	 * Bonne qualité
@@ -437,7 +436,7 @@ interface Picture extends IDrawingElement {
     var BAD = 2;
 }
 
-@:enum abstract PictureFilter(String) from String to String   {
+@:enum abstract PictureFilter(String) from String to String {
 
     var BLACK_AND_WHITE = 'blackAndWhite';
     var NONE = '';
@@ -453,14 +452,14 @@ interface Picture extends IDrawingElement {
 
 }
 
-@:enum abstract PropertyValue(String) from String to String   {
-    var AUTO='auto';
-    var FALSE='false';
-    var OFF='off';
-    var ON='on';
-    var STATIC='static';
-    var TRUE='true';
-    var UNKNOWN='null';
+@:enum abstract PropertyValue(String) from String to String {
+    var AUTO = 'auto';
+    var FALSE = 'false';
+    var OFF = 'off';
+    var ON = 'on';
+    var STATIC = 'static';
+    var TRUE = 'true';
+    var UNKNOWN = 'null';
 }
 
 class Rectangle {
@@ -470,7 +469,7 @@ class Rectangle {
     public var x:Float;
     public var y:Float;
 
-    public function new(?x:Float = 0, ?y:Float = 0, ?width:Float = 0, ?height:Float = 0):Void{
+    public function new(?x:Float = 0, ?y:Float = 0, ?width:Float = 0, ?height:Float = 0):Void {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -651,9 +650,9 @@ Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supp
 
 interface Skin {
     public function getProperty(target:SkinProperty):PropertyValue;
-    public function setProperty(target:SkinProperty,value:PropertyValue):Void;
+    public function setProperty(target:SkinProperty, value:PropertyValue):Void;
     public function getSize(target:Size):Int;
-    public function setSize(target:Size,value:Int):Void;
+    public function setSize(target:Size, value:Int):Void;
 }
 
 /**
@@ -672,7 +671,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "displayBackground"
 	 */
-    var DISPLAY_BACKGROUND ='displayBackground';
+    var DISPLAY_BACKGROUND = 'displayBackground';
 
 /**
 	 * @property PATTERN_DISPLAY_MODE
@@ -681,7 +680,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "patternDisplayMode"
 	 */
-    var PATTERN_DISPLAY_MODE ='patternDisplayMode';
+    var PATTERN_DISPLAY_MODE = 'patternDisplayMode';
 
 /**
 	 *
@@ -691,7 +690,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "displayTemplateThumbs"
 	 */
-    var DISPLAY_TEMPLATE_THUMBS ='displayTemplateThumbs';
+    var DISPLAY_TEMPLATE_THUMBS = 'displayTemplateThumbs';
 
 /**
 	 * Lors de l'import d'une image si keepPictureQuality est à true, l'image apparaîtra au maximum de sa résolution. Ainsi, une image de 250x250 dans une zone de 500x500 apparaitra sans remplir la zone.
@@ -701,7 +700,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "keepPictureQuality"
 	 */
-    var KEEP_PICTURE_QUALITY ='keepPictureQuality';
+    var KEEP_PICTURE_QUALITY = 'keepPictureQuality';
 
 /**
 	 * active ou non le scale non homothétique
@@ -711,7 +710,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "keepAspectRatio"
 	 */
-    var KEEP_ASPECT_RATIO ='keepAspectRatio';
+    var KEEP_ASPECT_RATIO = 'keepAspectRatio';
 
 /**
 	 * active ou non le déplacement
@@ -721,7 +720,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "move"
 	 */
-    var MOVE ='move';
+    var MOVE = 'move';
 
 /**
 	 * active ou non la rotation
@@ -731,7 +730,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "rotate"
 	 */
-    var ROTATE ='rotate';
+    var ROTATE = 'rotate';
 
 /**
 	 * active ou non l’étirement
@@ -741,7 +740,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "scale"
 	 */
-    var SCALE ='scale';
+    var SCALE = 'scale';
 
 /**
 	 * active ou non la suppression
@@ -751,7 +750,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "delete"
 	 */
-    var DELETE ='delete';
+    var DELETE = 'delete';
 
 
 /**
@@ -762,7 +761,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "displayAreaBorder"
 	 */
-    var DISPLAY_AREA_BORDER ='displayAreaBorder';
+    var DISPLAY_AREA_BORDER = 'displayAreaBorder';
 
 /**
 	 *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
@@ -772,7 +771,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "swapPictures"
 	 */
-    var SWAP_PICTURES ='swapPictures';
+    var SWAP_PICTURES = 'swapPictures';
 
 /**
 	 *  Indique si on utilise l'UI de transformation NEXT
@@ -782,7 +781,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "false"
 	 */
-    var USE_NEXT_TRANSFORM_ICON ='useNextTransformIcon';
+    var USE_NEXT_TRANSFORM_ICON = 'useNextTransformIcon';
 
 /**
 	 *  Indique si le text est editable depuis le canvas
@@ -792,7 +791,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "false"
 	 */
-    var TEXT_EDITABLE ='isTextEditable';
+    var TEXT_EDITABLE = 'isTextEditable';
 
 /**
 	 *  Indique si le text est contraint à la zone
@@ -802,7 +801,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "false"
 	 */
-    var KEEP_TEXT_INSIDE_AREA ='keepTextInsideArea';
+    var KEEP_TEXT_INSIDE_AREA = 'keepTextInsideArea';
 
 /**
 	 *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
@@ -812,7 +811,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "true"
 	 */
-    var MERGE_PREVIEW ='mergePreview';
+    var MERGE_PREVIEW = 'mergePreview';
 
 /**
 	 *  Indique si les foreground sont masqués lors de la section d'un élement
@@ -822,7 +821,7 @@ interface Skin {
 	 * @readOnly
 	 * @default "true"
 	 */
-    var AUTO_HIDE_FOREGROUND ='autoHideForeground';
+    var AUTO_HIDE_FOREGROUND = 'autoHideForeground';
 
 }
 
@@ -1047,7 +1046,7 @@ interface IPlugin {
 	 * @param	data {Object}
 	 * @param	targetIndex {Int} l'index du Template
 	 */
-    function update(data:Dynamic,templateIndex:Int=0):Void;
+    function update(data:Dynamic, templateIndex:Int = 0):Void;
 }
 
 class Host {
@@ -1060,8 +1059,8 @@ class Host {
     public static function getURL(host:HostName):URL {
         var result = null;
         var pair = getURLList().get(host);
-        if(pair != null){
-            if(scheme == Scheme.HTTP){
+        if (pair != null) {
+            if (scheme == Scheme.HTTP) {
                 result = pair.http;
             } else {
                 result = pair.https;
@@ -1073,8 +1072,8 @@ class Host {
     public static function getApiURL(host:HostName):URL {
         var result = null;
         var pair = getApiURLList().get(host);
-        if(pair != null){
-            if(scheme == Scheme.HTTP){
+        if (pair != null) {
+            if (scheme == Scheme.HTTP) {
                 result = pair.http;
             } else {
                 result = pair.https;
@@ -1084,25 +1083,25 @@ class Host {
     }
 
     private static function getURLList():StringMap<UrlPair> {
-        if(_urls == null){
+        if (_urls == null) {
             _urls = new StringMap<UrlPair>();
-            _urls.set(HostName.PROD,new UrlPair('http://storage.sakuradesigner.microclimat.com/apps','https://storage.sakuradesigner.microclimat.com/apps'));
-            _urls.set(HostName.PROD_NEXT,new UrlPair('http://storage.sakuradesigner.microclimat.com/next','https://storage.sakuradesigner.microclimat.com/next'));
-            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084/apps','https://preprod-cdn.heidi.tech:8093/apps'));
-            _urls.set(HostName.NEXT,new UrlPair('http://preprod-cdn.heidi.tech:8084/next','https://preprod-cdn.heidi.tech:8093/next'));
-            _urls.set(HostName.REMOTE,new UrlPair('http://192.168.119.98:8686/sakuraHx/apps','https://192.168.119.98:8888/sakuraHx/apps'));
-            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.PROD, new UrlPair('http://storage.sakuradesigner.microclimat.com/apps', 'https://storage.sakuradesigner.microclimat.com/apps'));
+            _urls.set(HostName.PROD_NEXT, new UrlPair('http://storage.sakuradesigner.microclimat.com/next', 'https://storage.sakuradesigner.microclimat.com/next'));
+            _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech:8084/apps', 'https://preprod-cdn.heidi.tech:8093/apps'));
+            _urls.set(HostName.NEXT, new UrlPair('http://preprod-cdn.heidi.tech:8084/next', 'https://preprod-cdn.heidi.tech:8093/next'));
+            _urls.set(HostName.REMOTE, new UrlPair('http://192.168.119.98:8686/sakuraHx/apps', 'https://192.168.119.98:8888/sakuraHx/apps'));
+            _urls.set(HostName.DEV, new UrlPair('http://localhost:8686/sakuraHx/apps', 'http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.LOCAL, new UrlPair('http://localhost:8686/sakuraHx/apps', 'http://localhost:8686/sakuraHx/apps'));
         }
         return _urls;
     }
 
     private static function getApiURLList():StringMap<UrlPair> {
-        if(_apiUrls == null){
+        if (_apiUrls == null) {
             _apiUrls = new StringMap<UrlPair>();
-            _apiUrls.set(HostName.PROD,new UrlPair('http://api.heidi.tech/Api.svc','https://api.heidi.tech/Api.svc'));
-            _apiUrls.set(HostName.PREPROD,new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc','https://preprod-api.heidi.tech:8092/Api.svc'));
-            _apiUrls.set(HostName.LOCAL,new UrlPair('http://localhost:2058/Api.svc','https://localhost:40300/Api.svc'));
+            _apiUrls.set(HostName.PROD, new UrlPair('http://api.heidi.tech/Api.svc', 'https://api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc', 'https://preprod-api.heidi.tech:8092/Api.svc'));
+            _apiUrls.set(HostName.LOCAL, new UrlPair('http://localhost:2058/Api.svc', 'https://localhost:40300/Api.svc'));
         }
         return _apiUrls;
     }
@@ -1112,7 +1111,7 @@ class UrlPair {
     public var http:URL;
     public var https:URL;
 
-    public function new(http:String,https:String){
+    public function new(http:String, https:String) {
         this.http = new URL(http);
         this.https = new URL(https);
     }
@@ -1129,7 +1128,7 @@ class UrlPair {
     var USER_PICTURE = 7;
 }
 
-@:enum abstract HostName(String) from String to String  {
+@:enum abstract HostName(String) from String to String {
 
     var PREPROD = 'preprod';
     var NEXT = 'next';
@@ -1148,7 +1147,7 @@ interface ProductView {
     public var foregroundAlpha:Float = 1.0;
     public var modelUrl:String;
     public var modelBlendMode:String;
-    public var modelAlpha:Float=0.8;
+    public var modelAlpha:Float = 0.8;
     public var id:Float;
     public var name:String;
 
