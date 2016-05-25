@@ -7,7 +7,7 @@
     "haxe"
   ],
   "author": "David Mouton",
-  "version": "2.1.36",
+  "version": "2.1.39",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"
@@ -22,6 +22,6 @@
   "dependencies": {
     "haxe" : "4.0.0",
     "msignal": ">=1.2.3",
-    "taminahx" : "1.0.15"
+    "taminahx" : ">1.0.18"
   }
 }

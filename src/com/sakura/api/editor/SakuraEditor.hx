@@ -14,9 +14,16 @@ import com.sakura.api.model.design.IArea;
 import com.sakura.api.model.design.PictureFilter;
 import com.sakura.api.model.event.SakuraEventType;
 import com.sakura.api.model.geom.Rectangle;
+import js.html.Blob;
+import haxe.MimeType;
+import js.html.CanvasElement;
+import haxe.ds.StringMap;
 import org.tamina.log.LogLevel;
+import org.tamina.utils.UID;
 import js.html.Image;
+import org.tamina.net.URL;
 import org.tamina.events.Event;
+import haxe.Scheme;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
@@ -30,6 +37,7 @@ extern class SakuraEditor {
     public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
     public function addImageFromURL(url:String, ?targetAreaId:Float):IPicture;
+    public function addCanvas(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float):IPicture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float):IPicture;
     public function removeImagesByAreaById(targetAreaId:Float):Void;
