@@ -32,6 +32,7 @@ extern class SakuraEditor {
     public function addImageFromURL(url:String, ?targetAreaId:Float):IPicture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float):IPicture;
+    public function removeImagesByAreaById(targetAreaId:Float):Void;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
     public function rotateElementBy(elementId:Float, angle:Float):Void;
     public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
@@ -39,7 +40,7 @@ extern class SakuraEditor {
     public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 0, ?targetAreaId:Float):IText;
     public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12):Void;
     public function addCustomerDesign(?previewArea:Rectangle, size:Int=512):Void;
-    public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):IDrawingArea;
+    public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):Area;
     public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
     public function displayTemplateByIndex(index:Int):IPatternInfo;
     public function registerPlugin(plugin:Dynamic):Void;
@@ -55,6 +56,7 @@ extern class SakuraEditor {
     public function addArea(area:IArea, ?targetTemplateId:Float):Void;
     public function removeArea(area:IArea, ?targetTemplateId:Float):Void;
     public function addTemplate(template:Template, ?index:Int):Void;
+    public function removeTemplate(templateId:Float):Void;
 
 }
 
