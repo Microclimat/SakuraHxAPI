@@ -27,6 +27,9 @@
 */
 package com.sakura.api.model.design;
 
+import js.html.Blob;
+import haxe.MimeType;
+import js.html.CanvasElement;
 import js.html.Image;
 import org.tamina.net.URL;
 import com.sakura.api.model.geom.Point;
@@ -75,6 +78,9 @@ import org.tamina.utils.UID;
 	public var topLeftPoint:Point;
 	public var topRightPoint:Point;
 	
+	public var mimeType:MimeType;
+    public var blob:Blob;
+
 	/**
 	 * URL de l'image
 	 * @property url
@@ -102,14 +108,14 @@ import org.tamina.utils.UID;
 	public var yScale:Float = 1;
     public var minRatio:Float = 0.0;
 
-    private var _source:Image;
+    private var _source:CanvasElement;
 	
 	/**
 	 * Source de l'image
 	 * @property source
 	 * @type Image
 	 */
-    public var source(get, set):Image;
+    public var source(get, set):CanvasElement;
 
     /**
 	 * Qualité de l'image apres transformation
@@ -124,7 +130,7 @@ import org.tamina.utils.UID;
 	
 	private var _url:URL;
 	
-	public function new( source:Image = null, url:URL = null, ref:Picture = null )
+	public function new( source:CanvasElement = null, url:URL = null, ref:Picture = null )
 	{
 		this.source = source;
 		this._url = url;
@@ -152,19 +158,19 @@ import org.tamina.utils.UID;
 		return _url = value;
 	}
 
-    private function get_source():Image
+    private function get_source():CanvasElement
     {
         return _source;
     }
 
-    private function set_source( value )
+    private function set_source( value:CanvasElement ):CanvasElement
     {
         _source = value;
         if(_source != null && this.width == 0){
             this.width = _source.width;
             this.height = _source.height;
         }
-        return null;
+        return _source;
     }
 
 	public static function is(target:Dynamic):Bool{
@@ -229,13 +235,14 @@ interface IPicture extends IDrawingElement {
     public var xScale:Float;
     public var yScale:Float;
 
-    public var source(get, set):Image;
+    public var source(get, set):CanvasElement;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
     public var name:String;
     public var externalId:String;
     public var externalProviderId:Int;
-
+	public var mimeType:MimeType;
+	public var blob:Blob;
     public var quality:PictureQuality;
 
 }

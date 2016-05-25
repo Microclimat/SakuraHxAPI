@@ -13,6 +13,9 @@ import js.html.InputElement;
 import js.html.AnchorElement;
 import js.html.Event;
 import js.html.Image;
+import js.html.Blob;
+import js.html.CanvasElement;
+import haxe.MimeType;
 
 @:native("SakuraIO")
 extern class SakuraIO {
@@ -27,6 +30,8 @@ extern class SakuraIO {
     public static function createPatternProxyInstance():PatternProxy;
     public static function createIOProxyInstance():IOProxy;
     public static function createAlbumProxyInstance():AlbumProxy;
+    public static function setSakuraApiURL(apiUrl:URL):Void;
+    public static function handleBlobFileSelect(input:InputElement, callBack:FileLoadResponse -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true):Void;
 
 }
 
@@ -53,6 +58,7 @@ interface IOProxy {
     public var progressSignal:Signal1<ProgressEvent>;
     public function getToken(requestOrigin:String,type:ExternalAuthType):Void;
     public function uploadImage( imageData:String, type:DocumentType, extension:String ):Float;
+    public function uploadBlob(blob:Blob, type:DocumentType, extension:String):Float;
     public function getImageData( url:URL ):Void;
     public function stop( targetCommandId:Float ):Void;
 }
@@ -103,6 +109,14 @@ typedef SakuraIOConfig = {
     public var sakuraApiUrl:URL;
     public var apiToken:String;
     public var proxyEventBus:ProxyEventBus;
+}
+
+typedef FileLoadResponse = {
+    public var mimeType:MimeType;
+    public var error:IOError;
+    public var canvas:CanvasElement;
+    public var src:String;
+    public var file:Blob;
 }
 
 @:enum abstract IOErrorCode(Int) from Int to Int{
