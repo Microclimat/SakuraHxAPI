@@ -57,6 +57,7 @@ extern class SakuraEditor {
     public function removeArea(area:IArea, ?targetTemplateId:Float):Void;
     public function addTemplate(template:Template, ?index:Int):Void;
     public function removeTemplate(templateId:Float):Void;
+    public function duplicateTemplate(sourceTemplateIndex:Int):Template;
 
 }
 
