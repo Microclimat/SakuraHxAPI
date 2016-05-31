@@ -27,6 +27,8 @@
 */
 package com.sakura.api.model.design;
 
+import haxe.ExifData;
+import com.sakura.api.model.design.Picture.IPicture;
 import js.html.Blob;
 import haxe.MimeType;
 import js.html.CanvasElement;
@@ -71,13 +73,15 @@ import org.tamina.utils.UID;
 	public var name:String = "";
 	public var parent:Area;
 
-	public var ref:Picture;
+	public var ref:IPicture;
 	public var rotate:Float = 0;
+
+    public var exif:ExifData;
 
 
 	public var topLeftPoint:Point;
 	public var topRightPoint:Point;
-	
+
 	public var mimeType:MimeType;
     public var blob:Blob;
 
@@ -109,7 +113,7 @@ import org.tamina.utils.UID;
     public var minRatio:Float = 0.0;
 
     private var _source:CanvasElement;
-	
+
 	/**
 	 * Source de l'image
 	 * @property source
@@ -127,10 +131,10 @@ import org.tamina.utils.UID;
 
 	public var scaledWidth(get, null):Float;
 	public var scaledHeight(get, null):Float;
-	
+
 	private var _url:URL;
-	
-	public function new( source:CanvasElement = null, url:URL = null, ref:Picture = null )
+
+	public function new( source:CanvasElement = null, url:URL = null, ref:IPicture = null )
 	{
 		this.source = source;
 		this._url = url;
@@ -142,11 +146,11 @@ import org.tamina.utils.UID;
 		this.topRightPoint = new Point( 1, 0 );
         this.quality = PictureQuality.GOOD;
 	}
-	
+
 	private function get_scaledWidth():Float	{
         return Math.round( source.width * xScale * displayScale); }
 	private function get_scaledHeight():Float	{ return Math.round( source.height * yScale * displayScale); }
-	
+
 	private function get_url():URL
 	{
 		var result:URL = _url;
@@ -180,7 +184,7 @@ import org.tamina.utils.UID;
 		}
 		return result;
 	}
-	
+
 	public function clone( copy:Bool = false ):Picture {
 		var cloneID = UID.getUID();
 		if ( copy )
@@ -211,13 +215,16 @@ import org.tamina.utils.UID;
 		result.externalId = this.externalId;
 		result.externalProviderId = this.externalProviderId;
 		result.displayScale = this.displayScale;
+        result.exif = this.exif;
+        result.mimeType = this.mimeType;
+        result.blob = this.blob;
 		if ( this.SD != null )
 		{
 			result.SD = this.SD.clone();
 		}
 		return result;
 	}
-	
+
 }
 
 interface IPicture extends IDrawingElement {
