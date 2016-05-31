@@ -1,5 +1,6 @@
 package com.sakura.api.io;
 
+import haxe.ExifData;
 import com.sakura.api.model.net.ServiceError;
 import com.sakura.api.model.design.CustomerDesign;
 import com.sakura.api.model.design.Pattern;
@@ -114,8 +115,10 @@ typedef SakuraIOConfig = {
 typedef FileLoadResponse = {
     public var mimeType:MimeType;
     public var error:IOError;
+    public var exif:ExifData;
     public var canvas:CanvasElement;
     public var src:String;
+    public var name:String;
     public var file:Blob;
 }
 
