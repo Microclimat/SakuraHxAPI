@@ -218,6 +218,7 @@ import org.tamina.utils.UID;
         result.exif = this.exif;
         result.mimeType = this.mimeType;
         result.blob = this.blob;
+
 		if ( this.SD != null )
 		{
 			result.SD = this.SD.clone();
@@ -241,6 +242,7 @@ interface IPicture extends IDrawingElement {
     public var vFlip:Bool;
     public var xScale:Float;
     public var yScale:Float;
+    public var exif:ExifData;
 
     public var source(get, set):CanvasElement;
     public var scaledWidth(get, null):Float;
@@ -251,5 +253,6 @@ interface IPicture extends IDrawingElement {
 	public var mimeType:MimeType;
 	public var blob:Blob;
     public var quality:PictureQuality;
+    public var ref:IPicture;
 
 }
