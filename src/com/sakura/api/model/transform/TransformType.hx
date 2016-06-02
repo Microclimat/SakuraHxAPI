@@ -43,6 +43,24 @@ package com.sakura.api.model.transform;
     var SCALE = 'scale';
 
 /**
+	 * @property SCALE_X
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "scaleX"
+	 */
+    var SCALE_X = 'scaleX';
+
+/**
+	 * @property SCALE_Y
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "scaleY"
+	 */
+    var SCALE_Y = 'scaleY';
+
+/**
 	 * @property SCALE_BY
 	 * @type String
 	 * @static
