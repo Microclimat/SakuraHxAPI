@@ -7,6 +7,7 @@ import com.sakura.api.model.transform.Transform.ITransform;
 import com.sakura.api.model.design.Text.IText;
 import com.sakura.api.model.design.Picture.IPicture;
 import com.sakura.api.model.info.PatternInfo.IPatternInfo;
+import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.design.IDrawingArea;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.design.ExternalImageProvider;
@@ -40,6 +41,7 @@ extern class SakuraEditor {
     public function addCanvas(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float):IPicture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float):IPicture;
+    public function addPicture(p:Picture, ?targetAreaId:Float):Void;
     public function removeImagesByAreaById(targetAreaId:Float):Void;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
     public function rotateElementBy(elementId:Float, angle:Float):Void;
