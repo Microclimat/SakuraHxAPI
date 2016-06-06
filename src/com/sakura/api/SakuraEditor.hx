@@ -391,7 +391,7 @@ interface Picture extends IDrawingElement {
     public var xScale:Float;
     public var yScale:Float;
 
-    public var source(get, set):Image;
+    public var source(get, set):CanvasElement;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
     public var name:String;
