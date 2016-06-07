@@ -17,7 +17,7 @@ interface IArea extends IRestrictable extends ITransformable{
     public var y:Float;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
-    public var movable:Bool=false;
+    public var editable:Bool=false;
 
     function toInfo():IAreaInfo;
     function validateConstraints():IConstraintGroupValidationResult;

@@ -24,7 +24,7 @@ class Area implements IArea {
     public var y:Float;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
-    public var movable:Bool=false;
+    public var editable:Bool=false;
 
     public function new(id:Float = 0, x:Float = 0, y:Float = 0, width:Float = 5, height:Float = 5, name:String = "") {
         if (id != 0) {
@@ -61,7 +61,7 @@ class Area implements IArea {
             constaintesBackup.push(constraints[ i ].clone(copy));
         }
         result.constraints = constaintesBackup;
-        result.movable = this.movable;
+        result.editable = this.editable;
         result.content = contentBackup;
         return result;
     }
