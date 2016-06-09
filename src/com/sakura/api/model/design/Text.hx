@@ -124,6 +124,27 @@ import org.tamina.utils.UID;
         this.id = UID.getUID();
     }
 
+    public static function fromIText(source:IText):Text {
+        var result = new Text();
+        var result:Text = new Text();
+        result.align = source.align;
+        result.bold = source.bold;
+        result.color = source.color;
+        result.font = source.font;
+        result.height = source.height;
+        result.id = source.id;
+        result.italic = source.italic;
+        result.label = source.label;
+        result.parent = source.parent;
+        result.rotate = source.rotate;
+        result.size = source.size;
+        result.underline = source.underline;
+        result.width = source.width;
+        result.x = source.x;
+        result.y = source.y;
+        return result;
+    }
+
 
     public function clone(copy:Bool = false):Text {
         var cloneID = UID.getUID();
