@@ -42,7 +42,6 @@ extern class SakuraEditor {
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float):IPicture;
     public function addPicture(p:Picture, ?targetAreaId:Float):Void;
-    public function removeImagesByAreaById(targetAreaId:Float):Void;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
     public function rotateElementBy(elementId:Float, angle:Float):Void;
     public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
