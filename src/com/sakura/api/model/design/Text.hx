@@ -39,12 +39,19 @@ import org.tamina.utils.UID;
 */
 @:expose class Text implements IText {
 
+    /**
+     * The horizontal text alignment. Any of "start", "end", "left", "right", and "center".
+     * @property align
+     * @type String
+     */
+    public var align:String = "";
+
 	/**
-	 * The horizontal text alignment. Any of "start", "end", "left", "right", and "center".
-	 * @property align
+	 * The vertical text alignment. Any of "top", "bottom", and "center".
+	 * @property valign
 	 * @type String
 	 */
-    public var align:String = "";
+    public var valign:String = "";
 	
 	/**
 	 * Si le texte est en gras
@@ -112,9 +119,10 @@ import org.tamina.utils.UID;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
 
-    public function new(label:String = "", align:String = "", bold:Bool = false, color:Float = 0, font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12) {
+    public function new(label:String = "", align:String = "", bold:Bool = false, color:Float = 0, font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12, valign:String = "") {
         this.label = label;
         this.align = align;
+        this.valign = valign;
         this.bold = bold;
         this.color = color;
         this.font = font;
@@ -128,6 +136,7 @@ import org.tamina.utils.UID;
         var result = new Text();
         var result:Text = new Text();
         result.align = source.align;
+        result.valign = source.valign;
         result.bold = source.bold;
         result.color = source.color;
         result.font = source.font;
@@ -153,6 +162,7 @@ import org.tamina.utils.UID;
         }
         var result:Text = new Text();
         result.align = align;
+        result.valign = valign;
         result.bold = bold;
         result.color = color;
         result.font = font;
@@ -186,6 +196,7 @@ import org.tamina.utils.UID;
 
 interface IText extends IDrawingElement extends ITransformable {
     public var align:String;
+    public var valign:String;
     public var bold:Bool;
     public var color:Float;
     public var font:String;
