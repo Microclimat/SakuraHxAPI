@@ -157,6 +157,8 @@ typedef SakuraEvent = Event<SakuraEventType>;
 	 */
     var AREA_RESIZED = "areaResized";
 
+    var REMOVE_AREA = "removeArea";
+
     /**
 	 * @property ELEMENT_SELECTED
 	 * @type String
