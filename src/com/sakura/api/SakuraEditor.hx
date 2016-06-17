@@ -1052,11 +1052,12 @@ interface IPlugin {
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
+    public static var version:Version =Version.LATEST;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
 
-    public static function getURL(host:HostName, ?version:Version=Version.LATEST):URL {
+    public static function getURL(host:HostName):URL {
         var result:URL = null;
         var pair = getURLList().get(host);
         if (pair != null) {
