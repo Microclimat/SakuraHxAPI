@@ -1066,7 +1066,7 @@ class Host {
             } else {
                 result = pair.https;
             }
-            result.path+='/'+version;
+            result = new URL(result.path+'/'+version);
         }
         return result;
     }
@@ -1090,8 +1090,8 @@ class Host {
             _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
             _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
             _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
-            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
+            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
         }
         return _urls;
     }
