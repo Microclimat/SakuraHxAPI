@@ -1146,8 +1146,6 @@ class UrlPair {
     var NEXT = 'next';
     var V3 = 'v3';
     var V4 = 'V4';
-    var V5 = 'v5';
-    var V6 = 'v6';
 
 }
 #end
