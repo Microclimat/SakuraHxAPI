@@ -60,6 +60,51 @@ class Template {
         }
     }
 
+    public function clone(copy:Bool = false):Template {
+        var result:Template = new Template( );
+        result.id = this.id;
+        result.name = this.name;
+        result.x = this.x;
+        result.y = this.y;
+        result.width = this.width;
+        result.height = this.height;
+        result.rotate = this.rotate;
+        result.scale = this.scale;
+        result.percentX = this.percentX;
+        result.percentY = this.percentY;
+        for (constraint in this.constraints) {
+            result.constraints.push(constraint.clone(copy));
+        }
+
+        result.patternBackgroundPicture = this.patternBackgroundPicture.clone(copy);
+        if(this.patternForegroundPicture != null){
+            result.patternForegroundPicture = this.patternForegroundPicture.clone(copy);
+        }
+        if(this.patternMaskPicture != null){
+            result.patternMaskPicture = this.patternMaskPicture.clone(copy);
+        }
+        if(this.backgroundPicture != null){
+            result.backgroundPicture = this.backgroundPicture.clone(copy);
+        }
+        if(this.foregroundPicture != null){
+            result.foregroundPicture = this.foregroundPicture.clone(copy);
+        }
+        if(this.backgroundPreviewPicture != null){
+            result.backgroundPreviewPicture = this.backgroundPreviewPicture.clone(copy);
+        }
+        if(this.foregroundPreviewPicture != null){
+            result.foregroundPreviewPicture = this.foregroundPreviewPicture.clone(copy);
+        }
+
+        for (area in this.content) {
+            var clonedArea:Area = cast area.clone(true);
+            clonedArea.parent = this;
+            result.content.push(clonedArea);
+
+        }
+        return result;
+    }
+
     public function toInfo():TemplateInfo{
         var result = new TemplateInfo();
         result.id = id;

@@ -37,6 +37,30 @@ class Pattern {
         }
     }
 
+    public function clone(copy:Bool = false):Pattern {
+        var result = new Pattern(this.id, this.name, this.description, this.enabled);
+        result.resolution = this.resolution;
+        result.margin = this.margin;
+        result.mergeOutput = this.mergeOutput;
+
+        for (constraint in this.constraints) {
+            result.constraints.push( constraint.clone(copy));
+
+        }
+        for (template in this.templates) {
+            var clonedTemplate = template.clone(copy);
+            clonedTemplate.root = this;
+            result.templates.push(clonedTemplate);
+
+        }
+        if (this.view != null) {
+            result.view = this.view.clone(copy);
+        }
+
+        result.outputType = this.outputType;
+        return result;
+    }
+
     public function toInfo():PatternInfo{
         var result = new PatternInfo();
         result.id = id;
