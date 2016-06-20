@@ -5,19 +5,21 @@ import haxe.Scheme;
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
+    public static var version:Version =Version.LATEST;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
 
     public static function getURL(host:HostName):URL {
-        var result = null;
+        var result:URL = null;
         var pair = getURLList().get(host);
-        if(pair != null){
-            if(scheme == Scheme.HTTP){
+        if (pair != null) {
+            if (scheme == Scheme.HTTP) {
                 result = pair.http;
             } else {
                 result = pair.https;
             }
+            result = new URL(result.path+'/'+version);
         }
         return result;
     }
@@ -38,12 +40,11 @@ class Host {
     private static function getURLList():StringMap<UrlPair> {
         if(_urls == null){
             _urls = new StringMap<UrlPair>();
-            _urls.set(HostName.PROD,new UrlPair('http://storage.sakuradesigner.microclimat.com/apps','https://storage.sakuradesigner.microclimat.com/apps'));
-            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084/apps','https://preprod-cdn.heidi.tech:8093/apps'));
-            _urls.set(HostName.NEXT,new UrlPair('http://preprod-cdn.heidi.tech:8084/next','https://preprod-cdn.heidi.tech:8093/next'));
-            _urls.set(HostName.REMOTE,new UrlPair('http://192.168.119.98:8686/sakuraHx/apps','https://192.168.119.98:8888/sakuraHx/apps'));
-            _urls.set(HostName.DEV,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://localhost:8686/sakuraHx/apps','http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
+            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
+            _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
+            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
+            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
         }
         return _urls;
     }
@@ -72,11 +73,23 @@ class UrlPair {
 
 @:enum abstract HostName(String) from String to String  {
 
-    var PREPROD = 'preprod';
-    var NEXT = 'next';
     var PROD = 'prod';
-    var REMOTE = 'remote';
+    var PREPROD = 'preprod';
+    var QUALIF = 'qualif';
     var DEV = 'dev';
     var LOCAL = 'local';
 
 }
+
+#if !macro
+@:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
+@:enum abstract Version(String) from String to String  {
+
+    var LATEST = 'latest';
+    var NEXT = 'next';
+    var V3 = 'v3';
+    var V4 = 'v4';
+    var V5 = 'v5';
+
+}
+#end
