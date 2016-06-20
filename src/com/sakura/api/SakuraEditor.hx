@@ -1138,6 +1138,8 @@ class UrlPair {
 
 }
 
+#if !macro
+@:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
 @:enum abstract Version(String) from String to String  {
 
     var LATEST = 'latest';
@@ -1148,6 +1150,7 @@ class UrlPair {
     var V6 = 'v6';
 
 }
+#end
 
 interface ProductView {
     public var url:URL;
