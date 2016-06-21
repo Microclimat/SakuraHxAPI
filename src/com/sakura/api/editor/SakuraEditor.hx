@@ -12,6 +12,7 @@ import com.sakura.api.model.design.IDrawingArea;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.design.ExternalImageProvider;
 import com.sakura.api.model.design.IArea;
+import com.sakura.api.model.design.Pattern;
 import com.sakura.api.model.design.PictureFilter;
 import com.sakura.api.model.event.SakuraEventType;
 import com.sakura.api.model.geom.Rectangle;
@@ -70,6 +71,7 @@ extern class SakuraEditor {
     public function duplicateTemplate(sourceTemplateIndex:Int):Template;
     public function updateAreaOverlay(areaId:Float, areaOverlay:CanvasElement, ?alignRules:Int):Void;
     public function hideAreaOverlay(areaId:Float):Void;
+    public function getCurrentPattern():Pattern;
 
 
 }
