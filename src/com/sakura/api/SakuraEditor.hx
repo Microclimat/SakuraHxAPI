@@ -1089,6 +1089,7 @@ class Host {
             _urls = new StringMap<UrlPair>();
             _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
             _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
+            _urls.set(HostName.STAGING,new UrlPair('http://staging-cdn.heidi.tech','https://staging-cdn.heidi.tech'));
             _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
             _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
             _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
@@ -1132,6 +1133,7 @@ class UrlPair {
 
     var PROD = 'prod';
     var PREPROD = 'preprod';
+    var STAGING = 'staging';
     var QUALIF = 'qualif';
     var DEV = 'dev';
     var LOCAL = 'local';
