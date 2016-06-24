@@ -30,7 +30,7 @@ import haxe.Scheme;
 @:native("SakuraEditor")
 extern class SakuraEditor {
     static function getInstance():SakuraEditor;
-    
+
     public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
 
     public function removeElement(elementId:Float):Void;
@@ -72,7 +72,7 @@ extern class SakuraEditor {
     public function updateAreaOverlay(areaId:Float, areaOverlay:CanvasElement, ?alignRules:Int):Void;
     public function hideAreaOverlay(areaId:Float):Void;
     public function getCurrentPattern():Pattern;
-
+    public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
 
 }
 
@@ -109,7 +109,7 @@ interface Skin {
      * indique le nombre maximum d'image que peut contenir les zones.
      * 0 -> illimité
      * Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supprime la précédente. * Si swapPictures est à true, on ne supprime rien.
-     * 
+     *
      * @property MAX_PICTURE_BY_AREA
      * @type String
      * @static
