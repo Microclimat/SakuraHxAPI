@@ -44,8 +44,8 @@ class Host {
             _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
             _urls.set(HostName.STAGING,new UrlPair('http://staging-cdn.heidi.tech','https://staging-cdn.heidi.tech'));
             _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech:8084','https://qualif-cdn.heidi.tech:8093'));
-            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
+            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','https://local.heidi.tech:8888'));
+            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','https://local.heidi.tech:8888'));
         }
         return _urls;
     }
