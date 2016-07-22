@@ -24,6 +24,16 @@ class Host {
         return result;
     }
 
+    public static function getVersion(version:Version):Version {
+        var result = version;
+        if(version == Version.LATEST){
+            result = Version.V4;
+        } else if(version == Version.NEXT){
+            result = Version.V5;
+        }
+        return result;
+    }
+
     public static function getApiURL(host:HostName):URL {
         var result = null;
         var pair = getApiURLList().get(host);
