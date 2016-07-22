@@ -103,7 +103,7 @@ import org.tamina.utils.UID;
 	 * @property size
 	 * @type Int
 	 */
-    public var size:Int = 0;
+    public var size:Float = 0;
 	
 	/**
 	 * Si le texte est souligné
@@ -119,7 +119,7 @@ import org.tamina.utils.UID;
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
 
-    public function new(label:String = "", align:String = "", bold:Bool = false, color:Float = 0, font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Int = 12, valign:String = "") {
+    public function new(label:String = "", align:String = "", bold:Bool = false, color:Float = 0, font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 12, valign:String = "") {
         this.label = label;
         this.align = align;
         this.valign = valign;
@@ -201,7 +201,7 @@ interface IText extends IDrawingElement extends ITransformable {
     public var color:Float;
     public var font:String;
     public var italic:Bool;
-    public var size:Int;
+    public var size:Float;
     public var underline:Bool;
     public var label:String;
 
