@@ -9,6 +9,8 @@ import com.sakura.api.model.constraint.ConstraintValidationResult.ConstraintGrou
 import Array;
 import com.sakura.api.model.constraint.Constraint;
 import org.tamina.utils.UID;
+import org.tamina.geom.Rectangle;
+import js.html.svg.Rect;
 
 class Area implements IArea {
 
@@ -78,23 +80,81 @@ class Area implements IArea {
 
     public function merge(source:IArea):Void {
         if (source != null) {
+            var usedRect:Rectangle = getUsedRect(source);
+            var usedWidth:Float = usedRect.right - usedRect.left;
+            var usedHeight:Float = usedRect.bottom - usedRect.top;
+
+            var alignedRight:Bool = usedRect.left > source.width - usedRect.right;
+            var alignedBottom:Bool = usedRect.top > source.height * 0.3 && usedRect.top > source.height - usedRect.bottom;
+            var centeredW:Bool = usedRect.left == source.width - usedRect.right;
+            var centeredH:Bool = usedRect.top > 0 && usedRect.top == source.height - usedRect.bottom;
+
+            var maxScaleW:Float, maxScaleH:Float;
+            var ratioW:Float = this.width / source.width;
+            var ratioH:Float = this.height / source.height;
+
+            if (alignedRight) {
+                maxScaleW = (this.width - (source.width - usedRect.right) * ratioW) / usedWidth;
+            } else {
+                maxScaleW = (this.width - usedRect.left * ratioW * 2) / usedWidth;
+            }
+
+            if (alignedBottom) {
+                maxScaleH = (this.height - (source.height - usedRect.bottom) * ratioH) / usedHeight;
+            } else {
+                maxScaleH = (this.height - usedRect.top * ratioH * 2) / usedHeight;
+            }
+
+            var scale = Math.min(maxScaleW, maxScaleH);
+
+            var newArea:Rect = cast {
+                x: usedRect.left * ratioW,
+                y: usedRect.top * ratioH,
+                width: usedWidth * scale,
+                height: usedHeight * scale,
+            };
+
+            if (alignedRight) {
+                newArea.x = (usedRect.right * ratioW) - newArea.width;
+            } else if (centeredW) {
+                newArea.x = (this.width - newArea.width) / 2;
+            }
+
+            if (alignedBottom) {
+                newArea.y = (usedRect.bottom * ratioH) - newArea.height;
+            } else if (centeredH) {
+                newArea.y = (this.height - newArea.height) / 2;
+            }
+
             for (i in 0...source.content.length) {
-                var element = source.content[i];
-                var newElement:IDrawingElement = element.clone(true);
-                newElement.x = ( newElement.x / newElement.parent.width ) * this.width;
-                newElement.y = ( newElement.y / newElement.parent.height ) * this.height;
-                if (Picture.is(newElement)) {
+                var newElement:IDrawingElement = source.content[i].clone(true);
+                var relX:Float = newElement.x - usedRect.left;
+                var relY:Float = newElement.y - usedRect.top;
+                newElement.x = relX * scale + newArea.x;
+                newElement.y = relY * scale + newArea.y;
+
+                if (Std.is(newElement, Picture)) {
                     var p:Picture = cast newElement;
-                    var scaleRatio:Float = this.width / newElement.parent.width;
-                    p.xScale *= scaleRatio;
-                    p.yScale *= scaleRatio;
+                    p.xScale *= scale;
+                    p.yScale *= scale;
+
+                } else if (Std.is(newElement, Text)) {
+                    var t:Text = cast newElement;
+                    var wRatio:Float = t.width / t.size;
+                    var hRatio:Float = t.height / t.size;
+
+                    t.size = t.size * scale;
+                    t.width = t.size * wRatio;
+                    t.height = t.size * hRatio;
                 }
+
                 newElement.parent = this;
                 content.push(newElement);
             }
-
         }
     }
+
+
 
     public function validateConstraints():IConstraintGroupValidationResult{
         var result = new ConstraintGroupValidationResult();
@@ -127,4 +187,59 @@ class Area implements IArea {
     private function get_scaledWidth():Float { return width; }
 
     private function get_scaledHeight():Float { return height; }
+
+    private function getUsedRect(source:IArea):Rectangle {
+        var usedRect:Rectangle = null;
+
+        if (source != null) {
+            var areaH:Float = source.height;
+            var areaW:Float = source.width;
+
+            var minY:Float = -1; var maxY:Float = -1;
+            var minX:Float = -1; var maxX:Float = -1;
+
+            for (i in 0...source.content.length) {
+                var element:IDrawingElement = source.content[i];
+                var height:Float = element.height;
+                var width:Float = element.width;
+
+                if (Std.is(element, Picture)) {
+                    var p:Picture = cast element;
+                    height *= p.yScale;
+                    width *= p.xScale;
+                }
+
+                if (minY == -1 || minY > Math.max(0, element.y - height / 2)) {
+                    minY = Math.max(0, element.y - height / 2);
+                }
+
+                if (maxY == -1 || maxY < Math.min(areaH, element.y + height / 2)) {
+                    maxY = Math.min(areaH, element.y + height / 2);
+                }
+
+                if (minX == -1 || minX > Math.max(0, element.x - width / 2)) {
+                    minX = Math.max(0, element.x - width / 2);
+                }
+
+                if (maxX == -1 || maxX < Math.min(areaW, element.x + width / 2)) {
+                    maxX = Math.min(areaW, element.x + width / 2);
+                }
+            }
+
+            if (areaW - maxX < minX) {
+                minX = areaW - maxX;
+            } else {
+                maxX = areaW - minX;
+            }
+
+            usedRect = cast {
+                top: Math.max(0, minY),
+                bottom: Math.min(areaH, Math.max(0, maxY)),
+                left: Math.max(0, minX),
+                right: Math.min(areaW, Math.max(0, maxX))
+            };
+        }
+
+        return usedRect;
+    }
 }
