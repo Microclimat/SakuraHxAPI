@@ -29,6 +29,9 @@ class EnumTools {
                             default:
                         }
 
+                    case EConst(CString(value)):
+                        return value;
+
                     default:
                 }
 
