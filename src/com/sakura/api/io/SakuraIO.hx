@@ -154,32 +154,41 @@ typedef FileLoadResponse = {
 }
 
 @:enum abstract ExternalImageProviderType(String) from String to String {
-/**
+    /**
 	 * @property INSTAGRAM
 	 * @type String
 	 * @static
 	 * @readOnly
 	 * @default "instagram"
 	 */
-    var INSTAGRAM   = "instagram";
+    var INSTAGRAM = "instagram";
 
-/**
+    /**
 	 * @property FACEBOOK
 	 * @type String
 	 * @static
 	 * @readOnly
 	 * @default "facebook"
 	 */
-    var FACEBOOK    = "facebook";
+    var FACEBOOK = "facebook";
 
-/**
+    /**
+	 * @property GOOGLE_PHOTOS
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "google-photos"
+	 */
+    var GOOGLE_PHOTOS = "google-photos";
+
+    /**
 	 * @property GENERIC
 	 * @type String
 	 * @static
 	 * @readOnly
 	 * @default "generic"
 	 */
-    var GENERIC    = "generic";
+    var GENERIC = "generic";
 
 }
 
