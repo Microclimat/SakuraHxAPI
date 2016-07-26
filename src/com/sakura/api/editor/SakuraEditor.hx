@@ -82,16 +82,19 @@ typedef Config = {
 }
 
 typedef ConstraintManager = {
-    function canAddPictureToArea(target:IArea):Bool;
-    function canAddTextToArea(target:IArea):Bool;
-    function validatePattern():IConstraintGroupValidationResult;
-    function canMoveAreaElements(target:IArea):Bool;
-    function canScaleAreaElements(target:IArea):Bool;
-    function canRemoveAreaElements(target:IArea):Bool;
-    function canRotateAreaElements(target:IArea):Bool;
-    function getAvailableFonts(target:IArea, fonts:Array<String>):Array<String>;
-    function getAvailableColors(target:IArea, colors:Array<String>):Array<String>;
-    function getAvailableSizes(target:IArea):Array<Int>;
+    public function canAddPicture():Bool;
+    public function canAddText():Bool;
+
+    public function canAddPictureToArea(target:IArea):Bool;
+    public function canAddTextToArea(target:IArea):Bool;
+    public function validatePattern():IConstraintGroupValidationResult;
+    public function canMoveAreaElements(target:IArea):Bool;
+    public function canScaleAreaElements(target:IArea):Bool;
+    public function canRemoveAreaElements(target:IArea):Bool;
+    public function canRotateAreaElements(target:IArea):Bool;
+    public function getAvailableFonts(target:IArea, fonts:Array<String>):Array<String>;
+    public function getAvailableColors(target:IArea, colors:Array<String>):Array<String>;
+    public function getAvailableSizes(target:IArea):Array<Int>;
     public function canApplyFilters(target:IArea):Bool;
 }
 
