@@ -10,6 +10,7 @@ import js.html.ProgressEvent;
 import js.Error;
 import msignal.Signal;
 import org.tamina.net.URL;
+import org.tamina.events.Event;
 import js.html.InputElement;
 import js.html.AnchorElement;
 import js.html.Event;
@@ -20,6 +21,7 @@ import haxe.MimeType;
 
 @:native("SakuraIO")
 extern class SakuraIO {
+    public static function dispatchEvent(event:org.tamina.events.Event<IOEventType>):Void;
     public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true, ?startLoadingCallBack : String->Void):Void;
     public static function fileChangeHandler(evt:Event):Void;
     public static function initExternalAuth(link:AnchorElement, provider:ExternalImageProviderType):Void;
@@ -221,4 +223,24 @@ typedef FileLoadResponse = {
 	 */
     var FLICKR = 'flickr';
 
+}
+
+@:enum abstract IOEventType(String) from String to String {
+    /**
+     * @property LOCAL_DATA_UPDATE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "localDataUpdate"
+     */
+    var LOCAL_DATA_UPDATE = "localDataUpdate";
+
+    /**
+     * @property TOKEN_UPDATE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "tokenUpdate"
+     */
+    var TOKEN_UPDATE = "tokenUpdate";
 }
