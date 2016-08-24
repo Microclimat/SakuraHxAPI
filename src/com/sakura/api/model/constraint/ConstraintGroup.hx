@@ -1,4 +1,5 @@
 package com.sakura.api.model.constraint;
+import com.sakura.api.model.constraint.text.TextSelectConstraint;
 import com.sakura.api.model.constraint.image.ImageSelectConstraint;
 class ConstraintGroup {
 
@@ -12,6 +13,7 @@ class ConstraintGroup {
     public static var TEXT_NUMBER(get_TEXT_NUMBER, null):ConstraintGroup;
     public static var TRANSFORM(get_TRANSFORM, null):ConstraintGroup;
     public static var IMAGE_TRANSFORM(get_IMAGE_TRANSFORM, null):ConstraintGroup;
+    public static var TEXT_TRANSFORM(get_TEXT_TRANSFORM, null):ConstraintGroup;
 
     private static var _ALBUM:ConstraintGroup;
     private static var _COLOR:ConstraintGroup;
@@ -157,6 +159,15 @@ class ConstraintGroup {
             _TRANSFORM = new ConstraintGroup( "image_transform" );
             _TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
             _TRANSFORM.constraints.push(new ImageSelectConstraint());
+        }
+        return _TRANSFORM;
+    }
+
+    public static function get_TEXT_TRANSFORM():ConstraintGroup {
+        if (_TRANSFORM == null) {
+            _TRANSFORM = new ConstraintGroup( "text_transform" );
+            _TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
+            _TRANSFORM.constraints.push(new TextSelectConstraint());
         }
         return _TRANSFORM;
     }
