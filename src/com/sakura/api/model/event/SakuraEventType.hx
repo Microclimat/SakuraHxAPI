@@ -222,4 +222,13 @@ typedef SakuraEvent = Event<SakuraEventType>;
 	 */
     var PICTURE_QUALITY_CHANGED = "pictureQualityChanged";
 
+	/**
+	 * @property TEMPLATE_CHANGED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "templateChanged"
+	 */
+	var TEMPLATE_CHANGED = "templateChanged";
+
 }
