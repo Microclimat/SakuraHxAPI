@@ -195,7 +195,7 @@ typedef SakuraEvent = Event<SakuraEventType>;
 	 */
     var ELEMENT_REMOVED = "elementRemoved";
 
-/**
+	/**
 	 * @property ELEMENT_ADDED
 	 * @type String
 	 * @static
@@ -203,6 +203,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
 	 * @default "elementAdded"
 	 */
     var ELEMENT_ADDED = "elementAdded";
+
+	/**
+	 * @property ELEMENT_UPDATED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "elementUpdated"
+	 */
+    var ELEMENT_UPDATED = "elementUpdated";
 
     /**
 	 * @property PICTURE_LOADED

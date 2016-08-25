@@ -51,6 +51,7 @@ extern class SakuraEditor {
     public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 0, valign:String = "", ?targetAreaId:Float):IText;
     public function addIText(value:IText, ?targetAreaId:Float, ?width:Float, ?height:Float):IText;
     public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 12, valign:String = ""):Void;
+    public function updateIText(value:IText):Void;
     public function addCustomerDesign(?previewArea:Rectangle, size:Int=512):Void;
     public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):Area;
     public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;

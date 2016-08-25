@@ -180,6 +180,25 @@ import org.tamina.utils.UID;
         return result;
     }
 
+    public function fillFrom(source:IText):Void {
+        align = source.align;
+        valign = source.valign;
+        bold = source.bold;
+        color = source.color;
+        font = source.font;
+        height = source.height;
+        id = source.id;
+        italic = source.italic;
+        label = source.label;
+        parent = source.parent;
+        rotate = source.rotate;
+        size = source.size;
+        underline = source.underline;
+        width = source.width;
+        x = source.x;
+        y = source.y;
+    }
+
     public static function is(target:Dynamic):Bool{
         var result = false;
         if(target.label != null){
