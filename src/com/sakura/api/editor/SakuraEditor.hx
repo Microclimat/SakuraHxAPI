@@ -86,6 +86,8 @@ typedef Config = {
 typedef ConstraintManager = {
     public function canAddPicture():Bool;
     public function canAddText():Bool;
+    public function canAddPictureToTemplate(templateIndex:Int):Bool;
+    public function canAddTextToTemplate(templateIndex:Int):Bool;
 
     public function canAddPictureToArea(target:IArea):Bool;
     public function canAddTextToArea(target:IArea):Bool;
