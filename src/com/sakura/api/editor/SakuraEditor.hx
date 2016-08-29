@@ -235,6 +235,16 @@ interface Skin {
     var DISPLAY_AREA_BORDER = 'displayAreaBorder';
 
     /**
+     *  à true, les zones affichent une image "placeholder" quand elles sont vides
+     * @property DISPLAY_AREA_GUIDES
+     * @type String
+     * @static
+     * @readOnly
+     * @default "displayAreaGuides"
+     */
+    var DISPLAY_AREA_GUIDES = 'displayAreaGuides';
+
+    /**
      *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
      * @property SWAP_PICTURES
      * @type String
