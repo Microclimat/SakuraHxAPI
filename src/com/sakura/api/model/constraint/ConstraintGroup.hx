@@ -1,5 +1,8 @@
 package com.sakura.api.model.constraint;
+import com.sakura.api.model.constraint.text.TextMoveConstraint;
+import com.sakura.api.model.constraint.text.TextScaleConstraint;
 import com.sakura.api.model.constraint.text.TextSelectConstraint;
+import com.sakura.api.model.constraint.text.TextRotationConstraint;
 import com.sakura.api.model.constraint.image.ImageSelectConstraint;
 class ConstraintGroup {
 
@@ -168,6 +171,9 @@ class ConstraintGroup {
             _TRANSFORM = new ConstraintGroup( "text_transform" );
             _TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
             _TRANSFORM.constraints.push(new TextSelectConstraint());
+            _TRANSFORM.constraints.push(new TextScaleConstraint());
+            _TRANSFORM.constraints.push(new TextMoveConstraint());
+            _TRANSFORM.constraints.push(new TextRotationConstraint());
         }
         return _TRANSFORM;
     }
