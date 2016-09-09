@@ -1,4 +1,5 @@
 package ;
+import com.sakura.api.model.design.Text;
 import com.sakura.api.model.design.CustomerDesign;
 import com.sakura.api.preview.Sakura3DPreview;
 import com.sakura.api.io.SakuraIO;
@@ -13,5 +14,6 @@ class TestSakuraApi {
         SakuraIO.closeInstagramAuth();
         var preview = new Sakura3DPreview("kjhkj","hkjhkj");
         var a = new CustomerDesign();
+        var t = new Text();
     }
 }
