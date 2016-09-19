@@ -116,6 +116,7 @@ import org.tamina.utils.UID;
     public var x:Float=0;
     public var y:Float=0;
     public var isFixed:Bool=false;
+    public var autoResize:Bool=false;
 
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
@@ -227,6 +228,7 @@ interface IText extends IDrawingElement extends ITransformable {
     public var underline:Bool;
     public var label:String;
     public var isFixed:Bool;
+    public var autoResize:Bool;
 
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;

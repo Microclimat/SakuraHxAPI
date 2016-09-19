@@ -1,9 +1,12 @@
 package com.sakura.api.model.constraint;
+
+import com.sakura.api.model.constraint.text.TextAutoResizeConstraint;
 import com.sakura.api.model.constraint.text.TextMoveConstraint;
 import com.sakura.api.model.constraint.text.TextScaleConstraint;
 import com.sakura.api.model.constraint.text.TextSelectConstraint;
 import com.sakura.api.model.constraint.text.TextRotationConstraint;
 import com.sakura.api.model.constraint.image.ImageSelectConstraint;
+
 class ConstraintGroup {
 
     public static var ALBUM(get_ALBUM, null):ConstraintGroup;
@@ -27,6 +30,8 @@ class ConstraintGroup {
     private static var _IMAGE_NUMBER:ConstraintGroup;
     private static var _TEXT_NUMBER:ConstraintGroup;
     private static var _TRANSFORM:ConstraintGroup;
+    private static var _IMAGE_TRANSFORM:ConstraintGroup;
+    private static var _TEXT_TRANSFORM:ConstraintGroup;
 
     public var authorizedOperators:Array<Operator>;
 
@@ -158,23 +163,24 @@ class ConstraintGroup {
     }
 
     public static function get_IMAGE_TRANSFORM():ConstraintGroup {
-        if (_TRANSFORM == null) {
-            _TRANSFORM = new ConstraintGroup( "image_transform" );
-            _TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
-            _TRANSFORM.constraints.push(new ImageSelectConstraint());
+        if (_IMAGE_TRANSFORM == null) {
+            _IMAGE_TRANSFORM = new ConstraintGroup( "image_transform" );
+            _IMAGE_TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
+            _IMAGE_TRANSFORM.constraints.push(new ImageSelectConstraint());
         }
-        return _TRANSFORM;
+        return _IMAGE_TRANSFORM;
     }
 
     public static function get_TEXT_TRANSFORM():ConstraintGroup {
-        if (_TRANSFORM == null) {
-            _TRANSFORM = new ConstraintGroup( "text_transform" );
-            _TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
-            _TRANSFORM.constraints.push(new TextSelectConstraint());
-            _TRANSFORM.constraints.push(new TextScaleConstraint());
-            _TRANSFORM.constraints.push(new TextMoveConstraint());
-            _TRANSFORM.constraints.push(new TextRotationConstraint());
+        if (_TEXT_TRANSFORM == null) {
+            _TEXT_TRANSFORM = new ConstraintGroup( "text_transform" );
+            _TEXT_TRANSFORM.authorizedOperators.push(Operator.DIFFERENT);
+            _TEXT_TRANSFORM.constraints.push(new TextSelectConstraint());
+            _TEXT_TRANSFORM.constraints.push(new TextScaleConstraint());
+            _TEXT_TRANSFORM.constraints.push(new TextMoveConstraint());
+            _TEXT_TRANSFORM.constraints.push(new TextRotationConstraint());
+            _TEXT_TRANSFORM.constraints.push(new TextAutoResizeConstraint());
         }
-        return _TRANSFORM;
+        return _TEXT_TRANSFORM;
     }
 }
