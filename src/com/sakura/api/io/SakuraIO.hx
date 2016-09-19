@@ -1,5 +1,6 @@
 package com.sakura.api.io;
 
+import org.tamina.log.LogLevel;
 import haxe.ExifData;
 import com.sakura.api.model.net.ServiceError;
 import com.sakura.api.model.design.CustomerDesign;
@@ -112,6 +113,7 @@ typedef SakuraIOConfig = {
     public var sakuraApiUrl:URL;
     public var apiToken:String;
     public var proxyEventBus:ProxyEventBus;
+    public var logLevel:LogLevel;
 }
 
 typedef FileLoadResponse = {
