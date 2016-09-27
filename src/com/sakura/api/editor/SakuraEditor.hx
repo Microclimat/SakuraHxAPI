@@ -85,13 +85,13 @@ typedef Config = {
 }
 
 typedef ConstraintManager = {
-    public function canAddPicture():Bool;
-    public function canAddText():Bool;
-    public function canAddPictureToTemplate(templateIndex:Int):Bool;
-    public function canAddTextToTemplate(templateIndex:Int):Bool;
+    public function canAddPicture(?ignoreContent:Bool):Bool;
+    public function canAddText(?ignoreContent:Bool):Bool;
+    public function canAddPictureToTemplate(templateIndex:Int, ?ignoreContent:Bool):Bool;
+    public function canAddTextToTemplate(templateIndex:Int, ?ignoreContent:Bool):Bool;
+    public function canAddPictureToArea(target:IArea, ?ignoreContent:Bool):Bool;
+    public function canAddTextToArea(target:IArea, ?ignoreContent:Bool):Bool;
 
-    public function canAddPictureToArea(target:IArea):Bool;
-    public function canAddTextToArea(target:IArea):Bool;
     public function validatePattern():IConstraintGroupValidationResult;
     public function canMoveAreaElements(target:IArea, ?type:ElementType):Bool;
     public function canScaleAreaElements(target:IArea, ?type:ElementType):Bool;
