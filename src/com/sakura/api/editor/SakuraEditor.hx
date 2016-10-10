@@ -100,6 +100,7 @@ typedef ConstraintManager = {
     public function getAvailableFonts(target:IArea, fonts:Array<String>):Array<String>;
     public function getAvailableColors(target:IArea, colors:Array<String>):Array<String>;
     public function getAvailableSizes(target:IArea):Array<Int>;
+    public function getTextMaxSize(text:IText):Int;
     public function getMaxPictureByArea():Int;
     public function getMaxPictureForArea(target:Area):Int;
     public function canApplyFilters(target:IArea):Bool;
