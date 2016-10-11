@@ -97,7 +97,7 @@ typedef ConstraintManager = {
     public function canScaleAreaElements(target:IArea, ?type:ElementType):Bool;
     public function canRemoveAreaElements(target:IArea, ?type:ElementType):Bool;
     public function canRotateAreaElements(target:IArea, ?type:ElementType):Bool;
-    public function getAvailableFonts(target:IArea, fonts:Array<String>):Array<String>;
+    public function getAvailableFonts(target:IArea, fonts:Array<FontDefinition>):Array<FontDefinition>;
     public function getAvailableColors(target:IArea, colors:Array<String>):Array<String>;
     public function getAvailableSizes(target:IArea):Array<Int>;
     public function getTextMaxSize(text:IText):Int;
@@ -106,6 +106,10 @@ typedef ConstraintManager = {
     public function canApplyFilters(target:IArea):Bool;
 }
 
+typedef FontDefinition = {
+    var value:String;
+    var name:String;
+}
 
 interface Skin {
     public function getProperty(target:SkinProperty):PropertyValue;
