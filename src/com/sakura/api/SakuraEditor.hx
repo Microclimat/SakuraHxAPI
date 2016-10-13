@@ -1088,9 +1088,9 @@ class Host {
         if(_urls == null){
             _urls = new StringMap<UrlPair>();
             _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
-            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
+            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech','https://preprod-cdn.heidi.tech'));
             _urls.set(HostName.STAGING,new UrlPair('http://staging-cdn.heidi.tech','https://staging-cdn.heidi.tech'));
-            _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech:8084','https://qualif-cdn.heidi.tech:8093'));
+            _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
             _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
             _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
         }
@@ -1102,8 +1102,8 @@ class Host {
             _apiUrls = new StringMap<UrlPair>();
             _apiUrls.set(HostName.PROD, new UrlPair('http://api.heidi.tech/Api.svc', 'https://api.heidi.tech/Api.svc'));
             _apiUrls.set(HostName.STAGING, new UrlPair('http://staging-api.heidi.tech/Api.svc', 'https://staging-api.heidi.tech/Api.svc'));
-            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc', 'https://preprod-api.heidi.tech:8092/Api.svc'));
-            _apiUrls.set(HostName.QUALIF, new UrlPair('http://qualif-api.heidi.tech:8091/Api.svc', 'https://qualif-api.heidi.tech:8092/Api.svc'));
+            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech/Api.svc', 'https://preprod-api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.QUALIF, new UrlPair('http://qualif-api.heidi.tech/Api.svc', 'https://qualif-api.heidi.tech/Api.svc'));
             _apiUrls.set(HostName.LOCAL, new UrlPair('http://localhost:2058/Api.svc', 'https://localhost:40300/Api.svc'));
         }
         return _apiUrls;
