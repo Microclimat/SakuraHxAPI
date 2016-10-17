@@ -41,7 +41,7 @@ extern class SakuraEditor {
     public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
     public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
-    public function addCanvas(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float):IPicture;
+    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):IPicture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
     public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions):Void;
