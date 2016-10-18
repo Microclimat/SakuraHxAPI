@@ -42,7 +42,7 @@ interface IPlugin {
 	 * @method init
 	 * @param	data {Object} Les données necessaires à l'initialisation
 	 */
-    function init(data:Dynamic):Void;
+    function init(data:Dynamic):Bool;
 	
 	/**
 	 * Met à jour le module
@@ -50,5 +50,5 @@ interface IPlugin {
 	 * @param	data {Object}
 	 * @param	targetIndex {Int} l'index du Template
 	 */
-    function update(data:Dynamic,templateIndex:Int=0):Void;
+    function update(data:Dynamic,templateIndex:Int=0):Bool;
 }
