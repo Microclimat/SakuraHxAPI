@@ -2,6 +2,7 @@ package com.sakura.api.editor;
 
 import com.sakura.api.model.net.ServiceError;
 import msignal.Signal.Signal0;
+import msignal.Signal.Signal2;
 import com.sakura.api.model.design.Template;
 import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.design.Area;
