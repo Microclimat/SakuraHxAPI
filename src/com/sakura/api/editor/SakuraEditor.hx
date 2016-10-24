@@ -12,6 +12,7 @@ import com.sakura.api.model.info.PatternInfo.IPatternInfo;
 import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.design.IDrawingArea;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
+import com.sakura.api.model.design.ElementType;
 import com.sakura.api.model.design.ExternalImageProvider;
 import com.sakura.api.model.design.IArea;
 import com.sakura.api.model.design.Pattern;
@@ -42,7 +43,7 @@ extern class SakuraEditor {
     public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
     public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
-    public function addCanvas(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float):IPicture;
+    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):IPicture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
     public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions):Void;
@@ -67,7 +68,7 @@ extern class SakuraEditor {
     public function removeAllEventListeners(type:SakuraEventType):Void;
     public function displayCustomerDesignByHash(hash:String):Void;
     public function getAreaById(areaId:Float):IArea;
-    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float):IPicture;
+    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
     public function addArea(area:IArea, ?targetTemplateId:Float):Void;
     public function removeArea(area:IArea, ?targetTemplateId:Float):Void;
     public function addTemplate(template:Template, ?index:Int):Void;
@@ -97,24 +98,32 @@ typedef Config = {
 }
 
 typedef ConstraintManager = {
-    public function canAddPicture():Bool;
-    public function canAddText():Bool;
-    public function canAddPictureToTemplate(templateIndex:Int):Bool;
-    public function canAddTextToTemplate(templateIndex:Int):Bool;
+    public function canAddPicture(?ignoreContent:Bool):Bool;
+    public function canAddText(?ignoreContent:Bool):Bool;
+    public function canAddPictureToTemplate(templateIndex:Int, ?ignoreContent:Bool):Bool;
+    public function canAddTextToTemplate(templateIndex:Int, ?ignoreContent:Bool):Bool;
+    public function canAddPictureToArea(target:IArea, ?ignoreContent:Bool):Bool;
+    public function canAddTextToArea(target:IArea, ?ignoreContent:Bool):Bool;
 
-    public function canAddPictureToArea(target:IArea):Bool;
-    public function canAddTextToArea(target:IArea):Bool;
     public function validatePattern():IConstraintGroupValidationResult;
-    public function canMoveAreaElements(target:IArea):Bool;
-    public function canScaleAreaElements(target:IArea):Bool;
-    public function canRemoveAreaElements(target:IArea):Bool;
-    public function canRotateAreaElements(target:IArea):Bool;
-    public function getAvailableFonts(target:IArea, fonts:Array<String>):Array<String>;
+    public function canMoveAreaElements(target:IArea, ?type:ElementType):Bool;
+    public function canScaleAreaElements(target:IArea, ?type:ElementType):Bool;
+    public function canRemoveAreaElements(target:IArea, ?type:ElementType):Bool;
+    public function canRotateAreaElements(target:IArea, ?type:ElementType):Bool;
+    public function getAvailableFonts(target:IArea, fonts:Array<FontDefinition>):Array<FontDefinition>;
     public function getAvailableColors(target:IArea, colors:Array<String>):Array<String>;
     public function getAvailableSizes(target:IArea):Array<Int>;
+    public function getTextMaxSize(text:IText):Int;
+    public function getTextMaxLines(text:IText):Int;
+    public function getMaxPictureByArea():Int;
+    public function getMaxPictureForArea(target:Area):Int;
     public function canApplyFilters(target:IArea):Bool;
 }
 
+typedef FontDefinition = {
+    var value:String;
+    var name:String;
+}
 
 interface Skin {
     public function getProperty(target:SkinProperty):PropertyValue;

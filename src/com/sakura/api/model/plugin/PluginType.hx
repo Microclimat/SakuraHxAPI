@@ -33,5 +33,6 @@ package com.sakura.api.model.plugin;
     var BASE = 0;
     var VISUAL = 1;
     var PREVIEW = 2;
+    var TRANSFORM = 3;
 
 }

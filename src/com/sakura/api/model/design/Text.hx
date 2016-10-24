@@ -115,6 +115,8 @@ import org.tamina.utils.UID;
     public var width:Float=0;
     public var x:Float=0;
     public var y:Float=0;
+    public var isFixed:Bool=false;
+    public var autoResize:Bool=false;
 
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
@@ -151,6 +153,7 @@ import org.tamina.utils.UID;
         result.width = source.width;
         result.x = source.x;
         result.y = source.y;
+        result.isFixed = source.isFixed;
         return result;
     }
 
@@ -177,6 +180,7 @@ import org.tamina.utils.UID;
         result.width = width;
         result.x = x;
         result.y = y;
+        result.isFixed = isFixed;
         return result;
     }
 
@@ -223,6 +227,8 @@ interface IText extends IDrawingElement extends ITransformable {
     public var size:Float;
     public var underline:Bool;
     public var label:String;
+    public var isFixed:Bool;
+    public var autoResize:Bool;
 
     public var scaledWidth(get, null):Float;
     public var scaledHeight(get, null):Float;
