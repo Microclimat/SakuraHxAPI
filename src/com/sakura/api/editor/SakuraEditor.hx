@@ -82,8 +82,6 @@ extern class SakuraEditor {
 }
 
 typedef UploadManager = {
-    static var instance:UploadManager;
-
     var errorSignal:Signal2<Float, ServiceError>;
     var uploadStartedSignal:Signal0;
     var allUploadCompleteSignal:Signal0;
