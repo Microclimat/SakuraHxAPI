@@ -1,5 +1,7 @@
 package com.sakura.api.editor;
 
+import com.sakura.api.model.net.ServiceError;
+import msignal.Signal.Signal0;
 import com.sakura.api.model.design.Template;
 import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.design.Area;
@@ -75,7 +77,18 @@ extern class SakuraEditor {
     public function hideAreaOverlay(areaId:Float):Void;
     public function getCurrentPattern():Pattern;
     public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
+    public function getUploadManager():UploadManager;
+}
 
+typedef UploadManager = {
+    static var instance:UploadManager;
+
+    var errorSignal:Signal2<Float, ServiceError>;
+    var uploadStartedSignal:Signal0;
+    var allUploadCompleteSignal:Signal0;
+
+    public function upload(target:Picture):Void;
+    public function poolSize():Int;
 }
 
 typedef Config = {
