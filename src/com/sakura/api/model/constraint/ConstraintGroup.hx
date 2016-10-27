@@ -1,6 +1,7 @@
 package com.sakura.api.model.constraint;
 
 import com.sakura.api.model.constraint.text.TextAutoResizeConstraint;
+import com.sakura.api.model.constraint.text.TextCaseConstraint;
 import com.sakura.api.model.constraint.text.TextLineNumberConstraint;
 import com.sakura.api.model.constraint.text.TextMoveConstraint;
 import com.sakura.api.model.constraint.text.TextScaleConstraint;
@@ -185,6 +186,7 @@ class ConstraintGroup {
             TEXT_TRANSFORM.constraints.push(new TextMoveConstraint());
             TEXT_TRANSFORM.constraints.push(new TextRotationConstraint());
             TEXT_TRANSFORM.constraints.push(new TextAutoResizeConstraint());
+            TEXT_TRANSFORM.constraints.push(new TextCaseConstraint());
         }
         return TEXT_TRANSFORM;
     }
