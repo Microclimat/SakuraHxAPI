@@ -184,23 +184,23 @@ import org.tamina.utils.UID;
         return result;
     }
 
-    public function fillFrom(source:IText):Void {
-        align = source.align;
-        valign = source.valign;
-        bold = source.bold;
-        color = source.color;
-        font = source.font;
-        height = source.height;
-        id = source.id;
-        italic = source.italic;
-        label = source.label;
-        parent = source.parent;
-        rotate = source.rotate;
-        size = source.size;
-        underline = source.underline;
-        width = source.width;
-        x = source.x;
-        y = source.y;
+    public static function fillFrom(target:Text, source:IText):Void {
+        target.align = source.align;
+        target.valign = source.valign;
+        target.bold = source.bold;
+        target.color = source.color;
+        target.font = source.font;
+        target.height = source.height;
+        target.id = source.id;
+        target.italic = source.italic;
+        target.label = source.label;
+        target.parent = source.parent;
+        target.rotate = source.rotate;
+        target.size = source.size;
+        target.underline = source.underline;
+        target.width = source.width;
+        target.x = source.x;
+        target.y = source.y;
     }
 
     public static function is(target:Dynamic):Bool{
