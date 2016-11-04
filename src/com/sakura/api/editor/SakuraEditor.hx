@@ -79,7 +79,13 @@ extern class SakuraEditor {
     public function hideAreaOverlay(areaId:Float):Void;
     public function getCurrentPattern():Pattern;
     public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
+    public function getLoadManager():LoadManager;
     public function getUploadManager():UploadManager;
+}
+
+typedef LoadManager = {
+    public function load(url:URL, ?targetAreaId:Float, loadCompleteHandler:Picture->Null<Float>->Void):Picture;
+    public function abortAll():Void;
 }
 
 typedef UploadManager = {
@@ -89,6 +95,7 @@ typedef UploadManager = {
 
     public function upload(target:Picture):Void;
     public function poolSize():Int;
+    public function abortAll():Void;
 }
 
 typedef Config = {
