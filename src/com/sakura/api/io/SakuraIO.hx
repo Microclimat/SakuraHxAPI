@@ -42,7 +42,7 @@ extern class SakuraIO {
 interface AlbumProxy {
     public var albumNameChangeSignal:Signal0;
     public var addAlbumCompleteSignal:Signal1<Int>;
-    public var pictureAddedToAlbumSignal:Signal1<ProgressEvent>;
+    public var pictureAddedToAlbumSignal:Signal1<IPicture>;
     public var imageRemovedFromAlbumSignal:Signal1<Float>;
     public var clientAlbumsCompleteSignal:Signal1<Array<Album>>;
     public var errorSignal:Signal1<ServiceError>;
