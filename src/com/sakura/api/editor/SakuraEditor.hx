@@ -43,10 +43,10 @@ extern class SakuraEditor {
     public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
     public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
-    public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
-    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):IPicture;
+    public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):Picture;
     public function transformElement(elementId:Float,value:ITransform):Void;
-    public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):IPicture;
+    public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
     public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions):Void;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
     public function rotateElementBy(elementId:Float, angle:Float):Void;
