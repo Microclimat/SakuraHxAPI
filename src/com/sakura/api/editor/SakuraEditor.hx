@@ -1,18 +1,17 @@
 package com.sakura.api.editor;
 
-import com.sakura.api.model.net.ServiceError;
 import msignal.Signal.Signal0;
 import msignal.Signal.Signal2;
+
+import com.sakura.api.model.constraint.Constraint;
+import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.design.Template;
-import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.design.Area;
-import com.sakura.api.model.transform.Transform.ITransform;
+import com.sakura.api.model.design.ConstrictedType;
 import com.sakura.api.model.design.Text.IText;
 import com.sakura.api.model.design.Picture.IPicture;
-import com.sakura.api.model.info.PatternInfo.IPatternInfo;
 import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.design.IDrawingArea;
-import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.design.ElementType;
 import com.sakura.api.model.design.ExternalImageProvider;
 import com.sakura.api.model.design.IArea;
@@ -20,7 +19,11 @@ import com.sakura.api.model.design.Pattern;
 import com.sakura.api.model.design.PictureFilter;
 import com.sakura.api.model.event.SakuraEventType;
 import com.sakura.api.model.geom.Rectangle;
+import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
+import com.sakura.api.model.info.PatternInfo.IPatternInfo;
 import com.sakura.api.model.io.AddImageOptions;
+import com.sakura.api.model.net.ServiceError;
+import com.sakura.api.model.transform.Transform.ITransform;
 import js.html.Blob;
 import haxe.MimeType;
 import js.html.CanvasElement;
@@ -124,6 +127,10 @@ typedef ConstraintManager = {
     public function getMaxPictureByArea():Int;
     public function getMaxPictureForArea(target:Area):Int;
     public function canApplyFilters(target:IArea):Bool;
+
+    public function filterConstraints(targetType:ConstrictedType, ?targetId:Float, filterCallback:Constraint->Bool):Void;
+    public function removeConstraints(targetType:ConstrictedType, ?targetId:Float, constraintName:String):Void;
+    public function addConstraint(targetType:ConstrictedType, ?targetId:Float, constraint:Constraint):Void;
 }
 
 typedef FontDefinition = {

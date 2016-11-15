@@ -27,15 +27,17 @@
 */
 package com.sakura.api.model.info;
 
-/**
+    /**
 * TemplateInfo
 * <br/>Les informations sur un template
 * @author d.mouton
 * @class TemplateInfo
 * @constructor
 */
+import com.sakura.api.model.constraint.IConstraint;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
 import com.sakura.api.model.geom.Rectangle;
+
 class TemplateInfo implements ITemplateInfo{
     /**
 	 * La hauteur en pixel
@@ -69,12 +71,19 @@ class TemplateInfo implements ITemplateInfo{
 	 */
     public var x:Float;
 
-/**
+    /**
 	 * Position en y
 	 * @property y
 	 * @type Float
 	 */
     public var y:Float;
+
+    /**
+	 * La liste des contraintes
+	 * @property constraints
+	 * @type Array<Constraint>
+	 */
+    public var constraints:Array<IConstraint>;
 
     /**
 	 * La liste des Zones
@@ -90,7 +99,7 @@ class TemplateInfo implements ITemplateInfo{
 	 */
     public var backgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée en premier plan
 	 * @property foregroundUrl
 	 * @type String
@@ -105,28 +114,28 @@ class TemplateInfo implements ITemplateInfo{
     public var maskUrl:String;
 
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme background imprimable
 	 * @property templateBackgroundUrl
 	 * @type String
 	 */
     public var templateBackgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme foreground imprimable
 	 * @property templateForegroundUrl
 	 * @type String
 	 */
     public var templateForegroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme Preview du background imprimable
 	 * @property templatePreviewBackgroundUrl
 	 * @type String
 	 */
     public var templatePreviewBackgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme Preview du foreground imprimable
 	 * @property templatePreviewForegroundUrl
 	 * @type String
@@ -141,11 +150,12 @@ class TemplateInfo implements ITemplateInfo{
     public var boundingBox:Rectangle;
 
     public function new( ) {
+        constraints = new Array<IConstraint>();
         areas = new Array<IAreaInfo>();
     }
 }
 
-/**
+    /**
 * TemplateInfo
 * <br/>Les informations sur un template
 * @author d.mouton
@@ -153,25 +163,25 @@ class TemplateInfo implements ITemplateInfo{
 * @constructor
 */
 interface ITemplateInfo {
-/**
+    /**
 	 * La hauteur en pixel
 	 * @property height
 	 * @type Int
 	 */
     public var height:Float;
-/**
+    /**
 	 * L'id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
-/**
+    /**
 	 * Le nom
 	 * @property name
 	 * @type String
 	 */
     public var name:String = "";
-/**
+    /**
 	 * La largeur en pixel
 	 * @property width
 	 * @type Int
@@ -185,42 +195,49 @@ interface ITemplateInfo {
 	 */
     public var x:Float;
 
-/**
+    /**
 	 * Position en y
 	 * @property y
 	 * @type Float
 	 */
     public var y:Float;
 
-/**
+    /**
+	 * La liste des contraintes
+	 * @property constraints
+	 * @type Array<Constraint>
+	 */
+    public var constraints:Array<IConstraint>;
+
+    /**
 	 * La liste des Zones
 	 * @property areas
 	 * @type Array<AreaInfo>
 	 */
     public var areas:Array<IAreaInfo>;
 
-/**
+    /**
 	 * Returns a rectangle representing this object's bounds in its local coordinate system
 	 * @property boundingBox
 	 * @type Rectangle
 	 */
     public var boundingBox:Rectangle;
 
-/**
+    /**
 	 * L'url vers l'image utilisée en fond
 	 * @property backgroundUrl
 	 * @type String
 	 */
     public var backgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée en premier plan
 	 * @property foregroundUrl
 	 * @type String
 	 */
     public var foregroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme masque
 	 * @property maskUrl
 	 * @type String
@@ -228,28 +245,28 @@ interface ITemplateInfo {
     public var maskUrl:String;
 
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme background imprimable
 	 * @property templateBackgroundUrl
 	 * @type String
 	 */
     public var templateBackgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme foreground imprimable
 	 * @property templateForegroundUrl
 	 * @type String
 	 */
     public var templateForegroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme Preview du background imprimable
 	 * @property templatePreviewBackgroundUrl
 	 * @type String
 	 */
     public var templatePreviewBackgroundUrl:String;
 
-/**
+    /**
 	 * L'url vers l'image utilisée comme Preview du foreground imprimable
 	 * @property templatePreviewForegroundUrl
 	 * @type String

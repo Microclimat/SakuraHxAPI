@@ -1,7 +1,9 @@
 package com.sakura.api.model.design;
+
 import com.sakura.api.model.info.PatternInfo;
 import com.sakura.api.model.constraint.Constraint;
-class Pattern {
+
+class Pattern implements IConstricted {
 
     public static var DEFAULT_RESOLUTION(get, null):Int;
 

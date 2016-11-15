@@ -2,8 +2,8 @@ package com.sakura.api.model.design;
 
 import com.sakura.api.model.constraint.Constraint;
 
-interface IRestrictable extends IConstricted {
+interface IConstricted {
 
-    var content:Array<IDrawingElement>;
+    var constraints:Array<Constraint>;
 
 }

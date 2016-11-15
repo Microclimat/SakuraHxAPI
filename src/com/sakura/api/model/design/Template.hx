@@ -2,8 +2,8 @@ package com.sakura.api.model.design;
 import com.sakura.api.model.info.TemplateInfo;
 import com.sakura.api.model.constraint.Constraint;
 import org.tamina.utils.UID;
-class Template {
 
+class Template implements IConstricted {
 
     public var backgroundPicture:Picture;
     public var foregroundPicture:Picture;
@@ -113,6 +113,11 @@ class Template {
         result.width = width;
         result.x = x;
         result.y = y;
+
+        for (constraint in this.constraints) {
+            result.constraints.push(constraint.clone());
+        }
+
         result.backgroundUrl = this.patternBackgroundPicture.url.path;
         if(this.patternForegroundPicture != null){
             result.foregroundUrl = this.patternForegroundPicture.url.path;
