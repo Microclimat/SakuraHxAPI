@@ -31,10 +31,27 @@ class Pattern implements IConstricted {
         this.enabled = enabled;
     }
 
-    public function merge(source:Pattern):Void {
-        if (source != null) {
+    public function merge(source:Pattern, mergeOptions:MergeOptions):Void {
+        if (source != null && mergeOptions != None) {
             for (i in 0...this.templates.length) {
-                this.templates[ i ].merge(source.templates[ i ]);
+                var mergeTemplate:Bool = switch (mergeOptions) {
+                    case All:
+                    true;
+
+                    case None:
+                    // ... we have already checked that it is not "None"... x_x
+                    false;
+
+                    case Whitelist(indexes):
+                    Lambda.has(indexes, i);
+
+                    case Blacklist(indexes):
+                    !Lambda.has(indexes, i);
+                }
+
+                if (mergeTemplate) {
+                    this.templates[ i ].merge(source.templates[ i ]);
+                }
             }
         }
     }

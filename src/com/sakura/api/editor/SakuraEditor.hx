@@ -7,6 +7,7 @@ import com.sakura.api.model.constraint.Constraint;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.design.Template;
 import com.sakura.api.model.design.Area;
+import com.sakura.api.model.design.MergeOptions;
 import com.sakura.api.model.design.ConstrictedType;
 import com.sakura.api.model.design.Text.IText;
 import com.sakura.api.model.design.Picture.IPicture;
@@ -43,7 +44,7 @@ extern class SakuraEditor {
 
     public function removeElement(elementId:Float):Void;
     public function selectElement(elementId:Float):Void;
-    public function displayPatternById(patternId:Int, save:Bool = false, merge:Bool = true):Void;
+    public function displayPatternById(patternId:Int, ?save:Bool = false, ?merge:Bool = true, ?mergeOptions:MergeOptions):Void;
     public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
     public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
@@ -128,6 +129,7 @@ typedef ConstraintManager = {
     public function getMaxPictureForArea(target:Area):Int;
     public function canApplyFilters(target:IArea):Bool;
 
+    public function getConstraints(targetType:ConstrictedType, ?targetId:Float, ?constraintName:String):Array<Constraint>;
     public function filterConstraints(targetType:ConstrictedType, ?targetId:Float, filterCallback:Constraint->Bool):Void;
     public function removeConstraints(targetType:ConstrictedType, ?targetId:Float, constraintName:String):Void;
     public function addConstraint(targetType:ConstrictedType, ?targetId:Float, constraint:Constraint):Void;

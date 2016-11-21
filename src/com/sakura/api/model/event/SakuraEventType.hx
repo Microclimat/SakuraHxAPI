@@ -214,6 +214,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
     var ELEMENT_UPDATED = "elementUpdated";
 
     /**
+	 * @property PATTERN_LOADED
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "patternLoaded"
+	 */
+    var PATTERN_LOADED = "patternLoaded";
+
+    /**
 	 * @property PICTURE_LOADED
 	 * @type String
 	 * @static
