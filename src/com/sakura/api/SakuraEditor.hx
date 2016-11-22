@@ -1052,6 +1052,7 @@ interface IPlugin {
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
+    public static var version:Version = Version.LATEST;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
@@ -1065,6 +1066,17 @@ class Host {
             } else {
                 result = pair.https;
             }
+            result = new URL(result.path + '/' + version);
+        }
+        return result;
+    }
+
+    public static function getVersion(version:Version):Version {
+        var result = version;
+        if(version == Version.LATEST){
+            result = Version.V4;
+        } else if(version == Version.NEXT){
+            result = Version.V5;
         }
         return result;
     }
@@ -1139,6 +1151,19 @@ class UrlPair {
     var LOCAL = 'local';
 
 }
+
+#if !macro
+@:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
+@:enum abstract Version(String) from String to String {
+
+    var LATEST = 'latest';
+    var NEXT = 'next';
+    var V3 = 'v3';
+    var V4 = 'v4';
+    var V5 = 'v5';
+
+}
+#end
 
 interface ProductView {
     public var url:URL;
