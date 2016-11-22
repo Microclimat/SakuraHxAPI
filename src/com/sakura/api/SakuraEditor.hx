@@ -1085,13 +1085,12 @@ class Host {
     private static function getURLList():StringMap<UrlPair> {
         if (_urls == null) {
             _urls = new StringMap<UrlPair>();
-            _urls.set(HostName.PROD, new UrlPair('http://storage.sakuradesigner.microclimat.com/apps', 'https://storage.sakuradesigner.microclimat.com/apps'));
-            _urls.set(HostName.PROD_NEXT, new UrlPair('http://storage.sakuradesigner.microclimat.com/next', 'https://storage.sakuradesigner.microclimat.com/next'));
-            _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech:8084/apps', 'https://preprod-cdn.heidi.tech:8093/apps'));
-            _urls.set(HostName.NEXT, new UrlPair('http://preprod-cdn.heidi.tech:8084/next', 'https://preprod-cdn.heidi.tech:8093/next'));
-            _urls.set(HostName.REMOTE, new UrlPair('http://192.168.119.98:8686/sakuraHx/apps', 'https://192.168.119.98:8888/sakuraHx/apps'));
-            _urls.set(HostName.DEV, new UrlPair('http://localhost:8686/sakuraHx/apps', 'http://localhost:8686/sakuraHx/apps'));
-            _urls.set(HostName.LOCAL, new UrlPair('http://localhost:8686/sakuraHx/apps', 'http://localhost:8686/sakuraHx/apps'));
+            _urls.set(HostName.PROD, new UrlPair('http://cdn.heidi.tech', 'https://cdn.heidi.tech'));
+            _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech', 'https://preprod-cdn.heidi.tech'));
+            _urls.set(HostName.STAGING, new UrlPair('http://staging-cdn.heidi.tech', 'https://staging-cdn.heidi.tech'));
+            _urls.set(HostName.QUALIF, new UrlPair('http://qualif-cdn.heidi.tech', 'https://qualif-cdn.heidi.tech'));
+            _urls.set(HostName.DEV, new UrlPair('http://local.heidi.tech:8686', 'https://local.heidi.tech:8888'));
+            _urls.set(HostName.LOCAL, new UrlPair('http://local.heidi.tech:8686', 'https://local.heidi.tech:8888'));
         }
         return _urls;
     }
@@ -1100,7 +1099,9 @@ class Host {
         if (_apiUrls == null) {
             _apiUrls = new StringMap<UrlPair>();
             _apiUrls.set(HostName.PROD, new UrlPair('http://api.heidi.tech/Api.svc', 'https://api.heidi.tech/Api.svc'));
-            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc', 'https://preprod-api.heidi.tech:8092/Api.svc'));
+            _apiUrls.set(HostName.STAGING, new UrlPair('http://staging-api.heidi.tech/Api.svc', 'https://staging-api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech/Api.svc', 'https://preprod-api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.QUALIF, new UrlPair('http://qualif-api.heidi.tech/Api.svc', 'https://qualif-api.heidi.tech/Api.svc'));
             _apiUrls.set(HostName.LOCAL, new UrlPair('http://localhost:2058/Api.svc', 'https://localhost:40300/Api.svc'));
         }
         return _apiUrls;
@@ -1130,11 +1131,10 @@ class UrlPair {
 
 @:enum abstract HostName(String) from String to String {
 
-    var PREPROD = 'preprod';
-    var NEXT = 'next';
-    var PROD_NEXT = 'prod-next';
     var PROD = 'prod';
-    var REMOTE = 'remote';
+    var PREPROD = 'preprod';
+    var STAGING = 'staging';
+    var QUALIF = 'qualif';
     var DEV = 'dev';
     var LOCAL = 'local';
 

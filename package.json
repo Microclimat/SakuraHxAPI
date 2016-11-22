@@ -1,13 +1,13 @@
 {
   "name": "sakurahx-api",
-  "description": "Haxe Externals Definitions for Heidi API",
+  "description": "Haxe Externals Definitions for Heidi API v3",
   "keywords": [
     "sakura",
     "heidi",
     "haxe"
   ],
   "author": "David Mouton",
-  "version": "2.0.36",
+  "version": "3.0.1",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"
@@ -20,7 +20,7 @@
     "url": "https://github.com/Microclimat/SakuraHxAPI"
   },
   "dependencies": {
-     "haxe" : "4.0.0",
-    "taminahx" : "1.0.11"
+    "haxe": "4.0.0",
+    "taminahx": "1.0.15"
   }
 }
