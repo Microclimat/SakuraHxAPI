@@ -100,6 +100,7 @@ typedef UploadManager = {
     public function upload(target:Picture):Void;
     public function poolSize():Int;
     public function abortAll():Void;
+    public function waitForUpload(pictureId:Float, callback:haxe.Constraints.Function):Void;
 }
 
 typedef Config = {
