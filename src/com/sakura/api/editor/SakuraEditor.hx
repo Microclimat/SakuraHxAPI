@@ -116,6 +116,9 @@ typedef ConstraintManager = {
     public function canAddPictureToArea(target:IArea, ?ignoreContent:Bool):Bool;
     public function canAddTextToArea(target:IArea, ?ignoreContent:Bool):Bool;
 
+    public function getPictureAreaId(?templateIndex:Int):Float;
+    public function getTextAreaId(?templateIndex:Int):Float;
+
     public function validatePattern():IConstraintGroupValidationResult;
     public function canMoveAreaElements(target:IArea, ?type:ElementType):Bool;
     public function canScaleAreaElements(target:IArea, ?type:ElementType):Bool;
