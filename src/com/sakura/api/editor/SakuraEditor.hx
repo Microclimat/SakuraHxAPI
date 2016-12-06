@@ -51,7 +51,7 @@ extern class SakuraEditor {
     public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):Picture;
     public function transformElement(elementId:Float,value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions):Void;
+    public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions, ?clone:Bool):Picture;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
     public function rotateElementBy(elementId:Float, angle:Float):Void;
     public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
@@ -116,6 +116,7 @@ typedef ConstraintManager = {
     public function canAddPictureToArea(target:IArea, ?ignoreContent:Bool):Bool;
     public function canAddTextToArea(target:IArea, ?ignoreContent:Bool):Bool;
 
+    public function getAddImageOptions(target:IArea):AddImageOptions;
     public function getPictureAreaId(?templateIndex:Int):Float;
     public function getTextAreaId(?templateIndex:Int):Float;
 

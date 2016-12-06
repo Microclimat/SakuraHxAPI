@@ -12,6 +12,7 @@ import com.sakura.api.model.constraint.image.ImageSelectConstraint;
 class ConstraintGroup {
 
     public static var ALBUM(get, null):ConstraintGroup;
+    public static var AREA(get, null):ConstraintGroup;
     public static var COLOR(get, null):ConstraintGroup;
     public static var CONTENT(get, null):ConstraintGroup;
     public static var FILTER(get, null):ConstraintGroup;
@@ -50,6 +51,16 @@ class ConstraintGroup {
             ALBUM.constraints.push(new AlbumConstraint());
         }
         return ALBUM;
+    }
+
+    public static function get_AREA():ConstraintGroup {
+        if (AREA == null) {
+            AREA = new ConstraintGroup( "area" );
+            AREA.authorizedOperators.push(Operator.EQUAL);
+            AREA.valueType = ConstraintValueType.ALBUM_LIST;
+            AREA.constraints.push(new AddImageOptionsConstraint());
+        }
+        return AREA;
     }
 
     public static function get_COLOR():ConstraintGroup {
