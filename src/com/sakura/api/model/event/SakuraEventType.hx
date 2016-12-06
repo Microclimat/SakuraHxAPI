@@ -86,6 +86,15 @@ typedef SakuraEvent = Event<SakuraEventType>;
     var READY = "ready";
 
 	/**
+	 * @property CUSTOMER_DESIGN_BUILT
+	 * @type String
+	 * @static
+	 * @readOnly
+	 * @default "customerDesignBuilt"
+	 */
+    var CUSTOMER_DESIGN_BUILT = "customerDesignBuilt";
+
+	/**
 	 * @property CUSTOMER_DESIGN_ADDED
 	 * @type String
 	 * @static
