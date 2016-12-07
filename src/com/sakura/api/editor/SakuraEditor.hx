@@ -118,6 +118,7 @@ typedef ConstraintManager = {
 
     public function getAddImageOptions(target:IArea):AddImageOptions;
     public function getPictureAreaId(?templateIndex:Int):Float;
+    public function getPictureAreasId(?templateIndex:Int):Array<Float>;
     public function getTextAreaId(?templateIndex:Int):Float;
 
     public function validatePattern():IConstraintGroupValidationResult;
@@ -133,6 +134,7 @@ typedef ConstraintManager = {
     public function getMaxPictureByArea():Int;
     public function getMaxPictureForArea(target:Area):Int;
     public function canApplyFilters(target:IArea):Bool;
+    public function isAreaEmpty(targetId:Float):Bool;
 
     public function getConstraints(targetType:ConstrictedType, ?targetId:Float, ?constraintName:String):Array<Constraint>;
     public function filterConstraints(targetType:ConstrictedType, ?targetId:Float, filterCallback:Constraint->Bool):Void;
