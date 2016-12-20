@@ -182,10 +182,14 @@ import org.tamina.utils.UID;
 
     public function clone(copy:Bool = false):Picture {
         var cloneID = UID.getUID();
+        var ref = this;
         if (copy) {
             cloneID = this.id;
+            if (this.ref != null) {
+                ref = cast this.ref;
+            }
         }
-        var result:Picture = new Picture( source, _url, this );
+        var result:Picture = new Picture(source, _url, ref);
         result.id = cloneID;
         result.bottomLeftPoint = this.bottomLeftPoint;
         result.bottomRightPoint = this.bottomRightPoint;
