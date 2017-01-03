@@ -6,8 +6,11 @@
     "heidi",
     "haxe"
   ],
-  "author": "David Mouton",
-  "version": "2.1.56",
+  "author": {
+    "name" : "Happy Tech",
+    "email" : "technique@happy-technologies.com"
+  },
+  "version": "4.0.0",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"
