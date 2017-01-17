@@ -1,7 +1,7 @@
 package com.sakura.api.model.design;
 
 /**
-* Type de filtre d'image
+* Image filter type
 * @author d.mouton
 * @class PictureFilter
 * @static

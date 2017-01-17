@@ -28,13 +28,14 @@
 package com.sakura.api.model.event;
 
 /**
-* Type d'évenement porté par les SakuraEvent
+* Event type transmitted by a SakuraEvent
 * @author d.mouton
 * @class SakuraEventType
 * @static
 */
 
 import org.tamina.events.Event;
+
 typedef SakuraEvent = Event<SakuraEventType>;
 
 @:enum abstract SakuraEventType(String) from String to String {

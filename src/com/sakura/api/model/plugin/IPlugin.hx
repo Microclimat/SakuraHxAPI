@@ -28,7 +28,7 @@
 package com.sakura.api.model.plugin;
 
 /**
-* Interface de base pour les Plugin à SakuraEditor
+* Base interface for the SakuraEditor's plugins
 * @author d.mouton
 * @class IPlugin
 * @constructor
@@ -38,17 +38,19 @@ interface IPlugin {
     var type:PluginType;
 
 	/**
-	 * Initialise le module
+	 * Init module
 	 * @method init
-	 * @param	data {Object} Les données necessaires à l'initialisation
+	 * @param data {Object} the needed data
+	 * @return {Bool}
 	 */
     function init(data:Dynamic):Bool;
 	
 	/**
-	 * Met à jour le module
+	 * Update the module
 	 * @method update
 	 * @param	data {Object}
-	 * @param	targetIndex {Int} l'index du Template
+	 * @param	targetIndex {Int} the template index
+	 * @return {Bool}
 	 */
     function update(data:Dynamic,templateIndex:Int=0):Bool;
 }

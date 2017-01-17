@@ -12,6 +12,11 @@ import org.tamina.utils.UID;
 import org.tamina.geom.Rectangle;
 import js.html.svg.Rect;
 
+/**
+ * The Area class represents a customization area in a template.
+ * Images and texts can be contained.
+ * @class Area
+ **/
 class Area implements IArea {
 
     public var constraints:Array<Constraint>;
@@ -28,13 +33,21 @@ class Area implements IArea {
     public var scaledHeight(get, null):Float;
     public var editable:Bool=false;
 
+    /**
+     * @param id {Float}
+     * @param x {Float}
+     * @param y {Float}
+     * @param width {Float}
+     * @param height {Float}
+     * @param name {String}
+     **/
     public function new(id:Float = 0, x:Float = 0, y:Float = 0, width:Float = 5, height:Float = 5, name:String = "") {
         if (id != 0) {
             this.id = id;
-        }
-        else {
+        } else {
             this.id = UID.getUID();
         }
+
         this.x = x;
         this.y = y;
         this.width = width;
@@ -44,15 +57,24 @@ class Area implements IArea {
         this.constraints = new Array<Constraint>();
     }
 
+    /**
+     * Clones an area
+     * @method clone
+     * @param copy {Bool} if the new area shall keep the original id
+     * @return area {IArea}
+     **/
     public function clone(copy:Bool = false):IArea {
         var cloneID:Float = UID.getUID();
+
         if (copy) {
             cloneID = this.id;
         }
+
         var result:Area = new Area( cloneID, x, y, width, height, name );
         result.content = this.content.slice(0);
         var contentBackup:Array<IDrawingElement> = new Array<IDrawingElement>();
         result.parent = parent;
+
         for (i in 0...content.length) {
             contentBackup.push(content[ i ].clone(copy));
             contentBackup[ i ].parent = result;
@@ -62,22 +84,37 @@ class Area implements IArea {
         for (i in 0...constraints.length) {
             constaintesBackup.push(constraints[ i ].clone(copy));
         }
+
         result.constraints = constaintesBackup;
         result.editable = this.editable;
         result.content = contentBackup;
+
+
         return result;
     }
 
+    /**
+     * Gives the number of pictures in the area
+     * @method getNumPicture
+     * @return result {Int} the number of pictures in the area
+     **/
     public function getNumPicture():Int {
         var result:Int = 0;
+
         for (i in 0...content.length) {
             if (Picture.is(content[i])) {
                 result++;
             }
         }
+
         return result;
     }
 
+    /**
+     * Merge this with another area
+     * @method merge
+     * @param source {IArea}
+     **/
     public function merge(source:IArea):Void {
         if (source != null) {
             var usedRect:Rectangle = getUsedRect(source);
@@ -154,22 +191,34 @@ class Area implements IArea {
         }
     }
 
-
-
-    public function validateConstraints():IConstraintGroupValidationResult{
+    /**
+     * Returns an array of constraints result wich tells if the constraint was validated or not by the area
+     * @method validateConstraints
+     * @return result {IConstraintGroupValidationResult}
+     **/
+    public function validateConstraints():IConstraintGroupValidationResult {
         var result = new ConstraintGroupValidationResult();
-        for(i in 0...constraints.length){
+
+        for (i in 0...constraints.length) {
             var constraint = constraints[i];
             var validationResult = new ConstraintValidationResult(constraint, constraint.validate(this));
-            if(!validationResult.result){
+
+            if (!validationResult.result) {
                 result.result = false;
             }
+
             result.constraints.push(validationResult);
         }
+
         return result;
     }
 
-    public function toInfo():IAreaInfo{
+    /**
+     * Creates an IAreaInfo from this
+     * @method toInfo
+     * @return result {IAreaInfo}
+     **/
+    public function toInfo():IAreaInfo {
         var result = new AreaInfo();
         result.id = id;
         result.name = name;
@@ -178,9 +227,11 @@ class Area implements IArea {
         result.x = x;
         result.y = y;
         result.numElements = content.length;
-        for(i in 0...constraints.length){
-            result.constraints.push( constraints[i].clone() );
+
+        for (i in 0...constraints.length){
+            result.constraints.push(constraints[i].clone());
         }
+
         return result;
     }
 
