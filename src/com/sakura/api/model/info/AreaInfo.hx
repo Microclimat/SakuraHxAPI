@@ -27,64 +27,68 @@
 */
 package com.sakura.api.model.info;
 
+import com.sakura.api.model.constraint.IConstraint;
+import com.sakura.api.model.geom.Rectangle;
+
 /**
 * AreaInfo
-* <br/>Les informations sur une zone
+* <br/>Informations about a zone
 * @author d.mouton
 * @class AreaInfo
 * @constructor
 */
-import com.sakura.api.model.constraint.IConstraint;
-import com.sakura.api.model.geom.Rectangle;
+class AreaInfo implements IAreaInfo {
 
-class AreaInfo implements IAreaInfo{
     /**
-	 * La hauteur en pixel
+	 * Height in pixels
 	 * @property height
-	 * @type Int
+	 * @type Float
 	 */
     public var height:Float;
+
     /**
-	 * L'id de la zone
+	 * Area id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
+
     /**
-	 * Le nom de la zone
+	 * Area name
 	 * @property name
 	 * @type String
 	 */
     public var name:String = "";
+
     /**
-	 * La largeur en pixel
+	 * Width in pixels
 	 * @property width
-	 * @type Int
+	 * @type Float
 	 */
     public var width:Float;
 
-/**
-	 * Position en X
+    /**
+	 * X axis position
 	 * @property x
 	 * @type Float
 	 */
     public var x:Float;
 
-/**
-	 * Position en y
+    /**
+	 * Y axis position
 	 * @property y
 	 * @type Float
 	 */
     public var y:Float;
 
     /**
-	 * La liste des contraintes
+	 * Constraints list
 	 * @property constraints
-	 * @type Array<Constraint>
+	 * @type Array<IConstraint>
 	 */
     public var constraints:Array<IConstraint>;
 
-/**
+    /**
 	 * Returns a rectangle representing this object's bounds in its local coordinate system
 	 * @property boundingBox
 	 * @type Rectangle
@@ -92,7 +96,7 @@ class AreaInfo implements IAreaInfo{
     public var boundingBox:Rectangle;
 
     /**
-	 * Le nombre d'element
+	 * Elements count
 	 * @property numElements
 	 * @type Int
 	 */
@@ -105,60 +109,63 @@ class AreaInfo implements IAreaInfo{
 }
 
 /**
-* AreaInfo
-* <br/>Les informations sur une zone
+* IAreaInfo
+* <br/>Interface to represent Area's informations
 * @author d.mouton
-* @class AreaInfo
-* @constructor
+* @class IAreaInfo
 */
 interface IAreaInfo {
-/**
-	 * La hauteur en pixel
+
+    /**
+	 * Height in pixels
 	 * @property height
-	 * @type Int
+	 * @type Float
 	 */
     public var height:Float;
-/**
-	 * L'id de la zone
+
+    /**
+	 * Area id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
-/**
-	 * Le nom de la zone
+
+    /**
+	 * Area name
 	 * @property name
 	 * @type String
 	 */
     public var name:String = "";
-/**
-	 * La largeur en pixel
+
+    /**
+	 * Width in pixels
 	 * @property width
-	 * @type Int
+	 * @type Float
 	 */
     public var width:Float;
 
-/**
-	 * Position en X
+    /**
+	 * X axis position
 	 * @property x
 	 * @type Float
 	 */
-    var x:Float;
+    public var x:Float;
 
-/**
-	 * Position en y
+    /**
+	 * Y axis position
 	 * @property y
 	 * @type Float
 	 */
-    var y:Float;
+    public var y:Float;
 
-/**
-	 * La liste des contraintes
+    /**
+	 * Constraints list
 	 * @property constraints
-	 * @type Array<Constraint>
+	 * @type Array<IConstraint>
 	 */
-    var constraints:Array<IConstraint>;
+    public var constraints:Array<IConstraint>;
 
-/**
+    /**
 	 * Returns a rectangle representing this object's bounds in its local coordinate system
 	 * @property boundingBox
 	 * @type Rectangle
@@ -166,7 +173,7 @@ interface IAreaInfo {
     public var boundingBox:Rectangle;
 
     /**
-	 * Le nombre d'element
+	 * Elements count
 	 * @property numElements
 	 * @type Int
 	 */

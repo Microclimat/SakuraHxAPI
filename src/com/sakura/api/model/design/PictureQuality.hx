@@ -1,15 +1,15 @@
 package com.sakura.api.model.design;
 
 /**
-* Les qualités d'une Picture
+* Picture's quality
 * @author d.mouton
 * @class PictureQuality
 * @static
 */
 @:enum abstract PictureQuality(Int) from Int to Int  {
 
-/**
-	 * Bonne qualité
+    /**
+	 * Good quality
 	 * @property GOOD
 	 * @type Int
 	 * @static
@@ -17,8 +17,8 @@ package com.sakura.api.model.design;
 	 */
     var GOOD = 0;
 
-/**
-	 * Qualité médiocre
+    /**
+	 * Poor quality
 	 * @property POOR
 	 * @type Int
 	 * @static
@@ -26,8 +26,8 @@ package com.sakura.api.model.design;
 	 */
     var POOR = 1;
 
-/**
-	 * Mauvaise qualité
+    /**
+	 * Bad quality
 	 * @property BAD
 	 * @type Int
 	 * @static

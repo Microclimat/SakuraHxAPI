@@ -1,14 +1,14 @@
 package com.sakura.api.model.design;
 
 /**
-* Type de filtre d'image
+* Image filter type
 * @author d.mouton
 * @class PictureFilter
 * @static
 */
 @:enum abstract PictureFilter(String) from String to String   {
 
-/**
+    /**
 	 * @property BLACK_AND_WHITE
 	 * @type String
 	 * @static
@@ -17,7 +17,7 @@ package com.sakura.api.model.design;
 	 */
     var BLACK_AND_WHITE = 'blackAndWhite';
 
-/**
+    /**
 	 * @property NONE
 	 * @type String
 	 * @static
@@ -26,7 +26,7 @@ package com.sakura.api.model.design;
 	 */
     var NONE = '';
 
-/**
+    /**
 	 * @property BLUR
 	 * @type String
 	 * @static
@@ -35,7 +35,7 @@ package com.sakura.api.model.design;
 	 */
     var BLUR = 'blur';
 
-/**
+    /**
 	 * @property NEGATIVE
 	 * @type String
 	 * @static
@@ -44,7 +44,7 @@ package com.sakura.api.model.design;
 	 */
     var NEGATIVE = 'negative';
 
-/**
+    /**
 	 * @property SEPIA
 	 * @type String
 	 * @static
@@ -53,7 +53,7 @@ package com.sakura.api.model.design;
 	 */
     var SEPIA = 'sepia';
 
-/**
+    /**
 	 * @property PIXELATE
 	 * @type String
 	 * @static
@@ -62,7 +62,7 @@ package com.sakura.api.model.design;
 	 */
     var PIXELATE = 'pixelate';
 
-/**
+    /**
 	 * @property RED
 	 * @type String
 	 * @static
@@ -71,7 +71,7 @@ package com.sakura.api.model.design;
 	 */
     var RED = 'red';
 
-/**
+    /**
 	 * @property FOTOLIA
 	 * @type String
 	 * @static
@@ -80,7 +80,7 @@ package com.sakura.api.model.design;
 	 */
     var GREEN = 'green';
 
-/**
+    /**
 	 * @property BLUE
 	 * @type String
 	 * @static
@@ -89,7 +89,7 @@ package com.sakura.api.model.design;
 	 */
     var BLUE = 'blue';
 
-/**
+    /**
 	 * @property BRIGHTNESS
 	 * @type String
 	 * @static
@@ -98,7 +98,7 @@ package com.sakura.api.model.design;
 	 */
     var BRIGHTNESS = 'brightness';
 
-/**
+    /**
 	 * @property CONTRAST
 	 * @type String
 	 * @static

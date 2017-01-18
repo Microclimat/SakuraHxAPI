@@ -53,6 +53,7 @@ class Host {
             _urls.set(HostName.PROD, new UrlPair('http://cdn.heidi.tech', 'https://cdn.heidi.tech'));
             _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech', 'https://preprod-cdn.heidi.tech'));
             _urls.set(HostName.STAGING, new UrlPair('http://staging-cdn.heidi.tech', 'https://staging-cdn.heidi.tech'));
+            _urls.set(HostName.AZURE, new UrlPair('http://azure-cdn.heidi.tech', 'https://azure-cdn.heidi.tech'));
             _urls.set(HostName.QUALIF, new UrlPair('http://qualif-cdn.heidi.tech', 'https://qualif-cdn.heidi.tech'));
             _urls.set(HostName.DEV, new UrlPair('http://local.heidi.tech:8686', 'https://local.heidi.tech:8888'));
             _urls.set(HostName.LOCAL, new UrlPair('http://local.heidi.tech:8686', 'https://local.heidi.tech:8888'));
@@ -89,6 +90,7 @@ class UrlPair {
     var PROD = 'prod';
     var PREPROD = 'preprod';
     var STAGING = 'staging';
+    var AZURE = 'azure';
     var QUALIF = 'qualif';
     var DEV = 'dev';
     var LOCAL = 'local';

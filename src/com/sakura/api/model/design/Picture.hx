@@ -85,9 +85,9 @@ import org.tamina.utils.UID;
     public var blob:Blob;
 
     /**
-	 * URL de l'image
+	 * Image url
 	 * @property url
-	 * @type String
+	 * @type URL
 	 */
     public var url(get, set):URL;
     public var previewUrl:URL;
@@ -96,7 +96,7 @@ import org.tamina.utils.UID;
     public var x:Float = 0;
 
     /**
-	 * Scale horizontale de l'image
+	 * Picture's horizontal scale
 	 * @property xScale
 	 * @type Float
 	 */
@@ -104,7 +104,7 @@ import org.tamina.utils.UID;
     public var y:Float = 0;
 
     /**
-	 * Scale verticale de l'image
+	 * Picture's vertical scale
 	 * @property yScale
 	 * @type Float
 	 */
@@ -114,14 +114,14 @@ import org.tamina.utils.UID;
     private var _source:CanvasElement;
 
     /**
-	 * Source de l'image
+	 * Image's source
 	 * @property source
-	 * @type Image
+	 * @type CanvasElement
 	 */
     public var source(get, set):CanvasElement;
 
     /**
-	 * Qualité de l'image apres transformation
+	 * Image quality after transformation
 	 * @property quality
 	 * @type PictureQuality
 	 */
@@ -133,6 +133,12 @@ import org.tamina.utils.UID;
 
     private var _url:URL;
 
+    /**
+     * Constructor
+     * @param source {CanvasElement} the image source
+     * @param url {URL} the image url
+     * @param ref {IPicture} the reference (another image)
+     **/
     public function new(source:CanvasElement = null, url:URL = null, ref:IPicture = null) {
         this.source = source;
         this._url = url;
@@ -172,23 +178,39 @@ import org.tamina.utils.UID;
         return _source;
     }
 
+    /**
+     * Checks if target is a Picture
+     * @method is
+     * @param target {Dynamic}
+     * @return result {Bool}
+     **/
     public static function is(target:Dynamic):Bool {
         var result = false;
+
         if (target.contrast != null) {
             result = true;
         }
         return result;
     }
 
+    /**
+     * Returns a clone of this.
+     * <br>If copy is true, the clone will have the same id than this
+     * @method clone
+     * @param copy {Bool}
+     * @return clone {Picture}
+     **/
     public function clone(copy:Bool = false):Picture {
         var cloneID = UID.getUID();
         var ref = this;
+
         if (copy) {
             cloneID = this.id;
             if (this.ref != null) {
                 ref = cast this.ref;
             }
         }
+
         var result:Picture = new Picture(source, _url, ref);
         result.id = cloneID;
         result.bottomLeftPoint = this.bottomLeftPoint;
@@ -220,11 +242,16 @@ import org.tamina.utils.UID;
         if (this.SD != null) {
             result.SD = this.SD.clone();
         }
+
         return result;
     }
 
 }
 
+/**
+ * Contains all needed informations for a Picture
+ * @class IPicture
+ **/
 interface IPicture extends IDrawingElement {
 
     public var brightness:Float;

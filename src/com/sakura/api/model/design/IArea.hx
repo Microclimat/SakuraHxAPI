@@ -1,11 +1,13 @@
 package com.sakura.api.model.design;
 
-/**
- * Created by d.mouton on 13/04/2016.
- */
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
-interface IArea extends IRestrictable extends ITransformable{
+
+/**
+ * Interface containing all the needed data for an area to have
+ * @class IArea
+ **/
+interface IArea extends IRestrictable extends ITransformable {
 
     public var height:Float;
     public var id:Float;

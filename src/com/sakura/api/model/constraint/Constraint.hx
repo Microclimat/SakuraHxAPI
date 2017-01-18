@@ -4,37 +4,54 @@ import com.sakura.api.model.design.Area;
 import org.tamina.utils.UID;
 
 /**
- * Une contrainte, utilisée pour contraindre le contenu des zones de personnalisation {Area}
+ * A constraint is used to control the content of an {Area}
  * @class Constraint
  */
-class Constraint implements IConstraint{
+class Constraint implements IConstraint {
 
+    /**
+     * Constraint group name
+     * @property groupName
+     * @type {String}
+     **/
     public var groupName:String = "";
 
+    /**
+     * Constraint id
+     * @property id
+     * @type {Float}
+     **/
     public var id:Float = 0;
 
-/**
-	 * Le nom de la contrainte
+    /**
+	 * Constraint name
 	 * @property name
-	 * @type String
+	 * @type {String}
 	 */
     public var name:String = "";
 
 
-/**
-	 * L'operateur
+    /**
+	 * Constraint operator
 	 * @property operator
-	 * @type Operator
+	 * @type {Operator}
 	 */
     public var operator:Operator;
 
-/**
-	 * La valeur de l'operation
+    /**
+	 * Operation value
 	 * @property value
-	 * @type String
+	 * @type {String}
 	 */
     public var value:String = "";
-    
+
+    /**
+     * Constructor
+     * @param groupName {String}
+     * @param name {String}
+     * @param [operator] {Operator} (optional)
+     * @param value {String}
+     **/
     public function new(groupName:String = "", name:String = "", ?operator:Operator, value:String = "") {
         this.groupName = groupName;
         this.name = name;
@@ -43,20 +60,34 @@ class Constraint implements IConstraint{
         this.id = UID.getUID();
     }
 
-    public function clone( copy:Bool = false ):Constraint
-    {
+    /**
+     * Creates a clone of this, and returns it. If "copy" is true, the result will have the same id than the source.
+     * @method clone
+     * @param copy {Bool} if true, the returned Constraint will have the same id than the source
+     * @return result {Constraint}
+     **/
+    public function clone(copy:Bool = false):Constraint {
         var cloneID:Float = UID.getUID();
-        if ( copy )
-        {
+
+        if (copy)  {
             cloneID = this.id;
         }
+
         var result:Constraint = new Constraint( groupName, name, operator, value );
         result.id = cloneID;
+
         return result;
     }
 
-    public function validate(target:IRestrictable):Bool{
+    /**
+     * By default returns true
+     * @method validate
+     * @param target {IRestrictable}
+     * @return result {Bool}
+     **/
+    public function validate(target:IRestrictable):Bool {
         var result = true;
+
         return result;
     }
 }

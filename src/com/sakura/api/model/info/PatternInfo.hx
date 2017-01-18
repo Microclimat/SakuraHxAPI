@@ -27,66 +27,70 @@
 */
 package com.sakura.api.model.info;
 
-/**
-* PatternInfo
-* <br/>Les informations sur un Patron
-* @author d.mouton
-* @class PatternInfo
-* @constructor
-*/
 import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.constraint.IConstraint;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
 import com.sakura.api.model.constraint.Constraint;
+
+/**
+* PatternInfo
+* <br/>Pattern's informations
+* @author d.mouton
+* @class PatternInfo
+* @constructor
+*/
 class PatternInfo implements IPatternInfo
 {
     /**
-	 * L'id du Patron
+	 * Pattern id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
+
     /**
-	 * Le nom du Patron
+	 * Pattern name
 	 * @property name
 	 * @type String
 	 */
     public var name:String;
+
     /**
-	 * La largeur en pixel du premier template
+	 * First template's width (in pixels)
 	 * @property templateWidth
 	 * @type Int
 	 */
     public var templateWidth:Float;
+
     /**
-	 * La hauteur en pixel du premier template
+	 * First template's height (in pixels)
 	 * @property templateHeight
 	 * @type Int
 	 */
     public var templateHeight:Float;
     /**
-	 * La liste des Zones du premier template
+	 * First template's area list
 	 * @property areas
 	 * @type Array<AreaInfo>
 	 */
     public var areas:Array<IAreaInfo>;
 
     /**
-	 * La liste des Templates
+	 * Templates list
 	 * @property templates
 	 * @type Array<TemplateInfo>
 	 */
     public var templates:Array<ITemplateInfo>;
 
     /**
-	 * Si la patron a une preview 3D
+	 * If the pattern as a 3D preview
 	 * @property asPreview
 	 * @type Bool
 	 */
     public var asPreview:Bool=false;
 
     /**
-	 * La liste des contraintes
+	 * Constraints list
 	 * @property constraints
 	 * @type Array<Constraint>
 	 */
@@ -99,53 +103,64 @@ class PatternInfo implements IPatternInfo
     }
 }
 
+/**
+ * @class IPatternInfo
+ **/
 interface IPatternInfo
 {
-/**
-	 * L'id du Patron
+    /**
+	 * Pattern id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
-/**
-	 * Le nom du Patron
+
+    /**
+	 * Pattern name
 	 * @property name
 	 * @type String
 	 */
     public var name:String;
-/**
-	 * La largeur en pixel du premier template
+
+    /**
+	 * First template's width (in pixels)
 	 * @property templateWidth
 	 * @type Int
 	 */
     public var templateWidth:Float;
-/**
-	 * La hauteur en pixel du premier template
+
+    /**
+	 * First template's height (in pixels)
 	 * @property templateHeight
 	 * @type Int
 	 */
     public var templateHeight:Float;
-/**
-	 * La liste des Zones du premier template
+
+    /**
+	 * First template's areas list
 	 * @property areas
 	 * @type Array<AreaInfo>
 	 */
     public var areas:Array<IAreaInfo>;
 
-/**
-	 * La liste des Templates
+    /**
+	 * Templates list
 	 * @property templates
 	 * @type Array<TemplateInfo>
 	 */
     public var templates:Array<ITemplateInfo>;
 
+    /**
+	 * If the pattern as a 3D preview
+	 * @property asPreview
+	 * @type Bool
+	 */
     public var asPreview:Bool;
 
-/**
-	 * La liste des contraintes
+    /**
+	 * Constraints list
 	 * @property constraints
 	 * @type Array<Constraint>
 	 */
     public var constraints:Array<IConstraint>;
-
 }

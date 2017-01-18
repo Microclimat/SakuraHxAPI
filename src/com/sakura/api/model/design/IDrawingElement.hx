@@ -28,50 +28,49 @@
 package com.sakura.api.model.design;
 
 /**
-* Classe de base des élements Text et Picture
+* Base interface for {Picture} and {Text} elements
 * @author d.mouton
 * @class IDrawingElement
-* @constructor
 */
-interface IDrawingElement extends ITransformable
-{
+interface IDrawingElement extends ITransformable {
+
 	/**
-	 * L'id de l'element
+	 * Element's id
 	 * @property id
 	 * @type Float
 	 */
 	var id:Float;
 	
 	/**
-	 * Position en X
+	 * X axis position
 	 * @property x
 	 * @type Float
 	 */
 	var x:Float;
 	
 	/**
-	 * Position en y
+	 * Y axis position
 	 * @property y
 	 * @type Float
 	 */
 	var y:Float;
 	
 	/**
-	 * Largeur en px
+	 * Width in pixels
 	 * @property width
 	 * @type Float
 	 */
 	var width:Float;
 	
 	/**
-	 * Hauteur en px
+	 * Height in pixels
 	 * @property height
 	 * @type Float
 	 */
 	var height:Float;
 	
 	/**
-	 * Rotation en radian
+	 * Rotation in radians
 	 * @property rotate
 	 * @type Float
 	 */
@@ -82,6 +81,6 @@ interface IDrawingElement extends ITransformable
 
 	var scaledHeight(get, null):Float;
 	
-	function clone( copy:Bool = false ):IDrawingElement;
+	function clone(copy:Bool = false):IDrawingElement;
 
 }
