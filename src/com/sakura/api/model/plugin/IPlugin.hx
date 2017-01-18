@@ -51,4 +51,6 @@ interface IPlugin {
 	 * @param	targetIndex {Int} l'index du Template
 	 */
     function update(data:Dynamic,templateIndex:Int=0):Bool;
+
+    function getPreviewSize():Int;
 }
