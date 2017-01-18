@@ -104,7 +104,7 @@ class PatternInfo implements IPatternInfo
 }
 
 /**
- * @interface IPatternInfo
+ * @class IPatternInfo
  **/
 interface IPatternInfo
 {
