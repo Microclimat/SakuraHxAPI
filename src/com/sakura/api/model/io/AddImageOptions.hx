@@ -9,11 +9,26 @@ import org.tamina.log.QuickLogger;
 
 /**
  * @class AddImageOptions
+ * @constructor
  **/
 class AddImageOptions {
 
+    /**
+     * @property fill
+     * @type FillMode
+     **/
     public var fill:FillMode;
+
+    /**
+     * @property scale
+     * @type ScaleMode
+     **/
     public var scale:ScaleMode;
+
+    /**
+     * @property align
+     * @type Align
+     **/
     public var align:Align;
 
     /**

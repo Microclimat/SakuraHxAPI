@@ -30,12 +30,12 @@ package com.sakura.api.model.design;
 import org.tamina.utils.UID;
 
 /**
-* Texte
-* <br/>namespace com.sakura.data.design
+* Text (will be contained in an Area)
+* @namespace com.sakura.data.design
 * @author d.mouton
 * @class Text
 * @constructor
-* @extends IDrawingElement
+* @extends IText
 */
 @:expose class Text implements IText {
 
@@ -54,7 +54,7 @@ import org.tamina.utils.UID;
     public var valign:String = "";
 	
 	/**
-	 * Si le texte est en gras
+	 * Is the text bold ?
 	 * @property bold
 	 * @type Bool
 	 * @default false
@@ -62,27 +62,39 @@ import org.tamina.utils.UID;
     public var bold:Bool = false;
 	
 	/**
-	 * La couleur du texte
+	 * Text's color
 	 * @property color
 	 * @type Float
 	 * @example color = 16711680; // float value for #FF0000.
 	 */
-    public var color:Float=0;
+    public var color:Float = 0;
 
 	/**
-	 * La font à utiliser
+	 * The font to use
 	 * @property font
 	 * @type String
 	 * @example font= 'Arial';
 	 */
-    public var font:String="";
+    public var font:String = "";
 
-    public var height:Float=0;
+    /**
+     * Text's height
+     * @property height
+     * @type Float
+     * @default 0
+     **/
+    public var height:Float = 0;
 
+    /**
+     * Text's id
+     * @property id
+     * @type Float
+     * @default 0
+     **/
     public var id:Float = 0;
 	
 	/**
-	 * Si le texte est en italic
+	 * Is the text in italic ?
 	 * @property italic
 	 * @type Bool
 	 * @default false
@@ -90,37 +102,111 @@ import org.tamina.utils.UID;
     public var italic:Bool = false;
 	
 	/**
-	 * Le texte à afficher
+	 * The text to display
 	 * @property label
 	 * @type String
 	 */
-    public var label:String="";
+    public var label:String = "";
+
+    /**
+	 * The text's parent
+	 * @property parent
+	 * @type Area
+	 */
     public var parent:Area;
-    public var rotate:Float=0;
+
+    /**
+	 * The rotation in radians
+	 * @property rotate
+	 * @type Float
+	 * @default 0
+	 */
+    public var rotate:Float = 0;
 
 	/**
-	 * La taille du texte en px
+	 * Text's size in pixels
 	 * @property size
-	 * @type Int
+	 * @type Float
+	 * @default 0
 	 */
     public var size:Float = 0;
 	
 	/**
-	 * Si le texte est souligné
+	 * Is the text underlined ?
 	 * @property underline
 	 * @type Bool
 	 * @default false
 	 */
-    public var underline:Bool=false;
-    public var width:Float=0;
-    public var x:Float=0;
-    public var y:Float=0;
-    public var isFixed:Bool=false;
-    public var autoResize:Bool=false;
+    public var underline:Bool = false;
 
+    /**
+	 * Text's width
+	 * @property width
+	 * @type Float
+	 * @default 0
+	 */
+    public var width:Float = 0;
+
+    /**
+	 * Position on the x axis
+	 * @property x
+	 * @type Float
+	 * @default 0
+	 */
+    public var x:Float = 0;
+
+    /**
+	 * Position on the y axis
+	 * @property y
+	 * @type Float
+	 * @default 0
+	 */
+    public var y:Float = 0;
+
+    /**
+	 * Is the text moveable ?
+	 * @property isFixed
+	 * @type Bool
+	 * @default false
+	 */
+    public var isFixed:Bool = false;
+
+    /**
+	 * Does the text automatically resize itself ?
+	 * @property autoResize
+	 * @type Bool
+	 * @default false
+	 */
+    public var autoResize:Bool = false;
+
+    /**
+	 * Text's width after scaling
+	 * @property scaledWidth
+	 * @type Float
+	 * @readonly
+	 */
     public var scaledWidth(get, null):Float;
+
+    /**
+	 * Text's height after scaling
+	 * @property scaledHeight
+	 * @type Float
+	 * @readonly
+	 */
     public var scaledHeight(get, null):Float;
 
+    /**
+     * Constructor
+     * @param label {String} Default : ""
+     * @param align {String} Default : ""
+     * @param bold {Bool} Default : false
+     * @param color {Float} Default : 0
+     * @param font {String} Default : "Arial"
+     * @param italic {Bool} Default : false
+     * @param underline {Bool} Default : false
+     * @param size {Float} Default : 12
+     * @param valign {String} Default : ""
+     **/
     public function new(label:String = "", align:String = "", bold:Bool = false, color:Float = 0, font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 12, valign:String = "") {
         this.label = label;
         this.align = align;
@@ -134,9 +220,15 @@ import org.tamina.utils.UID;
         this.id = UID.getUID();
     }
 
+    /**
+     * @method fromIText
+     * @static
+     * @param source {IText}
+     * @return result {Text}
+     **/
     public static function fromIText(source:IText):Text {
-        var result = new Text();
         var result:Text = new Text();
+
         result.align = source.align;
         result.valign = source.valign;
         result.bold = source.bold;
@@ -154,15 +246,23 @@ import org.tamina.utils.UID;
         result.x = source.x;
         result.y = source.y;
         result.isFixed = source.isFixed;
+
         return result;
     }
 
-
+    /**
+     * Returns a clone of the text. If copy is true, the clone will have the same id than the implementation.
+     * @method clone
+     * @param copy {Bool}. Default : false
+     * @return clone {Text}
+     **/
     public function clone(copy:Bool = false):Text {
         var cloneID = UID.getUID();
+
         if (copy) {
             cloneID = this.id;
         }
+
         var result:Text = new Text();
         result.align = align;
         result.valign = valign;
@@ -181,9 +281,16 @@ import org.tamina.utils.UID;
         result.x = x;
         result.y = y;
         result.isFixed = isFixed;
+
         return result;
     }
 
+    /**
+     * @method fillFrom
+     * @static
+     * @param target {Text}
+     * @param source {IText}
+     **/
     public static function fillFrom(target:Text, source:IText):Void {
         target.align = source.align;
         target.valign = source.valign;
@@ -203,11 +310,19 @@ import org.tamina.utils.UID;
         target.y = source.y;
     }
 
+    /**
+     * @method is
+     * @static
+     * @param target {Dynamic}
+     * @return result {Bool}
+     **/
     public static function is(target:Dynamic):Bool{
         var result = false;
-        if(target.label != null){
+
+        if (target.label != null) {
             result = true;
         }
+
         return result;
     }
 
@@ -217,19 +332,90 @@ import org.tamina.utils.UID;
 
 }
 
+/**
+ * @class IText
+ * @extends IDrawingElement
+ * @extends ITransformable
+ **/
 interface IText extends IDrawingElement extends ITransformable {
+
+    /**
+     * @property align
+     * @type String
+     **/
     public var align:String;
+
+    /**
+     * @property valign
+     * @type String
+     **/
     public var valign:String;
+
+    /**
+     * @property bold
+     * @type Bool
+     **/
     public var bold:Bool;
+
+    /**
+     * @property color
+     * @type Float
+     **/
     public var color:Float;
+
+    /**
+     * @property font
+     * @type String
+     **/
     public var font:String;
+
+    /**
+     * @property italic
+     * @type Bool
+     **/
     public var italic:Bool;
+
+    /**
+     * @property size
+     * @type Float
+     **/
     public var size:Float;
+
+    /**
+     * @property underline
+     * @type Bool
+     **/
     public var underline:Bool;
+
+    /**
+     * @property label
+     * @type String
+     **/
     public var label:String;
+
+    /**
+     * @property isFixed
+     * @type Bool
+     **/
     public var isFixed:Bool;
+
+    /**
+     * @property autoResize
+     * @type Bool
+     **/
     public var autoResize:Bool;
 
+    /**
+     * @property scaledWidth
+     * @type Float
+     * @readonly
+     **/
     public var scaledWidth(get, null):Float;
+
+    /**
+     * @property scaledHeight
+     * @type Float
+     * @readonly
+     **/
     public var scaledHeight(get, null):Float;
 }

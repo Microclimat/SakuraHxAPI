@@ -39,7 +39,8 @@ import org.tamina.utils.UID;
 
 /**
 * Picture
-* <br/>namespace com.sakura.data.design
+* <br/>
+* @namespace com.sakura.data.design
 * @author d.mouton
 * @class Picture
 * @constructor
@@ -47,41 +48,157 @@ import org.tamina.utils.UID;
 */
 @:expose class Picture implements IPicture {
 
+    /**
+     * @property SD_MAX_DRAWING_PIXELS
+     * @type Float
+     * @static
+     * @readonly
+     * @default 1000*1000
+     **/
     inline public static var SD_MAX_DRAWING_PIXELS:Float = 1000 * 1000;
+
+    /**
+     * @property USE_SD_PICTURE
+     * @type Bool
+     * @static
+     * @default true
+     **/
     public static var USE_SD_PICTURE:Bool = true;
 
+    /**
+     * @property SD
+     * @type SDPicture
+     **/
     public var SD:SDPicture;
 
+    /**
+     * @property bottomLeftPoint
+     * @type Point
+     **/
     public var bottomLeftPoint:Point;
+
+    /**
+     * @property bottomRightPoint
+     * @type Point
+     **/
     public var bottomRightPoint:Point;
 
+    /**
+     * @property brightness
+     * @type Float
+     * @default 0
+     **/
     public var brightness:Float = 0;
 
+    /**
+     * @property contrast
+     * @type Float
+     * @default 0
+     **/
     public var contrast:Float = 0;
 
+    /**
+     * @property displayScale
+     * @type Float
+     * @default 1.0
+     **/
     public var displayScale:Float = 1.0;
+
+    /**
+     * @property externalId
+     * @type String
+     * @default ""
+     **/
     public var externalId:String = "";
+
+    /**
+     * @property externalProviderId
+     * @type Int
+     * @default 0
+     **/
     public var externalProviderId:Int = 0;
 
+    /**
+     * @property filter
+     * @type PictureFilter
+     * @default PictureFilter.NONE
+     **/
     public var filter:PictureFilter = PictureFilter.NONE;
+
+    /**
+     * @property hFlip
+     * @type Bool
+     * @default false
+     **/
     public var hFlip:Bool = false;
 
+    /**
+     * @property height
+     * @type Float
+     * @default 1
+     **/
     public var height:Float = 1;
 
+    /**
+     * @property id
+     * @type Float
+     **/
     public var id:Float;
+
+    /**
+     * @property name
+     * @type String
+     * @default ""
+     **/
     public var name:String = "";
+
+    /**
+     * @property parent
+     * @type Area
+     **/
     public var parent:Area;
 
+    /**
+     * @property ref
+     * @type IPicture
+     **/
     public var ref:IPicture;
+
+    /**
+     * @property rotate
+     * @type Float
+     * @default 0
+     **/
     public var rotate:Float = 0;
 
+    /**
+     * @property exif
+     * @type ExifData
+     **/
     public var exif:ExifData;
 
-
+    /**
+     * @property topLeftPoint
+     * @type Point
+     **/
     public var topLeftPoint:Point;
+
+    /**
+     * @property topRightPoint
+     * @type Point
+     **/
     public var topRightPoint:Point;
 
+    /**
+     * @property mimeType
+     * @type MimeType
+     **/
     public var mimeType:MimeType;
+
+    /**
+     * @property blob
+     * @type Blob
+     **/
     public var blob:Blob;
 
     /**
@@ -90,9 +207,32 @@ import org.tamina.utils.UID;
 	 * @type URL
 	 */
     public var url(get, set):URL;
+
+    /**
+     * @property previewUrl
+     * @type URL
+     **/
     public var previewUrl:URL;
+
+    /**
+     * @property vFlip
+     * @type Bool
+     * @default false
+     **/
     public var vFlip:Bool = false;
+
+    /**
+     * @property width
+     * @type Float
+     * @default 1
+     **/
     public var width:Float = 1;
+
+    /**
+     * @property x
+     * @type Float
+     * @default 0
+     **/
     public var x:Float = 0;
 
     /**
@@ -101,6 +241,12 @@ import org.tamina.utils.UID;
 	 * @type Float
 	 */
     public var xScale:Float = 1;
+
+    /**
+     * @property y
+     * @type Float
+     * @default 0
+     **/
     public var y:Float = 0;
 
     /**
@@ -109,9 +255,13 @@ import org.tamina.utils.UID;
 	 * @type Float
 	 */
     public var yScale:Float = 1;
-    public var minRatio:Float = 0.0;
 
-    private var _source:CanvasElement;
+    /**
+     * @property minRatio
+     * @type Float
+     * @default 0.0
+     **/
+    public var minRatio:Float = 0.0;
 
     /**
 	 * Image's source
@@ -127,11 +277,22 @@ import org.tamina.utils.UID;
 	 */
     public var quality:PictureQuality;
 
-
+    /**
+     * @property scaledWidth
+     * @type Float
+     * @readonly
+     **/
     public var scaledWidth(get, null):Float;
+
+    /**
+     * @property scaledHeight
+     * @type Float
+     * @readonly
+     **/
     public var scaledHeight(get, null):Float;
 
     private var _url:URL;
+    private var _source:CanvasElement;
 
     /**
      * Constructor
@@ -254,29 +415,144 @@ import org.tamina.utils.UID;
  **/
 interface IPicture extends IDrawingElement {
 
+    /**
+     * @property brightness
+     * @type Float
+     **/
     public var brightness:Float;
+
+    /**
+     * @property contrast
+     * @type Float
+     **/
     public var contrast:Float;
+
+    /**
+     * @property displayScale
+     * @type Float
+     **/
     public var displayScale:Float;
+
+    /**
+     * @property filter
+     * @type PictureFilter
+     **/
     public var filter:PictureFilter;
+
+    /**
+     * @property hFlip
+     * @type Bool
+     **/
     public var hFlip:Bool;
+
+    /**
+     * @property height
+     * @type Float
+     **/
     public var height:Float;
+
+    /**
+     * @property rotate
+     * @type Float
+     **/
     public var rotate:Float;
+
+    /**
+     * @property url
+     * @type URL
+     **/
     public var url(get, set):URL;
+
+    /**
+     * @property previewUrl
+     * @type URL
+     **/
     public var previewUrl:URL;
+
+    /**
+     * @property vFlip
+     * @type Bool
+     **/
     public var vFlip:Bool;
+
+    /**
+     * @property xScale
+     * @type Float
+     **/
     public var xScale:Float;
+
+    /**
+     * @property yScale
+     * @type Float
+     **/
     public var yScale:Float;
+
+    /**
+     * @property exif
+     * @type ExifData
+     **/
     public var exif:ExifData;
 
+    /**
+     * @property source
+     * @type CanvasElement
+     **/
     public var source(get, set):CanvasElement;
+
+    /**
+     * @property scaledWidth
+     * @type Float
+     * @readonly
+     **/
     public var scaledWidth(get, null):Float;
+
+    /**
+     * @property scaledHeight
+     * @type Float
+     * @readonly
+     **/
     public var scaledHeight(get, null):Float;
+
+    /**
+     * @property name
+     * @type String
+     **/
     public var name:String;
+
+    /**
+     * @property externalId
+     * @type String
+     **/
     public var externalId:String;
+
+    /**
+     * @property externalProviderId
+     * @type Int
+     **/
     public var externalProviderId:Int;
+
+    /**
+     * @property mimeType
+     * @type MimeType
+     **/
     public var mimeType:MimeType;
+
+    /**
+     * @property blob
+     * @type Blob
+     **/
     public var blob:Blob;
+
+    /**
+     * @property quality
+     * @type PictureQuality
+     **/
     public var quality:PictureQuality;
+
+    /**
+     * @property ref
+     * @type IPicture
+     **/
     public var ref:IPicture;
 
 }
