@@ -56,4 +56,6 @@ interface IPlugin {
 	 * @return {Bool}
 	 */
     function update(data:Dynamic,templateIndex:Int=0):Bool;
+
+    function getPreviewSize():Int;
 }
