@@ -275,7 +275,7 @@ class Area implements IArea {
     }
 
     /**
-     * Returns an array of constraints result wich tells if the constraint was validated or not by the area
+     * Returns an array of constraints result which tells if the constraint was validated or not by the area
      * @method validateConstraints
      * @return result {IConstraintGroupValidationResult}
      **/
