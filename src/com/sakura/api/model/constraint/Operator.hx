@@ -2,15 +2,14 @@ package com.sakura.api.model.constraint;
 
 
 /**
-* Operateur de contrainte
+* Constraint operator
 * @author d.mouton
 * @class Operator
 * @static
 */
 @:enum abstract Operator(String) from String to String   {
 
-/**
-	 * Parmis
+    /**
 	 * @property INCLUDE
 	 * @type String
 	 * @static
@@ -18,17 +17,15 @@ package com.sakura.api.model.constraint;
 	 */
     var INCLUDE = 'in';
 
-/**
-	 * Bonne qualité
-	 * @property GOOD
-	 * @type Int
+    /**
+	 * @property EQUAL
+	 * @type String
 	 * @static
-	 * @default 0
+	 * @default '='
 	 */
     var EQUAL = '=';
 
-/**
-	 * Moins de
+    /**
 	 * @property LESS
 	 * @type String
 	 * @static
@@ -36,8 +33,7 @@ package com.sakura.api.model.constraint;
 	 */
     var LESS = '<';
 
-/**
-	 * Plus de
+    /**
 	 * @property MORE
 	 * @type String
 	 * @static
@@ -45,8 +41,7 @@ package com.sakura.api.model.constraint;
 	 */
     var MORE = '>';
 
-/**
-	 * Different de
+    /**
 	 * @property DIFFERENT
 	 * @type String
 	 * @static
@@ -54,7 +49,11 @@ package com.sakura.api.model.constraint;
 	 */
     var DIFFERENT = '<>';
 
-
+    /**
+     * @property DEFAULT
+     * @type
+     * @default ''
+     **/
     var DEFAULT = '';
 
 }

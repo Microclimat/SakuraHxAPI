@@ -4,10 +4,20 @@ package com.sakura.api.model.geom;
  * Represents a 2D point
  * @class Point
  * @author David Mouton
+ * @constructor
  */
 class Point {
 
+	/**
+	 * @property x
+	 * @type {Float}
+	 **/
 	public var x:Float;
+
+	/**
+	 * @property y
+	 * @type {Float}
+	 **/
 	public var y:Float;
 
 	/**

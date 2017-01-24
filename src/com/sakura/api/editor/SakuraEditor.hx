@@ -142,25 +142,71 @@ typedef ConstraintManager = {
     public function addConstraint(targetType:ConstrictedType, ?targetId:Float, constraint:Constraint):Void;
 }
 
+/**
+ * Typedef to represent a font defined by its name and its value
+ * @class FontDefinition
+ **/
 typedef FontDefinition = {
+
+    /**
+     * @property value
+     * @type String
+     **/
     var value:String;
+
+    /**
+     * @property name
+     * @type String
+     **/
     var name:String;
 }
 
+/**
+ * Interface Skin
+ * @class Skin
+ **/
 interface Skin {
+
+    /**
+     * @method getProperty
+     * @param target {SkinProperty}
+     * @return {PropertyValue} the value
+     **/
     public function getProperty(target:SkinProperty):PropertyValue;
+
+    /**
+     * @method setProperty
+     * @param target {SkinProperty}
+     * @param value {PropertyValue}
+     **/
     public function setProperty(target:SkinProperty, value:PropertyValue):Void;
+
+    /**
+     * @method getSize
+     * @param target {Size}
+     * @return {Int} the size
+     **/
     public function getSize(target:Size):Int;
+
+    /**
+     * @method setSize
+     * @param target {Size}
+     * @param value {Int}
+     **/
     public function setSize(target:Size, value:Int):Void;
 }
 
+/**
+ * Enum about the size's property
+ * @class Size
+ * @static
+ **/
 @:enum abstract Size(String) from String to String {
 
     /**
-     * indique le nombre maximum d'image que peut contenir les zones.
-     * 0 -> illimité
-     * Si on ajoute une image à une zone qui ne peut pas en contenir d'autres, on supprime la précédente. * Si swapPictures est à true, on ne supprime rien.
-     *
+     * Define the maximum amount of images for an area
+     * 0 = unlimited
+     * If we add an image to an Area which cannot contain more, delete the previous one. If swapPictures is true, do not delete.
      * @property MAX_PICTURE_BY_AREA
      * @type String
      * @static
@@ -171,7 +217,7 @@ interface Skin {
 }
 
 /**
-* Les differentes propriétés d'une skin
+* Enum Skin properties
 * @author d.mouton
 * @class SkinProperty
 * @static
@@ -179,7 +225,7 @@ interface Skin {
 @:enum abstract SkinProperty(String) from String to String {
 
     /**
-     * si on affiche le fond ou si il est transparent
+     * Do we display background or is it transparent ?
      * @property DISPLAY_BACKGROUND
      * @type String
      * @static
@@ -208,7 +254,7 @@ interface Skin {
     var DISPLAY_TEMPLATE_THUMBS = 'displayTemplateThumbs';
 
     /**
-     * Lors de l'import d'une image si keepPictureQuality est à true, l'image apparaîtra au maximum de sa résolution. Ainsi, une image de 250x250 dans une zone de 500x500 apparaitra sans remplir la zone.
+     * When importing an image, if keepPictureQuality is true, the image will be displayed a its maximum resolution. A 10x10 image won't fill an entire 50x50 area
      * @property KEEP_PICTURE_QUALITY
      * @type String
      * @static
@@ -218,7 +264,7 @@ interface Skin {
     var KEEP_PICTURE_QUALITY = 'keepPictureQuality';
 
     /**
-     * active ou non le scale non homothétique
+     * Do we keep the aspect ratio ?
      * @property KEEP_ASPECT_RATIO
      * @type String
      * @static
@@ -228,7 +274,7 @@ interface Skin {
     var KEEP_ASPECT_RATIO = 'keepAspectRatio';
 
     /**
-     * active ou non le déplacement
+     * Are the elements moveable ?
      * @property MOVE
      * @type String
      * @static
@@ -238,7 +284,7 @@ interface Skin {
     var MOVE = 'move';
 
     /**
-     * active ou non la rotation
+     * Are the elements rotatable ?
      * @property ROTATE
      * @type String
      * @static
@@ -248,7 +294,7 @@ interface Skin {
     var ROTATE = 'rotate';
 
     /**
-     * active ou non l’étirement
+     * Are the elements scalable ?
      * @property SCALE
      * @type String
      * @static
@@ -258,7 +304,7 @@ interface Skin {
     var SCALE = 'scale';
 
     /**
-     * active ou non la suppression
+     * Are the elements deletable ?
      * @property DELETE
      * @type String
      * @static
@@ -269,7 +315,7 @@ interface Skin {
 
 
     /**
-     *  à true, la bordure des zones sont constamment visibles
+     * If true, the elements borders will always be displayed
      * @property DISPLAY_AREA_BORDER
      * @type String
      * @static
@@ -279,7 +325,7 @@ interface Skin {
     var DISPLAY_AREA_BORDER = 'displayAreaBorder';
 
     /**
-     *  à true, les zones affichent une image "placeholder" quand elles sont vides
+     * If true, the areas will display a placeholder image if they're empty
      * @property DISPLAY_AREA_GUIDES
      * @type String
      * @static
@@ -289,7 +335,7 @@ interface Skin {
     var DISPLAY_AREA_GUIDES = 'displayAreaGuides';
 
     /**
-     *  lors d'un changement de zone, indique si on permute avec un élément de la zone de destination.
+     * While changing an element's area, do we swap with a destination area's element ?
      * @property SWAP_PICTURES
      * @type String
      * @static
@@ -299,7 +345,7 @@ interface Skin {
     var SWAP_PICTURES = 'swapPictures';
 
     /**
-     *  Indique si on utilise l'UI de transformation NEXT
+     * Do we use the "next" transformation interface ?
      * @property USE_NEXT_TRANSFORM_ICON
      * @type Bool
      * @static
@@ -309,7 +355,7 @@ interface Skin {
     var USE_NEXT_TRANSFORM_ICON = 'useNextTransformIcon';
 
     /**
-     *  Indique si le text est editable depuis le canvas
+     * Is the text editable from the canvas ?
      * @property TEXT_EDITABLE
      * @type Bool
      * @static
@@ -319,7 +365,7 @@ interface Skin {
     var TEXT_EDITABLE = 'isTextEditable';
 
     /**
-     *  Indique si le text est contraint à la zone
+     * Can the text be moved outside of the area ?
      * @property KEEP_TEXT_INSIDE_AREA
      * @type Bool
      * @static
@@ -329,7 +375,7 @@ interface Skin {
     var KEEP_TEXT_INSIDE_AREA = 'keepTextInsideArea';
 
     /**
-     *  Indique si les preview doivent etre fusionnées lors du addCustomerDesign()
+     * Do the previews have to be fused (merged) when adding the customer design (addCustomerDesign()) ?
      * @property MERGE_PREVIEW
      * @type Bool
      * @static
@@ -339,7 +385,7 @@ interface Skin {
     var MERGE_PREVIEW = 'mergePreview';
 
     /**
-     *  Indique si les foreground sont masqués lors de la section d'un élement
+     * Is the foreground hidden when selecting an element ?
      * @property AUTO_HIDE_FOREGROUND
      * @type Bool
      * @static
@@ -350,12 +396,59 @@ interface Skin {
 
 }
 
+/**
+ * Enum describing the different values that a SkinProperty can take
+ * @class PropertyValue
+ * @static
+ **/
 @:enum abstract PropertyValue(String) from String to String {
+
+    /**
+     * @property AUTO
+     * @type String
+     * @default 'auto'
+     **/
     var AUTO = 'auto';
+
+    /**
+     * @property FALSE
+     * @type String
+     * @default 'false'
+     **/
     var FALSE = 'false';
+
+    /**
+     * @property OFF
+     * @type String
+     * @default 'off'
+     **/
     var OFF = 'off';
+
+    /**
+     * @property ON
+     * @type String
+     * @default 'on'
+     **/
     var ON = 'on';
+
+    /**
+     * @property STATIC
+     * @type String
+     * @default 'static'
+     **/
     var STATIC = 'static';
+
+    /**
+     * @property TRUE
+     * @type String
+     * @default 'true'
+     **/
     var TRUE = 'true';
+
+    /**
+     * @property UNKNOWN
+     * @type String
+     * @default 'NULL'
+     **/
     var UNKNOWN = 'null';
 }

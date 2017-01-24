@@ -16,30 +16,113 @@ import js.html.svg.Rect;
  * The Area class represents a customization area in a template.
  * Images and texts can be contained.
  * @class Area
+ * @constructor
  **/
 class Area implements IArea {
 
+    /**
+     * The Area's constraints
+     * @property constraints
+     * @type {Array<Constraint>}
+     **/
     public var constraints:Array<Constraint>;
-    public var content:Array<IDrawingElement>;
-    public var height:Float;
-    public var id:Float;
-    public var name:String = "";
-    public var parent:Template;
-    public var rotate:Float = 0;
-    public var width:Float;
-    public var x:Float;
-    public var y:Float;
-    public var scaledWidth(get, null):Float;
-    public var scaledHeight(get, null):Float;
-    public var editable:Bool=false;
 
     /**
-     * @param id {Float}
-     * @param x {Float}
-     * @param y {Float}
-     * @param width {Float}
-     * @param height {Float}
-     * @param name {String}
+     * The contained drawing elements
+     * @property IDrawingElement
+     * @type {Array<IDrawingElement>}
+     **/
+    public var content:Array<IDrawingElement>;
+
+    /**
+     * Area's height
+     * @property height
+     * @type {Float}
+     **/
+    public var height:Float;
+
+    /**
+     * Area's id
+     * @property id
+     * @type {Float}
+     **/
+    public var id:Float;
+
+    /**
+     * Area's name
+     * @property name
+     * @type {String}
+     * @default ""
+     **/
+    public var name:String = "";
+
+    /**
+     * Area's parent
+     * @property parent
+     * @type {Template}
+     **/
+    public var parent:Template;
+
+    /**
+     * Area's rotation in radians
+     * @property rotate
+     * @type {Float}
+     * @default 0
+     **/
+    public var rotate:Float = 0;
+
+    /**
+     * Area's width
+     * @property width
+     * @type {Float}
+     **/
+    public var width:Float;
+
+    /**
+     * Area's x axis position
+     * @property x
+     * @type {Float}
+     **/
+    public var x:Float;
+
+    /**
+     * Area's y axis position
+     * @property y
+     * @type {Float}
+     **/
+    public var y:Float;
+
+    /**
+     * Area's x scale
+     * @property scaledWidth
+     * @type {Float}
+     * @readonly
+     **/
+    public var scaledWidth(get, null):Float;
+
+    /**
+     * Area's y scale
+     * @property scaledHeight
+     * @type {Float}
+     * @readonly
+     **/
+    public var scaledHeight(get, null):Float;
+
+    /**
+     * Is the area editable ?
+     * @property editable
+     * @type {Bool}
+     * @default false
+     **/
+    public var editable:Bool = false;
+
+    /**
+     * @param id {Float}. Default : 0
+     * @param x {Float}. Default : 0
+     * @param y {Float}. Default : 0
+     * @param width {Float}. Default : 5
+     * @param height {Float}. Default : 5
+     * @param name {String}. Default : ""
      **/
     public function new(id:Float = 0, x:Float = 0, y:Float = 0, width:Float = 5, height:Float = 5, name:String = "") {
         if (id != 0) {
@@ -60,7 +143,7 @@ class Area implements IArea {
     /**
      * Clones an area
      * @method clone
-     * @param copy {Bool} if the new area shall keep the original id
+     * @param copy {Bool} if the new area shall keep the original id. Default : false
      * @return area {IArea}
      **/
     public function clone(copy:Bool = false):IArea {
@@ -192,7 +275,7 @@ class Area implements IArea {
     }
 
     /**
-     * Returns an array of constraints result wich tells if the constraint was validated or not by the area
+     * Returns an array of constraints result which tells if the constraint was validated or not by the area
      * @method validateConstraints
      * @return result {IConstraintGroupValidationResult}
      **/

@@ -105,7 +105,16 @@ interface Album {
     var content:Array<IPicture>;
 }
 
+/**
+ * Interface for EventBus connected to a proxy
+ * @class ProxyEventBus
+ **/
 interface ProxyEventBus {
+
+    /**
+     * @property serviceError
+     * @type Signal1<Error>
+     **/
     var serviceError:Signal1<Error>;
 }
 

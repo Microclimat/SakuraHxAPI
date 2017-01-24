@@ -31,10 +31,13 @@ package com.sakura.api.model.plugin;
 * Base interface for the SakuraEditor's plugins
 * @author d.mouton
 * @class IPlugin
-* @constructor
 */
 interface IPlugin {
 
+    /**
+     * @property type
+     * @type {PluginType}
+     **/
     var type:PluginType;
 
 	/**

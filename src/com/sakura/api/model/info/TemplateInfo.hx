@@ -27,116 +27,120 @@
 */
 package com.sakura.api.model.info;
 
-    /**
-* TemplateInfo
-* <br/>Les informations sur un template
-* @author d.mouton
-* @class TemplateInfo
-* @constructor
-*/
 import com.sakura.api.model.constraint.IConstraint;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
 import com.sakura.api.model.geom.Rectangle;
 
-class TemplateInfo implements ITemplateInfo{
+/**
+* TemplateInfo
+* <br/>Template's informations
+* @author d.mouton
+* @class TemplateInfo
+* @constructor
+*/
+class TemplateInfo implements ITemplateInfo {
+
     /**
-	 * La hauteur en pixel
+	 * Height in pixels
 	 * @property height
-	 * @type Int
+	 * @type Float
 	 */
     public var height:Float;
+
     /**
-	 * L'id
+	 * The id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
+
     /**
-	 * Le nom
+	 * The name
 	 * @property name
 	 * @type String
+	 * @default ""
 	 */
     public var name:String = "";
+
     /**
-	 * La largeur en pixel
+	 * Width in pixels
 	 * @property width
 	 * @type Int
 	 */
     public var width:Float;
 
     /**
-	 * Position en X
+	 * X axis position
 	 * @property x
 	 * @type Float
 	 */
     public var x:Float;
 
     /**
-	 * Position en y
+	 * Y axis position
 	 * @property y
 	 * @type Float
 	 */
     public var y:Float;
 
     /**
-	 * La liste des contraintes
+	 * Constraints list
 	 * @property constraints
-	 * @type Array<Constraint>
+	 * @type Array<IConstraint>
 	 */
     public var constraints:Array<IConstraint>;
 
     /**
-	 * La liste des Zones
+	 * Areas list
 	 * @property areas
-	 * @type Array<AreaInfo>
+	 * @type Array<IAreaInfo>
 	 */
     public var areas:Array<IAreaInfo>;
 
     /**
-	 * L'url vers l'image utilisée en fond
+	 * Background image's url
 	 * @property backgroundUrl
 	 * @type String
 	 */
     public var backgroundUrl:String;
 
     /**
-	 * L'url vers l'image utilisée en premier plan
+	 * Foreground image's url
 	 * @property foregroundUrl
 	 * @type String
 	 */
     public var foregroundUrl:String;
 
     /**
-	 * L'url vers l'image utilisée comme masque
+	 * Mask image's url
 	 * @property maskUrl
 	 * @type String
 	 */
     public var maskUrl:String;
 
-
     /**
-	 * L'url vers l'image utilisée comme background imprimable
+	 * Printable background image's url
 	 * @property templateBackgroundUrl
 	 * @type String
 	 */
     public var templateBackgroundUrl:String;
 
     /**
-	 * L'url vers l'image utilisée comme foreground imprimable
+	 * Printable foreground image's url
 	 * @property templateForegroundUrl
 	 * @type String
 	 */
     public var templateForegroundUrl:String;
 
     /**
-	 * L'url vers l'image utilisée comme Preview du background imprimable
+	 * Printable background preview's url
 	 * @property templatePreviewBackgroundUrl
 	 * @type String
 	 */
     public var templatePreviewBackgroundUrl:String;
 
     /**
-	 * L'url vers l'image utilisée comme Preview du foreground imprimable
+	 * Printable foreground preview's url
 	 * @property templatePreviewForegroundUrl
 	 * @type String
 	 */
@@ -149,72 +153,129 @@ class TemplateInfo implements ITemplateInfo{
 	 */
     public var boundingBox:Rectangle;
 
+    /**
+     * Constructor
+     * Inits arrays
+     **/
     public function new( ) {
         constraints = new Array<IConstraint>();
         areas = new Array<IAreaInfo>();
     }
 }
 
-    /**
-* TemplateInfo
-* <br/>Les informations sur un template
-* @author d.mouton
-* @class TemplateInfo
-* @constructor
-*/
+/**
+ * ITemplateInfo
+ * <br/>Interface used to define template's needed infos
+ * @author d.mouton
+ * @class ITemplateInfo
+ */
 interface ITemplateInfo {
+
     /**
-	 * La hauteur en pixel
+	 * Height in pixels
 	 * @property height
-	 * @type Int
+	 * @type Float
 	 */
     public var height:Float;
+
     /**
-	 * L'id
+	 * The id
 	 * @property id
 	 * @type Float
 	 */
     public var id:Float;
+
     /**
-	 * Le nom
+	 * The name
 	 * @property name
 	 * @type String
+	 * @default ""
 	 */
     public var name:String = "";
+
     /**
-	 * La largeur en pixel
+	 * Width in pixels
 	 * @property width
 	 * @type Int
 	 */
     public var width:Float;
 
     /**
-	 * Position en X
+	 * X axis position
 	 * @property x
 	 * @type Float
 	 */
     public var x:Float;
 
     /**
-	 * Position en y
+	 * Y axis position
 	 * @property y
 	 * @type Float
 	 */
     public var y:Float;
 
     /**
-	 * La liste des contraintes
+	 * Constraints list
 	 * @property constraints
-	 * @type Array<Constraint>
+	 * @type Array<IConstraint>
 	 */
     public var constraints:Array<IConstraint>;
 
     /**
-	 * La liste des Zones
+	 * Areas list
 	 * @property areas
-	 * @type Array<AreaInfo>
+	 * @type Array<IAreaInfo>
 	 */
     public var areas:Array<IAreaInfo>;
+
+    /**
+	 * Background image's url
+	 * @property backgroundUrl
+	 * @type String
+	 */
+    public var backgroundUrl:String;
+
+    /**
+	 * Foreground image's url
+	 * @property foregroundUrl
+	 * @type String
+	 */
+    public var foregroundUrl:String;
+
+    /**
+	 * Mask image's url
+	 * @property maskUrl
+	 * @type String
+	 */
+    public var maskUrl:String;
+
+    /**
+	 * Printable background image's url
+	 * @property templateBackgroundUrl
+	 * @type String
+	 */
+    public var templateBackgroundUrl:String;
+
+    /**
+	 * Printable foreground image's url
+	 * @property templateForegroundUrl
+	 * @type String
+	 */
+    public var templateForegroundUrl:String;
+
+    /**
+	 * Printable background preview's url
+	 * @property templatePreviewBackgroundUrl
+	 * @type String
+	 */
+    public var templatePreviewBackgroundUrl:String;
+
+    /**
+	 * Printable foreground preview's url
+	 * @property templatePreviewForegroundUrl
+	 * @type String
+	 */
+    public var templatePreviewForegroundUrl:String;
 
     /**
 	 * Returns a rectangle representing this object's bounds in its local coordinate system
@@ -222,55 +283,5 @@ interface ITemplateInfo {
 	 * @type Rectangle
 	 */
     public var boundingBox:Rectangle;
-
-    /**
-	 * L'url vers l'image utilisée en fond
-	 * @property backgroundUrl
-	 * @type String
-	 */
-    public var backgroundUrl:String;
-
-    /**
-	 * L'url vers l'image utilisée en premier plan
-	 * @property foregroundUrl
-	 * @type String
-	 */
-    public var foregroundUrl:String;
-
-    /**
-	 * L'url vers l'image utilisée comme masque
-	 * @property maskUrl
-	 * @type String
-	 */
-    public var maskUrl:String;
-
-
-    /**
-	 * L'url vers l'image utilisée comme background imprimable
-	 * @property templateBackgroundUrl
-	 * @type String
-	 */
-    public var templateBackgroundUrl:String;
-
-    /**
-	 * L'url vers l'image utilisée comme foreground imprimable
-	 * @property templateForegroundUrl
-	 * @type String
-	 */
-    public var templateForegroundUrl:String;
-
-    /**
-	 * L'url vers l'image utilisée comme Preview du background imprimable
-	 * @property templatePreviewBackgroundUrl
-	 * @type String
-	 */
-    public var templatePreviewBackgroundUrl:String;
-
-    /**
-	 * L'url vers l'image utilisée comme Preview du foreground imprimable
-	 * @property templatePreviewForegroundUrl
-	 * @type String
-	 */
-    public var templatePreviewForegroundUrl:String;
 
 }

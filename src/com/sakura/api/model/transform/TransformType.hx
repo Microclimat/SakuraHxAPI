@@ -1,12 +1,14 @@
 package com.sakura.api.model.transform;
 
 /**
-* Types de transformations
+* Transformation types
 * @author d.mouton
 * @class TransformType
+* @static
 */
 @:enum abstract TransformType(String) from String to String {
-/**
+
+    /**
 	 * @property DELETE
 	 * @type String
 	 * @static
@@ -15,7 +17,7 @@ package com.sakura.api.model.transform;
 	 */
     var DELETE = 'delete';
 
-/**
+    /**
 	 * @property ROTATE
 	 * @type String
 	 * @static
@@ -24,7 +26,7 @@ package com.sakura.api.model.transform;
 	 */
     var ROTATE = 'rotate';
 
-/**
+    /**
 	 * @property ROTATE_BY
 	 * @type String
 	 * @static
@@ -33,7 +35,7 @@ package com.sakura.api.model.transform;
 	 */
     var ROTATE_BY = 'rotateBy';
 
-/**
+    /**
 	 * @property SCALE
 	 * @type String
 	 * @static
@@ -42,7 +44,7 @@ package com.sakura.api.model.transform;
 	 */
     var SCALE = 'scale';
 
-/**
+    /**
 	 * @property SCALE_X
 	 * @type String
 	 * @static
@@ -51,7 +53,7 @@ package com.sakura.api.model.transform;
 	 */
     var SCALE_X = 'scaleX';
 
-/**
+    /**
 	 * @property SCALE_Y
 	 * @type String
 	 * @static
@@ -60,7 +62,7 @@ package com.sakura.api.model.transform;
 	 */
     var SCALE_Y = 'scaleY';
 
-/**
+    /**
 	 * @property SCALE_BY
 	 * @type String
 	 * @static
@@ -69,7 +71,7 @@ package com.sakura.api.model.transform;
 	 */
     var SCALE_BY = 'scaleBy';
 
-/**
+    /**
 	 * @property START
 	 * @type String
 	 * @static
@@ -78,7 +80,7 @@ package com.sakura.api.model.transform;
 	 */
     var START = 'start';
 
-/**
+    /**
 	 * @property STOP
 	 * @type String
 	 * @static
@@ -87,7 +89,7 @@ package com.sakura.api.model.transform;
 	 */
     var STOP = 'stop';
 
-/**
+    /**
 	 * @property MOVE
 	 * @type String
 	 * @static
@@ -96,7 +98,7 @@ package com.sakura.api.model.transform;
 	 */
     var MOVE = 'move';
 
-/**
+    /**
 	 * @property MOVE_TO_AREA
 	 * @type String
 	 * @static
@@ -105,7 +107,7 @@ package com.sakura.api.model.transform;
 	 */
     var MOVE_TO_AREA = 'moveToArea';
 
-/**
+    /**
 	 * @property HFLIP
 	 * @type String
 	 * @static
@@ -114,7 +116,7 @@ package com.sakura.api.model.transform;
 	 */
     var HFLIP = 'hFlip';
 
-/**
+    /**
 	 * @property VFLIP
 	 * @type String
 	 * @static

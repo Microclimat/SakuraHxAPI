@@ -3,12 +3,32 @@ package com.sakura.api.model.geom;
 /**
  * A simple Rectangle used in calculations
  * @class Rectangle
+ * @constructor
  **/
 class Rectangle {
 
+    /**
+     * @property height
+     * @type {Float}
+     **/
     public var height:Float;
+
+    /**
+     * @property width
+     * @type {Float}
+     **/
     public var width:Float;
+
+    /**
+     * @property x
+     * @type {Float}
+     **/
     public var x:Float;
+
+    /**
+     * @property y
+     * @type {Float}
+     **/
     public var y:Float;
 
     /**

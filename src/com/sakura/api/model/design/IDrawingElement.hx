@@ -75,12 +75,33 @@ interface IDrawingElement extends ITransformable {
 	 * @type Float
 	 */
 	var rotate:Float;
+
+	/**
+	 * Element's parent
+	 * @property parent
+	 * @type Area
+	 */
 	var parent:Area;
+
+    /**
+     * @property scaledWidth
+     * @type Float
+     * @readonly
+     **/
 	var scaledWidth(get, null):Float;
-	
 
+    /**
+     * @property scaledHeight
+     * @type Float
+     * @readonly
+     **/
 	var scaledHeight(get, null):Float;
-	
-	function clone(copy:Bool = false):IDrawingElement;
 
+    /**
+     * Returns a clone of the implementation. If copy is true, the clone will have the same id than the implementation.
+     * @method clone
+     * @param copy {Bool}. Default : false
+     * @return clone {IDrawingElement}
+     **/
+	function clone(copy:Bool = false):IDrawingElement;
 }
