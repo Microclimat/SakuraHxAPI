@@ -40,223 +40,231 @@ typedef SakuraEvent = Event<SakuraEventType>;
 
 @:enum abstract SakuraEventType(String) from String to String {
 
-
-	/**
-	 * @property LOADING
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "loading"
-	 */
+    /**
+     * @property LOADING
+     * @type String
+     * @static
+     * @readOnly
+     * @default "loading"
+     */
     var LOADING = "loading";
 
-	/**
-	 * @property ERROR
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "error"
-	 */
+    /**
+     * @property ERROR
+     * @type String
+     * @static
+     * @readOnly
+     * @default "error"
+     */
     var ERROR = "error";
 
-	/**
-	 * @property PROGRESS
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "progress"
-	 */
+    /**
+     * @property PROGRESS
+     * @type String
+     * @static
+     * @readOnly
+     * @default "progress"
+     */
     var PROGRESS = "progress";
 
-	/**
-	 * @property PRICE_UPDATE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "priceUpdate"
-	 */
+    /**
+     * @property PRICE_UPDATE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "priceUpdate"
+     */
     var PRICE_UPDATE = "priceUpdate";
 
-	/**
-	 * @property READY
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "ready"
-	 */
+    /**
+     * @property READY
+     * @type String
+     * @static
+     * @readOnly
+     * @default "ready"
+     */
     var READY = "ready";
 
-	/**
-	 * @property CUSTOMER_DESIGN_BUILT
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "customerDesignBuilt"
-	 */
+    /**
+     * @property CUSTOMER_DESIGN_BUILT
+     * @type String
+     * @static
+     * @readOnly
+     * @default "customerDesignBuilt"
+     */
     var CUSTOMER_DESIGN_BUILT = "customerDesignBuilt";
 
-	/**
-	 * @property CUSTOMER_DESIGN_ADDED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "customerDesignAdded"
-	 */
+    /**
+     * @property CUSTOMER_DESIGN_ADDED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "customerDesignAdded"
+     */
     var CUSTOMER_DESIGN_ADDED = "customerDesignAdded";
 
-	/**
-	 * @property DESIGN_UPDATED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "designUpdatedHandler"
-	 */
+    /**
+     * @property DESIGN_UPDATED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "designUpdatedHandler"
+     */
     var DESIGN_UPDATED = "designUpdatedHandler";
 
-	/**
-	 * @property DISPLAY_UPDATED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "displayUpdatedHandler"
-	 */
+    /**
+     * @property DISPLAY_UPDATED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "displayUpdatedHandler"
+     */
     var DISPLAY_UPDATED = "displayUpdatedHandler";
 
-	/**
-	 * @property BUSY
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "busy"
-	 */
+    /**
+     * @property BUSY
+     * @type String
+     * @static
+     * @readOnly
+     * @default "busy"
+     */
     var BUSY = "busy";
 
-	/**
-	 * @property BUSY_COMPLETE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "busyComplete"
-	 */
+    /**
+     * @property BUSY_COMPLETE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "busyComplete"
+     */
     var BUSY_COMPLETE = "busyComplete";
 
     /**
-	 * @property AREA_CREATED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "areaCreated"
-	 */
+     * @property AREA_CREATED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "areaCreated"
+     */
     var AREA_CREATED = "areaCreated";
 
-	/**
-	 * @property AREA_SELECTED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "areaSelected"
-	 */
+    /**
+     * @property AREA_SELECTED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "areaSelected"
+     */
     var AREA_SELECTED = "areaSelected";
 
-	/**
-	 * @property AREA_DESELECTED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "areaDeselected"
-	 */
+    /**
+     * @property AREA_DESELECTED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "areaDeselected"
+     */
     var AREA_DESELECTED = "areaDeselected";
 
-	/**
-	 * @property AREA_RESIZED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "areaResized"
-	 */
+    /**
+     * @property AREA_RESIZED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "areaResized"
+     */
     var AREA_RESIZED = "areaResized";
 
     var REMOVE_AREA = "removeArea";
 
     /**
-	 * @property ELEMENT_SELECTED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "elementSelected"
-	 */
+     * @property ELEMENT_SELECTED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "elementSelected"
+     */
     var ELEMENT_SELECTED = "elementSelected";
 
-	/**
-	 * @property ELEMENT_MOVE
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "elementMoved"
-	 */
+    /**
+     * @property ELEMENT_MOVE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "elementMoved"
+     */
     var ELEMENT_MOVED = "elementMoved";
 
-	/**
-	 * @property ELEMENT_REMOVED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "elementRemoved"
-	 */
+    /**
+     * @property ELEMENT_REMOVED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "elementRemoved"
+     */
     var ELEMENT_REMOVED = "elementRemoved";
 
-	/**
-	 * @property ELEMENT_ADDED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "elementAdded"
-	 */
+    /**
+     * @property ELEMENT_ADDED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "elementAdded"
+     */
     var ELEMENT_ADDED = "elementAdded";
 
-	/**
-	 * @property ELEMENT_UPDATED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "elementUpdated"
-	 */
+    /**
+     * @property ELEMENT_UPDATED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "elementUpdated"
+     */
     var ELEMENT_UPDATED = "elementUpdated";
 
     /**
-	 * @property PATTERN_LOADED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "patternLoaded"
-	 */
+     * @property PATTERN_LOADED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "patternLoaded"
+     */
     var PATTERN_LOADED = "patternLoaded";
 
     /**
-	 * @property PICTURE_LOADED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "pictureLoaded"
-	 */
+     * @property PICTURE_LOADED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "pictureLoaded"
+     */
     var PICTURE_LOADED = "pictureLoaded";
 
     /**
-	 * @property PICTURE_QUALITY_CHANGED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "pictureQualityChanged"
-	 */
+     * @property PICTURE_QUALITY_CHANGED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "pictureQualityChanged"
+     */
     var PICTURE_QUALITY_CHANGED = "pictureQualityChanged";
 
-	/**
-	 * @property TEMPLATE_CHANGED
-	 * @type String
-	 * @static
-	 * @readOnly
-	 * @default "templateChanged"
-	 */
-	var TEMPLATE_CHANGED = "templateChanged";
+    /**
+     * @property TEMPLATE_CHANGED
+     * @type String
+     * @static
+     * @readOnly
+     * @default "templateChanged"
+     */
+    var TEMPLATE_CHANGED = "templateChanged";
+
+    /**
+     * @property PREVIEW_READY
+     * @type String
+     * @static
+     * @readOnly
+     * @default "previewReady"
+     */
+    var PREVIEW_READY = "previewReady";
 
 }
