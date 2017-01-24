@@ -1,5 +1,6 @@
 package com.sakura.api.model.design;
 
+import com.sakura.api.editor.SakuraEditor;
 import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
 import com.sakura.api.model.info.AreaInfo.IAreaInfo;
@@ -253,12 +254,20 @@ class Area implements IArea {
                 newElement.x = relX * scale + newArea.x;
                 newElement.y = relY * scale + newArea.y;
 
-                if (Std.is(newElement, Picture)) {
+                if (Picture.is(newElement)) {
+                    var sourcePicture:Picture = cast source.content[i];
                     var p:Picture = cast newElement;
                     p.xScale *= scale;
                     p.yScale *= scale;
 
-                } else if (Std.is(newElement, Text)) {
+                    if (p.url == null) {
+                        SakuraEditor.getInstance().getUploadManager()
+                        .waitForUpload(sourcePicture.ref.id, function(a) {
+                            p.url = sourcePicture.url;
+                        });
+                    }
+
+                } else if (Text.is(newElement)) {
                     var t:Text = cast newElement;
                     var wRatio:Float = t.width / t.size;
                     var hRatio:Float = t.height / t.size;
