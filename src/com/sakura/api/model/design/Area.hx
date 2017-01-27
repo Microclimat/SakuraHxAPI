@@ -172,6 +172,7 @@ class Area implements IArea {
         result.constraints = constaintesBackup;
         result.editable = this.editable;
         result.content = contentBackup;
+        result.rotate = rotate;
 
 
         return result;

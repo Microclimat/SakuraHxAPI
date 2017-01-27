@@ -243,7 +243,7 @@ class Template implements IConstricted {
         }
 
         for (area in this.content) {
-            var clonedArea:Area = cast area.clone(true);
+            var clonedArea:Area = cast area.clone(copy);
 
             clonedArea.parent = this;
             result.content.push(clonedArea);
