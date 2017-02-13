@@ -92,6 +92,12 @@ class Pattern implements IConstricted {
     public var mergeOutput:Bool = false;
 
     /**
+     * @property postRender
+     * @type PostRender
+     **/
+    public var postRender:PostRender;
+
+    /**
      * Constructor
      * @param id {Float} Default : 0
      * @param name {String} Default : ""
@@ -149,6 +155,7 @@ class Pattern implements IConstricted {
         result.resolution = this.resolution;
         result.margin = this.margin;
         result.mergeOutput = this.mergeOutput;
+        result.postRender = this.postRender;
 
         for (constraint in this.constraints) {
             result.constraints.push( constraint.clone(copy));
