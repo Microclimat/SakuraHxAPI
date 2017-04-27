@@ -27,14 +27,14 @@
 */
 package com.sakura.api.model.design;
 
-import haxe.ExifData;
+import com.sakura.api.model.constraint.Constraint;
 import com.sakura.api.model.design.Picture.IPicture;
-import js.html.Blob;
-import haxe.MimeType;
-import js.html.CanvasElement;
-import js.html.Image;
-import org.tamina.net.URL;
 import com.sakura.api.model.geom.Point;
+import haxe.ExifData;
+import haxe.MimeType;
+import js.html.Blob;
+import js.html.CanvasElement;
+import org.tamina.net.URL;
 import org.tamina.utils.UID;
 
 /**
@@ -291,8 +291,16 @@ import org.tamina.utils.UID;
      **/
     public var scaledHeight(get, null):Float;
 
+    /**
+	 * Text's constraints
+	 * @property constraints
+	 * @type Array<Constraint>
+	 */
+    public var constraints:Array<Constraint>;
+
     private var _url:URL;
     private var _source:CanvasElement;
+
 
     /**
      * Constructor
@@ -310,6 +318,7 @@ import org.tamina.utils.UID;
         this.topLeftPoint = new Point( 0, 0 );
         this.topRightPoint = new Point( 1, 0 );
         this.quality = PictureQuality.GOOD;
+        this.constraints = new Array<Constraint>();
     }
 
     private function get_scaledWidth():Float {
@@ -399,6 +408,10 @@ import org.tamina.utils.UID;
         result.exif = this.exif;
         result.mimeType = this.mimeType;
         result.blob = this.blob;
+
+        for(i in 0...constraints.length){
+            result.constraints.push(constraints[i].clone());
+        }
 
         if (this.SD != null) {
             result.SD = this.SD.clone();

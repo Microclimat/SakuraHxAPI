@@ -27,6 +27,7 @@
 */
 package com.sakura.api.model.design;
 
+import com.sakura.api.model.constraint.Constraint;
 import org.tamina.utils.UID;
 
 /**
@@ -196,6 +197,13 @@ import org.tamina.utils.UID;
     public var scaledHeight(get, null):Float;
 
     /**
+	 * Text's constraints
+	 * @property constraints
+	 * @type Array<Constraint>
+	 */
+    public var constraints:Array<Constraint>;
+
+    /**
      * Constructor
      * @param label {String} Default : ""
      * @param align {String} Default : ""
@@ -218,6 +226,7 @@ import org.tamina.utils.UID;
         this.underline = underline;
         this.size = size;
         this.id = UID.getUID();
+        this.constraints = new Array<Constraint>();
     }
 
     /**
@@ -246,6 +255,10 @@ import org.tamina.utils.UID;
         result.x = source.x;
         result.y = source.y;
         result.isFixed = source.isFixed;
+        result.autoResize = source.autoResize;
+        for(i in 0...source.constraints.length){
+            result.constraints.push(source.constraints[i].clone());
+        }
 
         return result;
     }
@@ -281,6 +294,9 @@ import org.tamina.utils.UID;
         result.x = x;
         result.y = y;
         result.isFixed = isFixed;
+        for(i in 0...constraints.length){
+            result.constraints.push(constraints[i].clone());
+        }
 
         return result;
     }
@@ -308,6 +324,9 @@ import org.tamina.utils.UID;
         target.width = source.width;
         target.x = source.x;
         target.y = source.y;
+        for(i in 0...source.constraints.length){
+            target.constraints.push(source.constraints[i].clone());
+        }
     }
 
     /**

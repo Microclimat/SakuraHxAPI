@@ -32,7 +32,7 @@ package com.sakura.api.model.design;
 * @author d.mouton
 * @class IDrawingElement
 */
-interface IDrawingElement extends ITransformable {
+interface IDrawingElement extends ITransformable extends IConstricted {
 
 	/**
 	 * Element's id
