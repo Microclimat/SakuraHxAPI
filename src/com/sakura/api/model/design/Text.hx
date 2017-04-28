@@ -47,22 +47,22 @@ import org.tamina.utils.UID;
      */
     public var align:String = "";
 
-	/**
+    /**
 	 * The vertical text alignment. Any of "top", "bottom", and "center".
 	 * @property valign
 	 * @type String
 	 */
     public var valign:String = "";
-	
-	/**
+
+    /**
 	 * Is the text bold ?
 	 * @property bold
 	 * @type Bool
 	 * @default false
 	 */
     public var bold:Bool = false;
-	
-	/**
+
+    /**
 	 * Text's color
 	 * @property color
 	 * @type Float
@@ -70,7 +70,7 @@ import org.tamina.utils.UID;
 	 */
     public var color:Float = 0;
 
-	/**
+    /**
 	 * The font to use
 	 * @property font
 	 * @type String
@@ -93,16 +93,16 @@ import org.tamina.utils.UID;
      * @default 0
      **/
     public var id:Float = 0;
-	
-	/**
+
+    /**
 	 * Is the text in italic ?
 	 * @property italic
 	 * @type Bool
 	 * @default false
 	 */
     public var italic:Bool = false;
-	
-	/**
+
+    /**
 	 * The text to display
 	 * @property label
 	 * @type String
@@ -124,15 +124,15 @@ import org.tamina.utils.UID;
 	 */
     public var rotate:Float = 0;
 
-	/**
+    /**
 	 * Text's size in pixels
 	 * @property size
 	 * @type Float
 	 * @default 0
 	 */
     public var size:Float = 0;
-	
-	/**
+
+    /**
 	 * Is the text underlined ?
 	 * @property underline
 	 * @type Bool
@@ -256,8 +256,10 @@ import org.tamina.utils.UID;
         result.y = source.y;
         result.isFixed = source.isFixed;
         result.autoResize = source.autoResize;
-        for(i in 0...source.constraints.length){
-            result.constraints.push(source.constraints[i].clone());
+        if (source.constraints != null) {
+            for (i in 0...source.constraints.length) {
+                result.constraints.push(source.constraints[i].clone());
+            }
         }
 
         return result;
@@ -294,7 +296,7 @@ import org.tamina.utils.UID;
         result.x = x;
         result.y = y;
         result.isFixed = isFixed;
-        for(i in 0...constraints.length){
+        for (i in 0...constraints.length) {
             result.constraints.push(constraints[i].clone());
         }
 
@@ -324,8 +326,10 @@ import org.tamina.utils.UID;
         target.width = source.width;
         target.x = source.x;
         target.y = source.y;
-        for(i in 0...source.constraints.length){
-            target.constraints.push(source.constraints[i].clone());
+        if (source.constraints != null) {
+            for (i in 0...source.constraints.length) {
+                target.constraints.push(source.constraints[i].clone());
+            }
         }
     }
 
@@ -335,7 +339,7 @@ import org.tamina.utils.UID;
      * @param target {Dynamic}
      * @return result {Bool}
      **/
-    public static function is(target:Dynamic):Bool{
+    public static function is(target:Dynamic):Bool {
         var result = false;
 
         if (target.label != null) {
