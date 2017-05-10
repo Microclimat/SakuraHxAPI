@@ -78,6 +78,8 @@ interface PatternProxy {
     public function getPatternByID(patternID:Int):Void;
     public function getCustomerDesignByID(designID:Int):Void;
     public function getCustomerDesignByHash(hash:String):Void;
+    public function saveLocalPattern(localKey:String, pattern:Pattern):Void;
+    public function getLocalPattern(localKey:String):Pattern;
 }
 
 typedef Font = {

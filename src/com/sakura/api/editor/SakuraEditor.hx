@@ -1,40 +1,34 @@
 package com.sakura.api.editor;
 
-import msignal.Signal.Signal0;
-import msignal.Signal.Signal2;
-
 import com.sakura.api.model.constraint.Constraint;
 import com.sakura.api.model.constraint.IConstraintGroupValidationResult;
-import com.sakura.api.model.design.Template;
 import com.sakura.api.model.design.Area;
-import com.sakura.api.model.design.MergeOptions;
 import com.sakura.api.model.design.ConstrictedType;
-import com.sakura.api.model.design.Text.IText;
-import com.sakura.api.model.design.Picture.IPicture;
-import com.sakura.api.model.design.Picture;
-import com.sakura.api.model.design.IDrawingArea;
 import com.sakura.api.model.design.ElementType;
 import com.sakura.api.model.design.ExternalImageProvider;
 import com.sakura.api.model.design.IArea;
+import com.sakura.api.model.design.MergeOptions;
 import com.sakura.api.model.design.Pattern;
+import com.sakura.api.model.design.Picture.IPicture;
+import com.sakura.api.model.design.Picture;
 import com.sakura.api.model.design.PictureFilter;
+import com.sakura.api.model.design.Template;
+import com.sakura.api.model.design.Text.IText;
 import com.sakura.api.model.event.SakuraEventType;
 import com.sakura.api.model.geom.Rectangle;
-import com.sakura.api.model.info.TemplateInfo.ITemplateInfo;
 import com.sakura.api.model.info.PatternInfo.IPatternInfo;
 import com.sakura.api.model.io.AddImageOptions;
 import com.sakura.api.model.net.ServiceError;
 import com.sakura.api.model.transform.Transform.ITransform;
-import js.html.Blob;
 import haxe.MimeType;
+import js.html.Blob;
 import js.html.CanvasElement;
-import haxe.ds.StringMap;
-import org.tamina.log.LogLevel;
-import org.tamina.utils.UID;
 import js.html.Image;
-import org.tamina.net.URL;
+import msignal.Signal.Signal0;
+import msignal.Signal.Signal2;
 import org.tamina.events.Event;
-import haxe.Scheme;
+import org.tamina.log.LogLevel;
+import org.tamina.net.URL;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
@@ -45,11 +39,11 @@ extern class SakuraEditor {
     public function removeElement(elementId:Float):Void;
     public function selectElement(elementId:Float):Void;
     public function displayPatternById(patternId:Int, ?save:Bool = false, ?merge:Bool = true, ?mergeOptions:MergeOptions):Void;
-    public function init(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, patternId:Int, isCustomerDesign:Bool = false, useHttps:Bool = false):Void;
+    public function init(options:InitOptions):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
     public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float,?options:AddImageOptions):Picture;
-    public function transformElement(elementId:Float,value:ITransform):Void;
+    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function transformElement(elementId:Float, value:ITransform):Void;
     public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
     public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions, ?clone:Bool):Picture;
     public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
@@ -60,8 +54,8 @@ extern class SakuraEditor {
     public function addIText(value:IText, ?targetAreaId:Float, ?width:Float, ?height:Float):IText;
     public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 12, valign:String = ""):Void;
     public function updateIText(value:IText):Void;
-    public function addCustomerDesign(?previewArea:Rectangle, size:Int=512):Void;
-    public function getHoveredArea(canContainsImages:Bool = true,canContainsText:Bool = true):Area;
+    public function addCustomerDesign(?previewArea:Rectangle, size:Int = 512):Void;
+    public function getHoveredArea(canContainsImages:Bool = true, canContainsText:Bool = true):Area;
     public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
     public function displayTemplateByIndex(index:Int):IPatternInfo;
     public function registerPlugin(plugin:Dynamic):Void;
@@ -88,7 +82,7 @@ extern class SakuraEditor {
 }
 
 typedef LoadManager = {
-    public function load(url:URL, ?targetAreaId:Float, loadCompleteHandler:Picture->Null<Float>->Void):Picture;
+    public function load(url:URL, ?targetAreaId:Float, loadCompleteHandler:Picture -> Null<Float> -> Void):Picture;
     public function abortAll():Void;
 }
 
@@ -137,7 +131,7 @@ typedef ConstraintManager = {
     public function isAreaEmpty(targetId:Float):Bool;
 
     public function getConstraints(targetType:ConstrictedType, ?targetId:Float, ?constraintName:String):Array<Constraint>;
-    public function filterConstraints(targetType:ConstrictedType, ?targetId:Float, filterCallback:Constraint->Bool):Void;
+    public function filterConstraints(targetType:ConstrictedType, ?targetId:Float, filterCallback:Constraint -> Bool):Void;
     public function removeConstraints(targetType:ConstrictedType, ?targetId:Float, constraintName:String):Void;
     public function addConstraint(targetType:ConstrictedType, ?targetId:Float, constraint:Constraint):Void;
 }
@@ -451,4 +445,93 @@ interface Skin {
      * @default 'NULL'
      **/
     var UNKNOWN = 'null';
+}
+
+@:native("InitOptions")
+extern class InitOptions {
+
+    /**
+     * @property targetContentId
+     * the DIV's id to put the editor in
+     * @type String
+     **/
+    public var targetContentId:String;
+
+    /**
+     * @property contentWidth
+     * the editor's width
+     * @type Int
+     **/
+    public var contentWidth:Int;
+
+    /**
+     * @property contentHeight
+     * the editor's height
+     * @type Int
+     **/
+    public var contentHeight:Int;
+
+    /**
+     * @property token
+     * the partner's token (given at your account's creation)
+     * @type String
+     **/
+    public var token:String;
+
+    /**
+     * @property configURL
+     * the editor's config file url
+     * @type String
+     **/
+    public var configURL:String;
+
+    /**
+     * @property useHttps
+     * if true, the https protocol is used
+     * @type Bool
+     * @default false
+     **/
+    public var useHttps:Bool;
+
+    /**
+     * @property model
+     * The pattern to be loaded at init time
+     * @type PatternType
+     **/
+    public var model:PatternType;
+
+    public function new(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, useHttps:Bool = false);
+
+    /**
+     * Return a model PatternType
+     * @static
+     * @method createPatternType
+     * @param   patternId {Array<Area>} list of the Areas to use
+     * @param   customerDesignHash {Array<Area>} list of the Areas to use
+     * @param   pattern {Array<Area>} list of the Areas to use
+     * @return {PatternType} the model
+     */
+    public static function createPatternType(?patternId:Int, ?customerDesignHash:String, ?pattern:Pattern):PatternType;
+
+}
+
+/**
+ * @class PatternType
+ **/
+enum PatternType {
+    /**
+    * @property RemotePattern
+    * A remote Pattern
+    **/
+    RemotePattern(patternId:Int);
+    /**
+    * @property RemoteCustomerDesign
+    * A remote CustomerDesign
+    **/
+    RemoteCustomerDesign(customerDesignHash:String);
+    /**
+    * @property StaticPattern
+    * A Pattern given in params
+    **/
+    StaticPattern(pattern:Pattern);
 }
