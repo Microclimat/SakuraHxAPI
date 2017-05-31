@@ -21,18 +21,22 @@ class EnumTools {
         switch (f.kind) {
             case FVar(t, fieldExpr):
                 switch (fieldExpr.expr) {
-                    case ECast(valueExpr, t):
+                    case ECast(valueExpr, _):
                         switch (valueExpr.expr) {
                             case EConst(CString(value)):
                                 return value;
 
                             default:
+                                trace(valueExpr.expr);
                         }
-
+                    case EConst(CString(value)):
+                        return value;
                     default:
+                        trace(fieldExpr.expr);
                 }
 
             default:
+                trace(f.kind);
         }
 
         return null;
