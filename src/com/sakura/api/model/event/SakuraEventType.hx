@@ -267,4 +267,13 @@ typedef SakuraEvent = Event<SakuraEventType>;
      */
     var PREVIEW_READY = "previewReady";
 
+    /**
+     * @property UPLOADS_COMPLETE
+     * @type String
+     * @static
+     * @readOnly
+     * @default "uploadsComplete"
+     */
+    var UPLOADS_COMPLETE = "uploadsComplete";
+
 }
