@@ -1,35 +1,34 @@
 package com.sakura.api.io;
 
-import org.tamina.log.LogLevel;
-import haxe.ExifData;
-import com.sakura.api.model.net.ServiceError;
 import com.sakura.api.model.design.CustomerDesign;
 import com.sakura.api.model.design.Pattern;
-import com.sakura.api.model.io.DocumentType;
 import com.sakura.api.model.design.Picture;
-import js.html.ProgressEvent;
+import com.sakura.api.model.io.DocumentType;
+import com.sakura.api.model.net.ServiceError;
+import haxe.ExifData;
+import haxe.MimeType;
 import js.Error;
-import msignal.Signal;
-import org.tamina.net.URL;
-import org.tamina.events.Event;
-import js.html.InputElement;
 import js.html.AnchorElement;
-import js.html.Event;
-import js.html.Image;
 import js.html.Blob;
 import js.html.CanvasElement;
-import haxe.MimeType;
+import js.html.Image;
+import js.html.InputElement;
+import js.html.ProgressEvent;
+import msignal.Signal;
+import org.tamina.events.Event;
+import org.tamina.log.LogLevel;
+import org.tamina.net.URL;
 
 @:native("SakuraIO")
 extern class SakuraIO {
     public static function dispatchEvent(event:org.tamina.events.Event<IOEventType>):Void;
-    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true, ?startLoadingCallBack : String->Void):Void;
-    public static function fileChangeHandler(evt:Event):Void;
+    public static function handleFileSelect(input:InputElement, callBack:Image -> IOError -> Void, maxFileSize:Int = -1, cleanInputValue:Bool = true, ?startLoadingCallBack:String -> Void):Void;
+    public static function fileChangeHandler(evt:js.html.Event):Void;
     public static function initExternalAuth(link:AnchorElement, provider:ExternalImageProviderType):Void;
     public static function closeInstagramAuth():Void;
     public static function sendLocal(key:String, value:String):Void;
     public static function watchLocal(key:String):Void;
-    public static function addEventListener(type:String,listener:org.tamina.events.Event<String>->Void):Void;
+    public static function addEventListener(type:String, listener:org.tamina.events.Event<String> -> Void):Void;
     public static function setConfig(config:SakuraIOConfig):Void;
     public static function createPatternProxyInstance():PatternProxy;
     public static function createIOProxyInstance():IOProxy;
@@ -48,23 +47,23 @@ interface AlbumProxy {
     public var errorSignal:Signal1<ServiceError>;
     public var progressSignal:Signal1<ProgressEvent>;
     public function addPictureToAlbum(picture:IPicture, albumId:Int):Void;
-    public function removeImageFromAlbum(imageId:Float, albumId:Int,clientId:String):Void;
+    public function removeImageFromAlbum(imageId:Float, albumId:Int, clientId:String):Void;
     public function addAlbum(albumName:String, clientId:String):Void;
     public function renameAlbum(albumId:Int, name:String):Void;
     public function getAlbumsByClientId(clientId:String):Void;
 }
 
 interface IOProxy {
-    public var getTokenCompleteSignal:Signal2<String,ExternalAuthType>;
+    public var getTokenCompleteSignal:Signal2<String, ExternalAuthType>;
     public var uploadImageCompleteSignal:Signal1<String>;
     public var getImageDataCompleteSignal:Signal1<String>;
     public var errorSignal:Signal1<ServiceError>;
     public var progressSignal:Signal1<ProgressEvent>;
-    public function getToken(requestOrigin:String,type:ExternalAuthType):Void;
-    public function uploadImage( imageData:String, type:DocumentType, extension:String ):Float;
+    public function getToken(requestOrigin:String, type:ExternalAuthType):Void;
+    public function uploadImage(imageData:String, type:DocumentType, extension:String):Float;
     public function uploadBlob(blob:Blob, type:DocumentType, extension:String):Float;
-    public function getImageData( url:URL ):Void;
-    public function stop( targetCommandId:Float ):Void;
+    public function getImageData(url:URL):Void;
+    public function stop(targetCommandId:Float):Void;
 }
 
 interface PatternProxy {
@@ -80,6 +79,7 @@ interface PatternProxy {
     public function getCustomerDesignByHash(hash:String):Void;
     public function saveLocalPattern(localKey:String, pattern:Pattern):Void;
     public function getLocalPattern(localKey:String):Pattern;
+    public function deleteLocalPattern(localKey:String):Void;
 }
 
 typedef Font = {
