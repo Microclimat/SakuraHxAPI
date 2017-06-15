@@ -75,6 +75,7 @@ extern class SakuraEditor {
     public function duplicateTemplate(sourceTemplateIndex:Int):Template;
     public function updateAreaOverlay(areaId:Float, areaOverlay:CanvasElement, ?alignRules:Int):Void;
     public function updateVisualPlugins():Void;
+    public function updatePictureRef(pictureId:Float, ref:IPicture):Void;
     public function hideAreaOverlay(areaId:Float):Void;
     public function getCurrentPattern():Pattern;
     public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
