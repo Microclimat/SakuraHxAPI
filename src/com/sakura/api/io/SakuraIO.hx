@@ -7,7 +7,6 @@ import com.sakura.api.model.io.DocumentType;
 import com.sakura.api.model.net.ServiceError;
 import haxe.ExifData;
 import haxe.MimeType;
-import js.Error;
 import js.html.AnchorElement;
 import js.html.Blob;
 import js.html.CanvasElement;
@@ -115,9 +114,9 @@ interface ProxyEventBus {
 
     /**
      * @property serviceError
-     * @type Signal1<Error>
+     * @type Signal1<ServiceError>
      **/
-    var serviceError:Signal1<Error>;
+    var serviceError:Signal1<ServiceError>;
 }
 
 typedef SakuraIOConfig = {
