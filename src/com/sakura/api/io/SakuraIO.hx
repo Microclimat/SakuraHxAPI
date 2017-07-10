@@ -124,8 +124,8 @@ typedef SakuraIOConfig = {
     public var apiToken:String;
     public var proxyEventBus:ProxyEventBus;
     public var logLevel:LogLevel;
-    public var cdnHost:String;
-    public var apiHost:String;
+    @:optional public var cdnHost:String;
+    @:optional public var apiHost:String;
 }
 
 typedef FileLoadResponse = {
