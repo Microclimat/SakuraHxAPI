@@ -54,7 +54,7 @@ interface AlbumProxy {
 
 interface IOProxy {
     public var getTokenCompleteSignal:Signal2<String, ExternalAuthType>;
-    public var uploadImageCompleteSignal:Signal1<String>;
+    public var uploadImageCompleteSignal:Signal2<String, String>;
     public var getImageDataCompleteSignal:Signal1<String>;
     public var errorSignal:Signal1<ServiceError>;
     public var progressSignal:Signal1<ProgressEvent>;
