@@ -35,52 +35,71 @@ extern class SakuraEditor {
     static function getInstance():SakuraEditor;
 
     public function addEventListener(type:String, listener:SakuraEvent -> Void, ?useCapture:Bool):Void;
-
-    public function removeElement(elementId:Float):Void;
-    public function selectElement(elementId:Float):Void;
-    public function displayPatternById(patternId:Int, ?save:Bool = false, ?merge:Bool = true, ?mergeOptions:MergeOptions):Void;
     public function init(options:InitOptions):Void;
     public function resizeTo(contentWidth:Int, contentHeight:Int):Void;
-    public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function transformElement(elementId:Float, value:ITransform):Void;
-    public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function addPicture(p:Picture, ?targetAreaId:Float, ?options:AddImageOptions, ?clone:Bool):Picture;
-    public function moveElementTo(elementId:Float, posX:Float, posY:Float):Void;
-    public function rotateElementBy(elementId:Float, angle:Float):Void;
-    public function scaleElementBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
-    public function scaleElementTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
-    public function addText(label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 0, valign:String = "", ?targetAreaId:Float):IText;
-    public function addIText(value:IText, ?targetAreaId:Float, ?width:Float, ?height:Float):IText;
-    public function updateText(elementId:Float, label:String, align:String = "", bold:Bool = false, color:String = "", font:String = "Arial", italic:Bool = false, underline:Bool = false, size:Float = 12, valign:String = ""):Void;
-    public function updateIText(value:IText):Void;
-    public function addCustomerDesign(?previewArea:Rectangle, size:Int = 512):Void;
-    public function getHoveredArea(canContainsImages:Bool = true, canContainsText:Bool = true):Area;
-    public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
-    public function displayTemplateByIndex(index:Int):IPatternInfo;
     public function registerPlugin(plugin:Dynamic):Void;
     public function getConfig():Config;
-    public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
     public function setLogLevel(level:LogLevel):Void;
     public function getConstraintManager():ConstraintManager;
     public function removeEventListener(type:SakuraEventType, listener:Event<SakuraEventType> -> Void):Void ;
     public function removeAllEventListeners(type:SakuraEventType):Void;
-    public function displayCustomerDesignByHash(hash:String):Void;
-    public function getAreaById(areaId:Float):IArea;
-    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
-    public function addArea(area:IArea, ?targetTemplateId:Float):Void;
-    public function removeArea(area:IArea, ?targetTemplateId:Float):Void;
-    public function addTemplate(template:Template, ?index:Int):Void;
-    public function removeTemplate(templateId:Float):Void;
-    public function duplicateTemplate(sourceTemplateIndex:Int):Template;
-    public function updateAreaOverlay(areaId:Float, areaOverlay:CanvasElement, ?alignRules:Int):Void;
     public function updateVisualPlugins():Void;
-    public function updatePictureRef(pictureId:Float, ref:IPicture):Void;
-    public function hideAreaOverlay(areaId:Float):Void;
-    public function getCurrentPattern():Pattern;
-    public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
     public function getLoadManager():LoadManager;
     public function getUploadManager():UploadManager;
+
+    public var area(default, null):AreaAPI;
+    public var element(default, null):ElementAPI;
+    public var pattern(default, null):PatternAPI;
+    public var template(default, null):TemplateAPI;
+}
+
+typedef AreaAPI = {
+    public function add(area:IArea, ?targetTemplateId:Float):Void;
+    public function remove(area:IArea, ?targetTemplateId:Float):Void;
+    public function updateOverlay(areaId:Float, areaGuide:CanvasElement, ?alignRules:Int):Void ;
+    public function hideOverlay(areaId:Float):Void;
+    public function update(area:IArea):Void;
+    public function get(areaId:Float):Area ;
+    public function getHoveredArea(canContainsImages:Bool, ?canContainsText:Bool):Area ;
+}
+
+typedef ElementAPI = {
+    public function applyFilter(targetPictureId:Float, filter:PictureFilter, ?value:Float):Void;
+    public function remove(elementId:Float):Void;
+    public function transform(elementId:Float, value:ITransform):Void;
+    public function select(elementId:Float):Void;
+    public function moveTo(elementId:Float, posX:Float, posY:Float):Void;
+    public function rotateBy(elementId:Float, angle:Float):Void;
+    public function scaleBy(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function scaleTo(elementId:Float, scaleX:Float, scaleY:Float):Void;
+    public function addImageFromURL(url:String, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function addExternalImageFromURL(thumbUrl:String, pictureId:String, providerId:ExternalImageProvider, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function addImage(img:Image, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function addBlob(canvas:CanvasElement, mimeType:MimeType, source:Blob, ?targetAreaId:Float, ?options:AddImageOptions):Picture;
+    public function addPicture(sourcePicture:Picture, ?targetAreaId:Float, ?options:AddImageOptions, ?clonePicture:Bool):Picture;
+    public function addText(label:String, ?align:String, ?bold:Bool, ?color:String, ?font:String, ?italic:Bool, ?underline:Bool, ?size:Float, ?valign:String, ?targetAreaId:Float):IText;
+    public function addIText(value:IText, ?targetAreaId:Float):IText;
+    public function updateText(elementId:Float, label:String, ?align:String, ?bold:Bool, ?color:String, ?font:String, ?italic:Bool, ?underline:Bool, ?size:Float, ?valign:String):Void;
+    public function updateIText(value:IText):Void;
+    public function updatePictureRef(pictureId:Float, ref:IPicture):Void;
+}
+
+typedef PatternAPI = {
+    public function mergeTo(pPattern:Pattern, targetPatternId:Int):Void;
+    public function get():Pattern;
+    public function display(patternId:Int, ?save:Bool, ?merge:Bool, ?mergeOptions:MergeOptions):Void;
+    public function getCustomerDesignById(designId:Int):Void;
+    public function displayCustomerDesignByHash(hash:String):Void;
+    public function addCustomerDesign(?previewArea:Rectangle, ?size:Int):Void;
+}
+
+typedef TemplateAPI = {
+    public function displayByIndex(index:Int):IPatternInfo;
+    public function changeCurrentTemplateAreas(areas:Array<Area>):IPatternInfo;
+    public function add(template:Template, ?index:Int):Void;
+    public function duplicate(sourceTemplateIndex:Int):Template;
+    public function remove(templateId:Float):Void;
+    public function addTemplateBackground(backgroundUrl:String):Void;
 }
 
 typedef LoadManager = {
@@ -502,7 +521,7 @@ extern class InitOptions {
      **/
     public var model:PatternType;
 
-    public function new(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, useHttps:Bool = false);
+    public function new(targetContentId:String, contentWidth:Int, contentHeight:Int, token:String, configURL:String, useHttps:Bool = false):Void;
 
     /**
      * Return a model PatternType
