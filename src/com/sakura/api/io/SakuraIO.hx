@@ -58,11 +58,13 @@ interface IOProxy {
     public var getImageDataCompleteSignal:Signal1<String>;
     public var errorSignal:Signal1<ServiceError>;
     public var progressSignal:Signal1<ProgressEvent>;
+    public var getCDNUrlFromExternalUrlCompleteSignal(default, null):Signal1<String>;
     public function getToken(requestOrigin:String, type:ExternalAuthType):Void;
     public function uploadImage(imageData:String, type:DocumentType, extension:String):Float;
     public function uploadBlob(blob:Blob, type:DocumentType, extension:String):Float;
     public function getImageData(url:URL):Void;
     public function stop(targetCommandId:Float):Void;
+    public function getCDNUrlFromExternalUrl(url:URL):Void;
 }
 
 interface PatternProxy {
