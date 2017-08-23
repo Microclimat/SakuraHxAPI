@@ -63,7 +63,7 @@ import org.tamina.utils.UID;
      * @static
      * @default true
      **/
-    public static var USE_SD_PICTURE:Bool = true;
+    public static var USE_SD_PICTURE:Bool = false;
 
     /**
      * @property SD
