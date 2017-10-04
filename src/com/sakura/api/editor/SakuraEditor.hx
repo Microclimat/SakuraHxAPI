@@ -81,6 +81,7 @@ extern class SakuraEditor {
     public function mergePatternTo(sourcePattern:Pattern, patternId:Int):Void;
     public function getLoadManager():LoadManager;
     public function getUploadManager():UploadManager;
+    public function updateDisplay():Void;
 }
 
 typedef LoadManager = {
