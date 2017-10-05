@@ -1,11 +1,11 @@
 package com.sakura.api.model.net;
-import org.tamina.net.URL;
 import haxe.ds.StringMap;
 import haxe.Scheme;
+import org.tamina.net.URL;
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
-    public static var version:Version = Version.LATEST;
+    public static var version:Version = Version.V5;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
@@ -25,13 +25,7 @@ class Host {
     }
 
     public static function getVersion(version:Version):Version {
-        var result = version;
-        if(version == Version.LATEST){
-            result = Version.V4;
-        } else if(version == Version.NEXT){
-            result = Version.V5;
-        }
-        return result;
+        return version;
     }
 
     public static function getApiURL(host:HostName):URL {
@@ -101,8 +95,6 @@ class UrlPair {
 @:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
 @:enum abstract Version(String) from String to String {
 
-    var LATEST = 'latest';
-    var NEXT = 'next';
     var V3 = 'v3';
     var V4 = 'v4';
     var V5 = 'v5';
