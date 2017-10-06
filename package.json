@@ -7,7 +7,7 @@
     "haxe"
   ],
   "author": "David Mouton",
-  "version": "2.0.48",
+  "version": "2.0.49",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"
@@ -20,7 +20,7 @@
     "url": "https://github.com/Microclimat/SakuraHxAPI"
   },
   "dependencies": {
-     "haxe" : "4.0.0",
-    "taminahx" : "1.0.18"
+    "haxe": "4.0.0",
+    "taminahx": "1.0.18"
   }
 }

@@ -1,15 +1,15 @@
 package com.sakura.api;
 
-import js.html.Blob;
-import haxe.MimeType;
-import js.html.CanvasElement;
 import haxe.ds.StringMap;
-import org.tamina.log.LogLevel;
-import org.tamina.utils.UID;
-import js.html.Image;
-import org.tamina.net.URL;
-import org.tamina.events.Event;
+import haxe.MimeType;
 import haxe.Scheme;
+import js.html.Blob;
+import js.html.CanvasElement;
+import js.html.Image;
+import org.tamina.events.Event;
+import org.tamina.log.LogLevel;
+import org.tamina.net.URL;
+import org.tamina.utils.UID;
 
 @:native("SakuraEditor")
 extern class SakuraEditor {
@@ -1052,7 +1052,7 @@ interface IPlugin {
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
-    public static var version:Version =Version.LATEST;
+    public static var version:Version = Version.V4;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
@@ -1066,7 +1066,7 @@ class Host {
             } else {
                 result = pair.https;
             }
-            result = new URL(result.path+'/'+version);
+            result = new URL(result.path + '/' + version);
         }
         return result;
     }
@@ -1085,14 +1085,14 @@ class Host {
     }
 
     private static function getURLList():StringMap<UrlPair> {
-        if(_urls == null){
+        if (_urls == null) {
             _urls = new StringMap<UrlPair>();
-            _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
-            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech','https://preprod-cdn.heidi.tech'));
-            _urls.set(HostName.STAGING,new UrlPair('http://staging-cdn.heidi.tech','https://staging-cdn.heidi.tech'));
-            _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
-            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
+            _urls.set(HostName.PROD, new UrlPair('http://cdn.heidi.tech', 'https://cdn.heidi.tech'));
+            _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech', 'https://preprod-cdn.heidi.tech'));
+            _urls.set(HostName.STAGING, new UrlPair('http://staging-cdn.heidi.tech', 'https://staging-cdn.heidi.tech'));
+            _urls.set(HostName.QUALIF, new UrlPair('http://qualif-cdn.heidi.tech', 'https://qualif-cdn.heidi.tech'));
+            _urls.set(HostName.DEV, new UrlPair('http://local.heidi.tech:8686', 'http://local.heidi.tech:8686'));
+            _urls.set(HostName.LOCAL, new UrlPair('http://local.heidi.tech:8686', 'http://local.heidi.tech:8686'));
         }
         return _urls;
     }
@@ -1131,7 +1131,7 @@ class UrlPair {
     var USER_PICTURE = 7;
 }
 
-@:enum abstract HostName(String) from String to String  {
+@:enum abstract HostName(String) from String to String {
 
     var PROD = 'prod';
     var PREPROD = 'preprod';
@@ -1144,12 +1144,11 @@ class UrlPair {
 
 #if !macro
 @:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
-@:enum abstract Version(String) from String to String  {
+@:enum abstract Version(String) from String to String {
 
-    var LATEST = 'latest';
-    var NEXT = 'next';
     var V3 = 'v3';
     var V4 = 'v4';
+    var V5 = 'v5';
 
 }
 #end
