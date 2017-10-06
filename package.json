@@ -7,10 +7,10 @@
     "haxe"
   ],
   "author": {
-    "name" : "Happy Tech",
-    "email" : "technique@happy-technologies.com"
+    "name": "Happy Tech",
+    "email": "technique@happy-technologies.com"
   },
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "Happy Technologies",
   "engines": {
     "node": ">=0.8.0"
@@ -23,9 +23,9 @@
     "url": "https://github.com/Microclimat/SakuraHxAPI"
   },
   "dependencies": {
-    "haxe" : "4.0.0",
+    "haxe": "4.0.0",
     "msignal": ">=1.2.3",
     "exifhx": ">=0.0.1",
-    "taminahx" : ">1.0.18"
+    "taminahx": ">1.0.18"
   }
 }

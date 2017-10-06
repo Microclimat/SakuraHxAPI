@@ -1,11 +1,11 @@
 package com.sakura.api.model.net;
-import org.tamina.net.URL;
 import haxe.ds.StringMap;
 import haxe.Scheme;
+import org.tamina.net.URL;
 class Host {
 
     public static var scheme:Scheme = Scheme.HTTP;
-    public static var version:Version =Version.LATEST;
+    public static var version:Version = Version.V4;
 
     private static var _urls:StringMap<UrlPair>;
     private static var _apiUrls:StringMap<UrlPair>;
@@ -19,7 +19,7 @@ class Host {
             } else {
                 result = pair.https;
             }
-            result = new URL(result.path+'/'+version);
+            result = new URL(result.path + '/' + version);
         }
         return result;
     }
@@ -27,8 +27,8 @@ class Host {
     public static function getApiURL(host:HostName):URL {
         var result = null;
         var pair = getApiURLList().get(host);
-        if(pair != null){
-            if(scheme == Scheme.HTTP){
+        if (pair != null) {
+            if (scheme == Scheme.HTTP) {
                 result = pair.http;
             } else {
                 result = pair.https;
@@ -38,23 +38,23 @@ class Host {
     }
 
     private static function getURLList():StringMap<UrlPair> {
-        if(_urls == null){
+        if (_urls == null) {
             _urls = new StringMap<UrlPair>();
-            _urls.set(HostName.PROD,new UrlPair('http://cdn.heidi.tech','https://cdn.heidi.tech'));
-            _urls.set(HostName.PREPROD,new UrlPair('http://preprod-cdn.heidi.tech:8084','https://preprod-cdn.heidi.tech:8093'));
-            _urls.set(HostName.QUALIF,new UrlPair('http://qualif-cdn.heidi.tech','https://qualif-cdn.heidi.tech'));
-            _urls.set(HostName.DEV,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
-            _urls.set(HostName.LOCAL,new UrlPair('http://local.heidi.tech:8686','http://local.heidi.tech:8686'));
+            _urls.set(HostName.PROD, new UrlPair('http://cdn.heidi.tech', 'https://cdn.heidi.tech'));
+            _urls.set(HostName.PREPROD, new UrlPair('http://preprod-cdn.heidi.tech:8084', 'https://preprod-cdn.heidi.tech:8093'));
+            _urls.set(HostName.QUALIF, new UrlPair('http://qualif-cdn.heidi.tech', 'https://qualif-cdn.heidi.tech'));
+            _urls.set(HostName.DEV, new UrlPair('http://local.heidi.tech:8686', 'http://local.heidi.tech:8686'));
+            _urls.set(HostName.LOCAL, new UrlPair('http://local.heidi.tech:8686', 'http://local.heidi.tech:8686'));
         }
         return _urls;
     }
 
     private static function getApiURLList():StringMap<UrlPair> {
-        if(_apiUrls == null){
+        if (_apiUrls == null) {
             _apiUrls = new StringMap<UrlPair>();
-            _apiUrls.set(HostName.PROD,new UrlPair('http://api.heidi.tech/Api.svc','https://api.heidi.tech/Api.svc'));
-            _apiUrls.set(HostName.PREPROD,new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc','https://preprod-api.heidi.tech:8092/Api.svc'));
-            _apiUrls.set(HostName.LOCAL,new UrlPair('http://localhost:2058/Api.svc','https://localhost:40300/Api.svc'));
+            _apiUrls.set(HostName.PROD, new UrlPair('http://api.heidi.tech/Api.svc', 'https://api.heidi.tech/Api.svc'));
+            _apiUrls.set(HostName.PREPROD, new UrlPair('http://preprod-api.heidi.tech:8091/Api.svc', 'https://preprod-api.heidi.tech:8092/Api.svc'));
+            _apiUrls.set(HostName.LOCAL, new UrlPair('http://localhost:2058/Api.svc', 'https://localhost:40300/Api.svc'));
         }
         return _apiUrls;
     }
@@ -64,14 +64,14 @@ class UrlPair {
     public var http:URL;
     public var https:URL;
 
-    public function new(http:String,https:String){
+    public function new(http:String, https:String) {
         this.http = new URL(http);
         this.https = new URL(https);
     }
 
 }
 
-@:enum abstract HostName(String) from String to String  {
+@:enum abstract HostName(String) from String to String {
 
     var PROD = 'prod';
     var PREPROD = 'preprod';
@@ -83,10 +83,8 @@ class UrlPair {
 
 #if !macro
 @:build(com.sakura.macro.EnumTools.valuesToJson("./versions.json"))
-@:enum abstract Version(String) from String to String  {
+@:enum abstract Version(String) from String to String {
 
-    var LATEST = 'latest';
-    var NEXT = 'next';
     var V3 = 'v3';
     var V4 = 'v4';
     var V5 = 'v5';
