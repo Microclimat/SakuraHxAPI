@@ -1,6 +1,6 @@
 package com.sakura.api.model.design;
-import com.sakura.api.model.info.TemplateInfo;
 import com.sakura.api.model.constraint.Constraint;
+import com.sakura.api.model.info.TemplateInfo;
 import org.tamina.utils.UID;
 
 /**
@@ -245,7 +245,7 @@ class Template implements IConstricted {
         for (area in this.content) {
             var clonedArea:Area = cast area.clone(copy);
 
-            clonedArea.parent = this;
+            clonedArea.parent = result;
             result.content.push(clonedArea);
         }
 
@@ -257,7 +257,7 @@ class Template implements IConstricted {
      * @method toInfo
      * @return info {TemplateInfo}
      **/
-    public function toInfo():TemplateInfo{
+    public function toInfo():TemplateInfo {
         var result = new TemplateInfo();
         result.id = id;
         result.name = name;
@@ -271,26 +271,26 @@ class Template implements IConstricted {
         }
 
         result.backgroundUrl = this.patternBackgroundPicture.url.path;
-        if(this.patternForegroundPicture != null){
+        if (this.patternForegroundPicture != null) {
             result.foregroundUrl = this.patternForegroundPicture.url.path;
         }
-        if(this.patternMaskPicture != null){
+        if (this.patternMaskPicture != null) {
             result.maskUrl = this.patternMaskPicture.url.path;
         }
-        if(this.backgroundPicture != null){
+        if (this.backgroundPicture != null) {
             result.templateBackgroundUrl = this.backgroundPicture.url.path;
         }
-        if(this.foregroundPicture != null){
+        if (this.foregroundPicture != null) {
             result.templateForegroundUrl = this.foregroundPicture.url.path;
         }
-        if(this.backgroundPreviewPicture != null){
+        if (this.backgroundPreviewPicture != null) {
             result.templatePreviewBackgroundUrl = this.backgroundPreviewPicture.url.path;
         }
-        if(this.foregroundPreviewPicture != null){
+        if (this.foregroundPreviewPicture != null) {
             result.templatePreviewForegroundUrl = this.foregroundPreviewPicture.url.path;
         }
-        for(i in 0...content.length){
-            result.areas.push( content[i].toInfo());
+        for (i in 0...content.length) {
+            result.areas.push(content[i].toInfo());
         }
         return result;
     }

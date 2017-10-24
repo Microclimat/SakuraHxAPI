@@ -409,7 +409,7 @@ import org.tamina.utils.UID;
         result.mimeType = this.mimeType;
         result.blob = this.blob;
 
-        for(i in 0...constraints.length){
+        for (i in 0...constraints.length) {
             result.constraints.push(constraints[i].clone());
         }
 

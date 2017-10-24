@@ -46,6 +46,7 @@ extern class SakuraEditor {
     public function updateVisualPlugins():Void;
     public function getLoadManager():LoadManager;
     public function getUploadManager():UploadManager;
+    public function updateDisplay():Void;
 
     public var area(default, null):AreaAPI;
     public var element(default, null):ElementAPI;
