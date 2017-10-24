@@ -61,6 +61,7 @@ typedef AreaAPI = {
     public function hideOverlay(areaId:Float):Void;
     public function update(area:IArea):Void;
     public function get(areaId:Float):Area ;
+    public function select(areaId:Float):Void;
     public function getHoveredArea(canContainsImages:Bool, ?canContainsText:Bool):Area ;
 }
 
