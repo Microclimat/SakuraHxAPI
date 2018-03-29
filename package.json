@@ -6,9 +6,9 @@
     "heidi",
     "haxe"
   ],
-  "author": "David Mouton",
+  "author": "SYNOLIA",
   "version": "5.2.21",
-  "license": "Happy Technologies",
+  "license": "SYNOLIA",
   "engines": {
     "node": ">=0.8.0"
   },
